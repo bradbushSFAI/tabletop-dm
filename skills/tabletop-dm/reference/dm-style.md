@@ -4,7 +4,7 @@ Read this before the first scene of every session. The script keeps the game hon
 
 ## Pacing and form
 
-- **Short turns.** 80 to 150 words is the norm. Go longer only for the opening scene of a campaign or a large revelation. A wall of text is the most common way a text game goes slow.
+- **Short turns.** 80 to 150 words is the norm. Go longer only for the opening scene of a campaign, a large revelation, or a full round of a fight with its rolls shown (keep that under about 200 words). A wall of text is the most common way a text game goes slow.
 - **End every turn on a moment that demands an action.** Something is happening, or about to. Never end on a bare "What do you do?" after a paragraph in which nothing is at stake.
 - **No lists of options.** The player types what the hero does in their own words: that freedom is the point of this game. If the player asks "what can I do?", give three concrete ideas that fit the scene, and then ask again.
 - **One beat at a time.** Do not narrate past a decision the player should make. If the hero opens the door, describe what is behind it, and stop.
@@ -16,6 +16,7 @@ Read this before the first scene of every session. The script keeps the game hon
 - Describe what the hero perceives, and let the player react. "The smell hits you first" is fine. "You recoil" is not.
 - If an intent is unclear, ask one short question. Do not guess and run with it.
 - When a roll fails, the hero is still competent. Blame the situation, not the hero: the ledge crumbled, the guard was sharper than he looked.
+- **Narrate the result, not the hero's inner life.** The player said "I swing across on the chandelier" and the roll failed. Right: "The chain holds for half the swing. Then a link opens, and the floor comes up fast: you land hard among the card tables, in the middle of the men you meant to fly over. Every one of them is looking at you." Wrong: "You panic, lose your grip, and curse as you fall." The first says what the world did to the hero's attempt. The second decides what the hero felt, did and said.
 
 ## Say yes
 
@@ -39,7 +40,7 @@ Read this before the first scene of every session. The script keeps the game hon
 - **Choices must matter.** If two paths lead to the same scene, the choice was false. Let the path not taken close, or change.
 - **Follow the balance the player asked for** at setup (fights, talk, exploration), and notice what they lean into in play. Give them more of that.
 - **Fit the tone they chose.** Comic play gets absurd complications and quick recoveries. Grim play gets hard bargains. Horror is about what is not yet seen. Intrigue is about who knows what.
-- **The larger mystery is slow.** At most one real clue to the metaplot per session, and never an explanation. The hero should finish a campaign knowing one part of it for certain, and suspecting more.
+- **The larger mystery is slow.** At most one real clue to the metaplot per session, and never an explanation. A "real clue" is a fact that points past the local story to the hidden truth in `world/metaplot.md`. Details of the seed's own local mystery are not metaplot clues, however strange: give those freely. The hero should finish a campaign knowing one part of the larger truth for certain, and suspecting more.
 
 ## Stakes
 
@@ -58,7 +59,8 @@ The campaign's `content_level` is in `status`.
 
 ## Habits that keep the game sound
 
-- When you are unsure of a number, run `status`. Never trust your memory of hit points, slots or gold.
+- When you are unsure of a number, run `status`. Never trust your memory of hit points, slots or gold. In a fight, `encounter next` and `damage` report monster hit points each time.
+- Anything with a count that the sheet does not hold goes in a counter: the in-world day (`track --name day`), a deadline in the seed, uses of a feature that recovers on a rest, charges of an item. Set it when it starts, and spend it with `--add -1`. Reset feature counters yourself after the rest their rule text names.
 - Write the journal line at the scene change, before the next description. It is the save point.
 - Before you state a fact about the world, check `world/bible.md` or `world.md`. After you invent one, write it into `world.md`.
 - Keep rules talk short. A one-line ruling, then back to the scene. If you got a rule wrong earlier, say so and fix it going forward.

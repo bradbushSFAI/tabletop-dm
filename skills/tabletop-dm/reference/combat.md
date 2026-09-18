@@ -39,7 +39,7 @@ A level 1 party is fragile: one hit can drop a character. Use Easy and Standard 
 
 `encounter start C --monster goblin:3 --monster hobgoblin:1`
 
-The script rolls initiative for every party member and one roll for each group of monsters, rolls each monster's hit points, and returns the order. Add `--average-hp` to skip the hit-point rolls. Tell the player the order in one line. Do not read out monster hit points or AC: describe how hurt a monster looks.
+The script rolls initiative for every party member and one roll for each group of monsters, rolls each monster's hit points, and returns the order. `damage` and `encounter next` report monster hit points every time, so never carry them in your head. Add `--average-hp` to skip the hit-point rolls. Tell the player the order in one line. Do not read out monster hit points or AC: describe how hurt a monster looks.
 
 Surprise: if one side is unaware, give the other side a free round before you call `encounter start`, or simply skip the surprised creatures' first turns.
 
@@ -57,13 +57,17 @@ Show it openly: `d20 (14) + 4 = 18 vs AC 15: hit. 1d8 (5) + 2 = 7 piercing.`
 
 **Anything else** (shove, grapple, swing from a rope, throw sand): pick the ability or skill, set a DC or an opposed roll, and roll it. Say yes to creative plans. Give advantage for a good one.
 
-**Class features** are on the sheet as rule text (`sheet <id> C`, under `feature_rules`). You apply them. For example Sneak Attack adds dice to one damage roll per turn when its condition is met, and Second Wind is a `roll` followed by `heal`.
+**Class features** are on the sheet as rule text (`sheet <id> C`, under `feature_rules`). You apply them. Second Wind is a `roll` followed by `heal`. A feature with limited uses gets a counter when the character gains it (`track C --name "mara second wind" --set 1`), is spent with `--add -1`, and is set again after the rest its rule names.
+
+**Sneak Attack without a map.** The script does not track positions, so use this ruling every time: the Rogue gets it, once per turn, when they attack with a finesse or ranged weapon AND either they have advantage, or a conscious ally is fighting the same enemy in melee. Hiding first, or a companion who was ordered to engage that enemy, is how the player earns it.
+
+**0 hit points for a monster.** `"defeated": true` means out of the fight. Whether that is dead, dying or knocked out is your call in the fiction. A melee attacker may always choose to knock a foe out and not kill (5e), so ask the player when it could matter: prisoners talk.
 
 Then `encounter next C`.
 
 ## A monster's turn
 
-1. Decide what it does, from its `tactic`, its situation and its wits. Animals flee when hurt. Bandits surrender. Zealots do not. Not every monster fights to the death.
+1. Decide what it does, from its `tactic`, its situation and its wits. Animals flee when hurt. Bandits surrender. Zealots do not. Not every monster fights to the death. When one runs or yields: `encounter flee C --who goblin-2`. It leaves the turn order and gives no XP.
 2. Attack: `roll C "1d20+4" --ac 16 --reason "goblin-1 scimitar on mara-voss"`. Use the `attack_bonus` from the monster's record, and the target's `ac` from `status` or the sheet.
 3. On a hit: `roll C "1d6+2" --reason "goblin-1 scimitar damage"`, then `damage C --who mara-voss --amount 5`. On a natural 20, double the dice, and add `--crit` to `damage` if the target is already at 0 HP.
 4. An attack with `attack_bonus: null` uses a saving throw: the target rolls `roll C --who brann --save con --dc 11`.
@@ -141,7 +145,7 @@ The script moves each character through these states. `damage` and `status` alwa
 
 ## Keeping a fight fast in text
 
-- One turn of narration per combatant, two sentences. Group identical monsters that do the same thing.
+- One turn of narration per combatant, two sentences. Group identical monsters that do the same thing. A whole round with its rolls shown may run to about 200 words, and no more.
 - Run the monsters' turns and the companions' turns together, then stop at the hero's turn with the situation clear: who is hurt, who is where, what is about to happen.
 - Describe, do not recite. "The goblin is bleeding and eyeing the door", not "goblin-1 has 2 HP".
 - Most fights should be decided in three or four rounds. When the outcome is clear, end it: the last enemy runs, yields or falls. Then `encounter end`.

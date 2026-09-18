@@ -3,6 +3,7 @@
 ## Contents
 
 - First time: the six setup steps
+- The format of seeds/teasers.md
 - Character creation
 - Companions
 - The opening scene
@@ -20,17 +21,23 @@ Do these in order. Keep it friendly and quick: the player came to play, not to f
 
 **Step 1. Self-test and init.** Run `--version`, then `init C`. If `init` is refused with `write_guard_failed`, the folder is not empty. Ask the player to make a new empty subfolder, open it, and say "let's play" again. Do not make the folder yourself.
 
-**Step 2. Three or four setup questions, then `settings set`.** Ask them together, in one short message, with a default the player can accept by saying "defaults":
+**Step 2. Four setup questions, then `settings set`.** Ask them together, in one short message. State each default, and say the player can answer "defaults" to take all four:
 
-1. **Tone.** Heroic, grim, comic, horror, intrigue, or a mix.
-2. **The balance of play.** More fights, more talk, more exploration, or even.
-3. **Difficulty.** `story` (the hero cannot truly die, and costs are light), `standard` (death changes the story, and the costs are real), `iron` (death is final).
-4. **Length and content.** A one-shot of one session, or a campaign of about 10 sessions. The content level is PG-13 adventure by default. Offer `pg13-dark` only if the player chose grim or horror.
+| Question | Choices | Default | Recorded as |
+|---|---|---|---|
+| Tone | heroic, grim, comic, horror, intrigue, or a mix in the player's words | heroic | `--tone genre=<their word or words>` |
+| Balance of play | fights, talk, exploration, even | even | `--tone balance=<choice>` |
+| Difficulty | `story` (the hero cannot truly die, costs are light), `standard` (death changes the story, costs are real), `iron` (death is final) | standard | `--difficulty <choice>` |
+| Length | one-shot (one session), campaign (about 10 sessions) | campaign | `--tone length=<choice>` |
 
-Record the answers:
-`settings set C --difficulty standard --content-level pg13 --tone genre=grim --tone balance=talk --tone length=campaign`
+The content level is `pg13` and you do not ask about it. Only if the player's tone answer was grim or horror, ask ONE follow-up: "Do you want it darker than PG-13: heavier dread and bleaker costs?" A yes is `--content-level pg13-dark`.
 
-**Step 3. The five doors.** Read `seeds/teasers.md` and show the player every teaser, numbered, exactly as written. Say that each door leads into the same larger world, so a later campaign can take a different door. The player picks one, or says "surprise me".
+The `--tone` values are free text for you to read back later. Keep each one short, and use the player's own words when they gave some ("grim but hopeful" becomes `genre=grim-but-hopeful`).
+
+Record the answers in one command:
+`settings set C --difficulty standard --tone genre=grim --tone balance=talk --tone length=campaign`
+
+**Step 3. The doors.** Read `seeds/teasers.md` (its format is below). Show the player every teaser, numbered 1, 2, 3 and so on: show the teaser text only, and never the seed's file name. Say that every door leads into the same larger world, so a later campaign can take a different door. The player picks one, or says "surprise me".
 - A pick: `seed choose <name> C`.
 - Surprise me: `seed pick C`. Show the roll.
 
@@ -41,9 +48,13 @@ Record the answers:
 
 Say nothing about this file to the player. From now on, the copy in `dm-secrets.md` is the truth for this campaign, even if the skill's seed files change later.
 
-**Step 5. Character creation and companions.** See the next two sections.
+**Step 5. Character creation and companions.** See the sections below.
 
 **Step 6. The opening scene.** See below. Then write the first journal line.
+
+## The format of seeds/teasers.md
+
+One line for each door: `<seed file name without .md>: <the teaser sentence>`. For example `the-mill: A mill town where the goblins steal only grain.` The part before the colon is what you pass to `seed choose`. The part after the colon is the only seed text a player may see.
 
 ## Character creation
 
@@ -51,7 +62,8 @@ About five minutes. Ask one thing at a time, and offer "quick start" first: a re
 
 **Quick start:** ask only for a name and a class. Run
 `character create C --name "..." --class rogue --quick`
-Then ask for a one-sentence background, one bond and one flaw, in the player's words. (If they shrug, offer two of each that fit the seed's start place.)
+Then ask for a one-sentence background, one bond and one flaw, in the player's words. (If they shrug, offer two of each that fit the seed's start place.) Save them on the sheet:
+`character set C --who mara-voss --background "..." --bond "..." --flaw "..."`
 
 **Guided:**
 1. **Class.** Fighter, Rogue, Wizard or Cleric. One line each on how it plays. `lookup class <name> --level 1` gives you the facts.
@@ -94,7 +106,7 @@ Start in motion, at the seed's start place, with a problem already arriving. Use
 When the player says "let's stop here", or similar:
 
 1. Bring the scene to a resting point if one is a turn away. Do not force one.
-2. Under today's date heading in `journal.md`, add a session summary of one short paragraph: what happened, what changed, what is unresolved.
+2. Under today's date heading in `journal.md`, add a session summary of one short paragraph: what happened, what changed, what is unresolved. **Then re-read that paragraph and delete anything the hero does not know.** This is the moment a secret most easily leaks: a villain's deadline, a companion's motive, the true cause of something. The journal is the player's file.
 3. Update `world.md`: new people, places and factions, and the list of open quests.
 4. Update `dm-secrets.md`: which clues were found, what the villain does next, how each companion's motive moved.
 5. Run `status C`, and tell the player in one line that the game is saved and how to come back: open this folder and say "continue".

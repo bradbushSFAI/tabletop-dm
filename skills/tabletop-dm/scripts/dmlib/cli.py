@@ -44,6 +44,9 @@ HANDLERS = {
     "encounter add": cmd_encounter.add,
     "encounter next": cmd_encounter.next_turn,
     "encounter end": cmd_encounter.end,
+    "encounter flee": cmd_encounter.flee,
+    "character set": cmd_character.set_hooks,
+    "track": cmd_play.track,
     "seed list": cmd_seed.seed_list,
     "seed choose": cmd_seed.seed_choose,
     "seed pick": cmd_seed.seed_pick,
@@ -216,6 +219,20 @@ def build_parser() -> argparse.ArgumentParser:
     _leaf(encounter, "next", "encounter next")
     p = _leaf(encounter, "end", "encounter end")
     p.add_argument("--no-xp", dest="no_xp", action="store_true")
+
+    p = _leaf(encounter, "flee", "encounter flee")
+    p.add_argument("--who", required=True)
+
+    p = _leaf(character, "set", "character set")
+    p.add_argument("--who", required=True)
+    for flag in ("--background", "--bond", "--flaw", "--name"):
+        p.add_argument(flag)
+
+    p = _leaf(sub, "track", "track")
+    p.add_argument("--name", required=True)
+    p.add_argument("--set", type=int)
+    p.add_argument("--add", type=int)
+    p.add_argument("--clear", action="store_true")
 
     seed = _group(sub, "seed")
     _leaf(seed, "list", "seed list")

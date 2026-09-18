@@ -206,8 +206,9 @@ def rest_short(args: argparse.Namespace, skill_root: Path, rng: random.Random) -
         party["characters"][after["id"]] = after
         gained = after["hp"]["current"] - before["hp"]["current"]
         entries.extend(_hp_entries("rest_short", before, after, {"dice_spent": count}))
-        results[after["id"]] = {"dice_spent": count, "rolls": rolls, "hp_gained": gained,
-                                "hp": _hp_text(after["hp"]), "life_state": after["life_state"]}
+        # hp_rolled is the dice plus the modifier. hp_gained is what fit under the HP maximum.
+        results[after["id"]] = {"dice_spent": count, "rolls": rolls, "con_modifier": con, "hp_rolled": wanted,
+                                "hp_gained": gained, "hp": _hp_text(after["hp"]), "life_state": after["life_state"]}
     party_ops.commit(campaign_dir, party, entries)
     return {"results": results}
 
@@ -271,7 +272,8 @@ def item_add(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> 
     _add_line(character, line)
     party_ops.commit(campaign_dir, party, [io_campaign.change_entry(
         "item_add", character["id"], "inventory." + line["item"], None, args.qty)])
-    return {"who": character["id"], "inventory": character["inventory"]}
+    total = party_ops.inventory_quantity(character, line["item"])
+    return {"who": character["id"], "item": {"item": line["item"], "quantity": total}}
 
 
 def item_remove(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
@@ -308,7 +310,7 @@ def item_remove(args: argparse.Namespace, skill_root: Path, rng: random.Random) 
         entries.append(io_campaign.change_entry("item_remove", receiver["id"], "inventory." + item_id, None, args.qty,
                                                 {"from": character["id"]}))
     party_ops.commit(campaign_dir, party, entries)
-    return {"who": character["id"], "inventory": character["inventory"], "ac": character["ac"],
+    return {"who": character["id"], "item": {"item": item_id, "quantity": left}, "ac": character["ac"],
             "equipped": character["equipped"]}
 
 
@@ -350,6 +352,34 @@ def gold(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
     entries.insert(0, io_campaign.change_entry("gold", character["id"], "gold_cp", before, character["gold_cp"]))
     party_ops.commit(campaign_dir, party, entries)
     return {"who": character["id"], "gold_gp": gp(character["gold_cp"])}
+
+
+# ---------- track ----------
+
+def track(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
+    """A named counter the DM needs but the rules engine does not model: the in-world day,
+    uses of a feature, charges of an item. A counter cannot go below zero."""
+    campaign_dir = Path(args.campaign)
+    party = io_campaign.load_party(campaign_dir)
+    trackers = party.setdefault("trackers", {})
+    name = party_ops.slugify(args.name)
+    if not name:
+        raise DmError("illegal_value", "--name must contain a letter or a number.")
+    chosen = [flag for flag in ("set", "add") if getattr(args, flag) is not None] + (["clear"] if args.clear else [])
+    if len(chosen) != 1:
+        raise DmError("bad_arguments", "give exactly one of --set N, --add N (may be negative), or --clear.")
+    before = trackers.get(name)
+    if args.clear:
+        trackers.pop(name, None)
+        after = None
+    else:
+        after = args.set if args.set is not None else (before or 0) + args.add
+        if after < 0:
+            raise DmError("tracker_empty", "%s is at %d. It cannot go to %d: nothing is left to spend."
+                          % (name, before or 0, after))
+        trackers[name] = after
+    party_ops.commit(campaign_dir, party, [io_campaign.change_entry("track", None, "trackers." + name, before, after)])
+    return {"name": name, "value": after, "trackers": trackers}
 
 
 # ---------- condition ----------

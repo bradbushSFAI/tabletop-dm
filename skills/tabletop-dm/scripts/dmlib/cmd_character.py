@@ -213,6 +213,25 @@ def _starting_spells(args: argparse.Namespace, rules: Dict[str, Any], class_data
     return {"cantrips": cantrips, "known": None, "prepared": prepared[:limit], "slots": {}}
 
 
+# ---------- character set ----------
+
+def set_hooks(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
+    """The story hooks of a sheet. They carry no numbers, so they can change at any time."""
+    campaign_dir = Path(args.campaign)
+    party = io_campaign.load_party(campaign_dir)
+    character = party_ops.require_character(party, args.who)
+    fields = {k: getattr(args, k) for k in ("background", "bond", "flaw", "name") if getattr(args, k) is not None}
+    if not fields:
+        raise DmError("nothing_to_set", "give at least one of --background, --bond, --flaw, --name.")
+    entries = []
+    for key, value in fields.items():
+        entries.append(io_campaign.change_entry("character_set", character["id"], key, character.get(key, ""), value))
+        character[key] = value
+    party_ops.commit(campaign_dir, party, entries)
+    return {"who": character["id"], "name": character["name"], "background": character["background"],
+            "bond": character["bond"], "flaw": character["flaw"]}
+
+
 # ---------- character asi ----------
 
 def asi(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:

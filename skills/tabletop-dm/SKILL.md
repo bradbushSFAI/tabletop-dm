@@ -29,13 +29,14 @@ You decide **what happens**. The script **applies it** and refuses an illegal ch
 
 - The script is `scripts/dm.py` inside this skill's folder. Build its full path from the skill folder you were given, and run `python3 <skill folder>/scripts/dm.py ...`. If `python3` is not found, try `python`.
 - The **campaign folder** is the folder the player has open (the current working folder). Pass its full path as `--campaign <folder>` on every command except `--version` and `lookup`.
+- Run each command plainly and read its one line of output. Do not pipe the output into another program: some hosts block that.
 - Every command prints one line of JSON. `"ok": true` is a success. `"ok": false` is a refusal: **nothing changed on disk**. Read `error.message`, fix the cause, and run a correct command. Never work around a refusal by editing a file.
 - `write_guard_failed` on `init` means the folder is not empty. Ask the player to make a new empty subfolder and open it. Do not make one yourself.
 - `internal_error` is a bug in the script. Tell the player, and do not guess the state. Run `status` to see what is true.
 
 ## Start of every session
 
-1. Run `--version`. If `seeds` is 0 or a data count is 0, the install is incomplete: say so and stop.
+1. Run `--version`. If `seeds` is 0 or a data count is 0, the install is incomplete: say so and stop. `seeds` is the number of doors this install has.
 2. Run `status --campaign <folder>`.
    - `not_a_campaign`: this is a new game. Follow **First time** in [reference/session-flow.md](reference/session-flow.md).
    - Success: this is a saved game. Follow **Continue** in [reference/session-flow.md](reference/session-flow.md).
@@ -83,6 +84,7 @@ You decide **what happens**. The script **applies it** and refuses an illegal ch
 | Command | Use |
 |---|---|
 | `character create C --name "..." --class fighter\|rogue\|wizard\|cleric (--scores s,d,c,i,w,ch \| --quick) [--standard-array] [--id slug] [--level N] [--skills a,b,...] [--expertise a,b] [--fighting-style x] [--cantrips a,b] [--spells a,b] [--background "..."] [--bond "..."] [--flaw "..."]` | The first character made is the hero. Later ones are companions (2 at most). `--level` is for a companion who joins late |
+| `character set C --who id [--background "..."] [--bond "..."] [--flaw "..."] [--name "..."]` | Save or change the story hooks of a sheet, at any time |
 | `character asi C --who id --increase str:2` (or `str:1,dex:1`) | Spend the level 4 ability score improvement |
 | `character retire C --who id --status dead\|departed [--player-accepted]` | A companion dies or leaves. The hero's true death always needs `--player-accepted`: ask the player first |
 | `character promote <id> C` | A companion becomes the hero, after the hero is dead or departed |
@@ -118,6 +120,7 @@ Always give `--reason` on a free roll, so the log can be read later.
 | `item remove C --who id --item id [--qty N] [--give-to id]` | Use, lose, sell, or hand over |
 | `gold C --who id (--add gp \| --spend gp [--give-to id])` | Amounts in gp, for example `12.5` |
 | `condition add C --who id --condition name` / `condition remove ...` | The 5e conditions, on characters and monsters |
+| `track C --name "day" (--set N \| --add N \| --clear)` | A named counter for what the rules engine does not model: the in-world day, uses of a feature (`--name "mara second wind" --set 1`, then `--add -1` to spend it), charges of an item. It refuses to go below zero. `status` shows every counter |
 
 ### Fights
 
@@ -125,7 +128,8 @@ Always give `--reason` on a free roll, so the log can be read later.
 |---|---|
 | `encounter start C --monster name:count [--monster ...] [--custom '<json>'] [--average-hp]` | Rolls initiative for everyone and hit points for each monster |
 | `encounter add C --monster name:count` | Reinforcements |
-| `encounter next C` | Advances the turn, and skips anyone who cannot act |
+| `encounter next C` | Advances the turn, skips anyone who cannot act, and reports the HP of every monster still in the fight |
+| `encounter flee C --who goblin-2` | A monster runs away or yields: it leaves the turn order and gives no XP |
 | `encounter end C [--no-xp]` | Splits and applies the XP of defeated monsters. `--no-xp` when the party fled or the fight was a story beat |
 
 A custom monster: `{"name":"Swamp Brute","count":1,"ac":14,"hp":27,"abilities":{"dex":10},"attacks":[{"name":"slam","attack_bonus":5,"damage_expr":"2d6+3","damage_type":"bludgeoning"}],"challenge_rating":2}`. It needs `challenge_rating` or `xp_value`.

@@ -137,7 +137,8 @@ class TestRestShortCommand(PlayCase):
     def test_short_rest_spends_hit_dice_and_heals_die_plus_con(self):
         self.ok("damage", "--who", "kira", "--amount", "10")
         out = self.ok("rest", "short", "--dice", "kira:1", rng=ScriptedRng([4]))
-        self.assertEqual(out["results"]["kira"], {"dice_spent": 1, "rolls": [4], "hp_gained": 6, "hp": "8/12", "life_state": "alive"})
+        self.assertEqual(out["results"]["kira"], {"dice_spent": 1, "rolls": [4], "con_modifier": 2, "hp_rolled": 6,
+                                                  "hp_gained": 6, "hp": "8/12", "life_state": "alive"})
         self.assertEqual(self.char("kira")["hit_dice"]["remaining"], 0)
 
     def test_healing_is_capped_at_max_hp(self):
@@ -468,3 +469,62 @@ class TestStabilizeCommand(PlayCase):
 
     def test_stabilize_needs_a_dying_character(self):
         self.refused("not_dying", "stabilize", "--who", "kira")
+
+
+class TestPlaytestFindings(PlayCase):
+    """Defects found by the first DM playtest (2026-09-18)."""
+
+    def test_character_set_saves_the_hooks_after_a_quick_start(self):
+        self.ok("character", "set", "--who", "kira", "--background", "Dock rat", "--bond", "Owes Osk", "--flaw", "Greedy")
+        kira = self.char("kira")
+        self.assertEqual((kira["background"], kira["bond"], kira["flaw"]), ("Dock rat", "Owes Osk", "Greedy"))
+
+    def test_character_set_needs_at_least_one_field(self):
+        self.refused("nothing_to_set", "character", "set", "--who", "kira")
+
+    def test_short_rest_shows_the_modifier_and_the_sum_so_the_dm_does_no_arithmetic(self):
+        self.ok("damage", "--who", "kira", "--amount", "10")
+        out = self.ok("rest", "short", "--dice", "kira:1", rng=ScriptedRng([4]))["results"]["kira"]
+        self.assertEqual((out["rolls"], out["con_modifier"], out["hp_rolled"], out["hp_gained"]), ([4], 2, 6, 6))
+
+    def test_encounter_next_reports_monster_hp_so_the_dm_holds_nothing_in_memory(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:1", rng=ScriptedRng([10, 10, 10, 3, 4]))
+        self.ok("damage", "--who", "fixture-goblin-1", "--amount", "3")
+        self.assertEqual(self.ok("encounter", "next")["monsters"], {"fixture-goblin-1": "4/7"})
+
+    def test_a_monster_that_flees_leaves_the_order_and_gives_no_xp(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:2", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        self.ok("damage", "--who", "fixture-goblin-1", "--amount", "99")
+        out = self.ok("encounter", "flee", "--who", "fixture-goblin-2")
+        self.assertTrue(out["fled"])
+        self.assertEqual(self.ok("encounter", "next")["turn"]["id"], "thorn")
+        self.assertEqual(self.ok("encounter", "next")["turn"]["id"], "kira")
+        self.assertEqual(self.ok("encounter", "end")["xp_awarded"], 50)
+
+    def test_flee_is_for_monsters_in_the_fight(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:1", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        self.refused("unknown_id", "encounter", "flee", "--who", "kira")
+
+    def test_item_add_returns_the_one_line_and_not_the_whole_pack(self):
+        out = self.ok("item", "add", "--who", "kira", "--item", "fixture-torch")
+        self.assertEqual(out["item"], {"item": "fixture-torch", "quantity": 4})
+        self.assertNotIn("inventory", out)
+
+    def test_track_keeps_a_named_counter_and_status_shows_it(self):
+        self.ok("track", "--name", "day", "--set", "1")
+        self.assertEqual(self.ok("track", "--name", "day", "--add", "2")["value"], 3)
+        self.assertEqual(self.ok("status")["trackers"], {"day": 3})
+
+    def test_track_refuses_to_spend_a_use_that_is_not_there(self):
+        self.ok("track", "--name", "kira second wind", "--set", "1")
+        self.ok("track", "--name", "kira second wind", "--add", "-1")
+        before = self.snapshot()
+        out = self.refused("tracker_empty", "track", "--name", "kira second wind", "--add", "-1")
+        self.assertIn("kira-second-wind", out["error"]["message"])
+        self.assertEqual(before, self.snapshot())
+
+    def test_track_needs_set_or_add_and_can_be_cleared(self):
+        self.refused("bad_arguments", "track", "--name", "day")
+        self.ok("track", "--name", "day", "--set", "4")
+        self.ok("track", "--name", "day", "--clear")
+        self.assertEqual(self.ok("status")["trackers"], {})

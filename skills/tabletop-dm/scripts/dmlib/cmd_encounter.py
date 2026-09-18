@@ -160,7 +160,8 @@ def add(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
 
 def _can_take_turn(combatant: Dict[str, Any], party: Dict[str, Any], encounter: Dict[str, Any]) -> bool:
     if combatant["kind"] == "monster":
-        return not encounter["monsters"][combatant["id"]]["defeated"]
+        monster = encounter["monsters"][combatant["id"]]
+        return not monster["defeated"] and not monster.get("fled")
     character = party["characters"].get(combatant["id"])
     return character is not None and character["life_state"] not in SKIP_STATES
 
@@ -193,7 +194,28 @@ def next_turn(args: argparse.Namespace, skill_root: Path, rng: random.Random) ->
     io_campaign.save_encounter(campaign_dir, encounter)
     io_campaign.append_log(campaign_dir, [io_campaign.change_entry(
         "encounter_next", None, "encounter.turn", before, {"round": encounter["round"], "turn_index": encounter["turn_index"]})])
-    return {"round": encounter["round"], "turn": turn}
+    return {"round": encounter["round"], "turn": turn, "monsters": _monsters_left(encounter)}
+
+
+def _monsters_left(encounter: Dict[str, Any]) -> Dict[str, str]:
+    """HP of every monster still in the fight, so the DM never holds one in memory."""
+    return {mid: "%d/%d" % (m["hp"]["current"], m["hp"]["max"]) for mid, m in encounter["monsters"].items()
+            if not m["defeated"] and not m.get("fled")}
+
+
+def flee(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
+    """A monster that runs or yields: out of the turn order, and no XP for it."""
+    campaign_dir = Path(args.campaign)
+    io_campaign.load_party(campaign_dir)
+    encounter = _require_encounter(campaign_dir)
+    mid = party_ops.slugify(args.who)
+    if mid not in encounter["monsters"]:
+        raise DmError("unknown_id", "no monster '%s' in this fight. Monsters: %s."
+                      % (args.who, ", ".join(sorted(encounter["monsters"]))))
+    encounter["monsters"][mid]["fled"] = True
+    io_campaign.save_encounter(campaign_dir, encounter)
+    io_campaign.append_log(campaign_dir, [io_campaign.change_entry("encounter_flee", mid, "fled", False, True)])
+    return {"who": mid, "fled": True, "monsters": _monsters_left(encounter)}
 
 
 def end(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:

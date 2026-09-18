@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Builds the two release files into dist/.
 
-  tabletop-dm-plugin.zip   .claude-plugin/ + skills/    install as a plugin: Cowork, Claude Code, claude.ai
-  tabletop-dm-skill.zip    tabletop-dm/                 the bare skill, for a Customize > Skills upload
+  tabletop-dm-plugin.zip   .claude-plugin/ + skills/    install in Cowork or Claude Code
+  tabletop-dm-skill.zip    tabletop-dm/                 upload to claude.ai (Customize > Skills)
 
 Neither file holds tests, docs, playtests, or caches. Standard library only.
 """

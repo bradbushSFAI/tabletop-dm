@@ -65,6 +65,13 @@ def roll(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
         raise DmError("bad_arguments", "a named roll needs --who <id>, so the bonus can come from the sheet.")
     character = party_ops.require_character(party, args.who)
     modifier, kind, extra = named_modifier(character, forms[0], getattr(args, forms[0]))
+    if args.proficient:
+        # A tool or kit the character is proficient with (thieves' tools) adds the proficiency bonus.
+        if forms[0] != "check" or party_ops.slugify(args.check) not in ABILITIES:
+            raise DmError("bad_arguments", "--proficient goes with --check <ability> only. "
+                                           "A skill already counts proficiency.")
+        modifier += character["proficiency_bonus"]
+        kind += "+proficient"
     out = roll_with_d20_rules("1d20%+d" % modifier, rng, args.adv, args.disadv)
     out.update(extra)
     return finish(campaign_dir, out, args, who=character["id"], kind=kind)

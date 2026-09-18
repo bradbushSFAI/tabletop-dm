@@ -96,6 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--who")
     p.add_argument("--attack")
     p.add_argument("--check")
+    p.add_argument("--proficient", action="store_true")
     p.add_argument("--save")
     p.add_argument("--initiative", action="store_true")
     p.add_argument("--spell-attack", dest="spell_attack", action="store_true")

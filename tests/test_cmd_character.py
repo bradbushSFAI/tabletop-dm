@@ -393,6 +393,16 @@ class TestRollNamedCommand(CharacterCase):
         self.make_fighter()
         self.refused("unknown_skill", "roll", "--who", "kira", "--check", "juggling")
 
+    def test_proficient_flag_adds_the_proficiency_bonus_to_an_ability_check(self):
+        """For a tool or kit the character is proficient with, such as thieves' tools."""
+        self.make_fighter()
+        out = self.ok("roll", "--who", "kira", "--check", "dex", "--proficient", rng=ScriptedRng([10]))
+        self.assertEqual(out["modifier"], 4)
+
+    def test_proficient_flag_is_refused_on_a_skill_that_already_counts_proficiency(self):
+        self.make_fighter()
+        self.refused("bad_arguments", "roll", "--who", "kira", "--check", "athletics", "--proficient")
+
     def test_saving_throw_uses_the_save_bonus(self):
         self.make_fighter()
         self.assertEqual(self.ok("roll", "--who", "kira", "--save", "con", rng=ScriptedRng([10]))["modifier"], 4)

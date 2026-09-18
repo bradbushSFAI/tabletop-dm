@@ -17,7 +17,7 @@ You type what your hero does, in your own words. There are no menus. Useful thin
 |---|---|
 | Claude Cowork | Customize > Plugins > upload `dist/tabletop-dm-plugin.zip` |
 | Claude Code | Add this repo as a plugin, or link `skills/tabletop-dm` into `~/.claude/skills/` |
-| claude.ai (best effort) | Customize > Skills > upload `dist/tabletop-dm-skill.zip`. Chat has no lasting folder, so a campaign cannot continue across chats |
+| claude.ai | Install `dist/tabletop-dm-plugin.zip` as a plugin, or upload `dist/tabletop-dm-skill.zip` under Customize > Skills. Not yet tested: the open question is whether the campaign folder is still there in a later chat, which is what "continue" needs |
 
 Requirement: a Python 3 that the host can run (3.9 or newer). Nothing to install.
 

@@ -29,7 +29,7 @@ Brad wants to play a Dungeons-and-Dragons-style game where a top-tier creative m
 | Claude Cowork, local mode | Primary | Desktop GUI. The player opens a campaign folder |
 | Claude Cowork, cloud mode | Primary | Same skill. Tasks run on Anthropic's servers |
 | Claude Code | Secondary, and the development loop | Same skill format. Fastest place to test |
-| claude.ai (zip upload) | Best effort, NOT a first-version target | claude.ai chat has no persistent campaign folder, so a campaign cannot continue across chats. `build.py` still makes the zip, but no test layer covers claude.ai and nothing is promised there |
+| claude.ai | Secondary, untested | Plugins and skills both install on claude.ai (Brad, 2026-09-18). What is NOT verified is persistence: whether a campaign folder written in one chat is still there in a later chat, which is what "continue" needs. No test layer covers claude.ai yet. An earlier draft of this row stated that a campaign "cannot continue across chats" there. That was an unverified guess, not a finding |
 
 The design must not depend on which host or mode runs it. That gives the hard constraints in section 6.
 
@@ -107,7 +107,7 @@ TextBasedDnD/                    Git repo, and also a Claude plugin
 
 One repo serves every host with identical content. There are no per-host variants.
 
-`build.py` makes two files. `tabletop-dm-plugin.zip` holds only `.claude-plugin/` and `skills/`, and is the file a person installs in Cowork or Claude Code. `tabletop-dm-skill.zip` holds only the `skills/tabletop-dm/` folder, for a claude.ai upload. Neither holds `tests/`, `playtests/`, `GRILL.md`, or `PRD.md`. During development (before M7) the skill is loaded in Claude Code by linking `skills/tabletop-dm/` into a scratch project's `.claude/skills/`.
+`build.py` makes two files. `tabletop-dm-plugin.zip` holds only `.claude-plugin/` and `skills/`, and is the file a person installs as a plugin in Cowork, Claude Code or claude.ai. `tabletop-dm-skill.zip` holds only the `skills/tabletop-dm/` folder, for anyone who prefers a bare skill upload. Neither holds `tests/`, `playtests/`, `GRILL.md`, or `PRD.md`. During development (before M7) the skill is loaded in Claude Code by linking `skills/tabletop-dm/` into a scratch project's `.claude/skills/`.
 
 ## 8. The campaign folder (the save game)
 
@@ -321,7 +321,7 @@ The skill `description` must trigger on phrases such as "let's play D&D", "start
 
 - Private GitHub repo now. The metaplot and seeds are spoilers and the world is Brad's creative work. He makes it public when he decides to share.
 - While the repo is private, a person installs from a **file**: Brad sends them `dist/tabletop-dm-plugin.zip`, and they upload it as a custom plugin in Cowork (Customize > Plugins) or add it in Claude Code. When the repo goes public, they can also add the GitHub repo as a plugin marketplace. The exact upload format Cowork accepts is confirmed in M7.
-- claude.ai (best effort): upload `dist/tabletop-dm-skill.zip` under Customize > Skills.
+- claude.ai: install the plugin zip, or upload `dist/tabletop-dm-skill.zip` under Customize > Skills. Untested, see section 3.
 - Skill name is `tabletop-dm` for now. Rename to the world's name before a public release. The **name** avoids the Wizards trademarks "D&D" and "Dungeons & Dragons". The **description** may mention D&D-style play for triggering. "Compatible with fifth edition" is the allowed phrase.
 - Licence for Brad's own content is decided at release time. SRD-derived numbers stay CC-BY-4.0.
 - "Deploy" for this project means: tag a release, build the zip, install the plugin in Brad's Cowork.

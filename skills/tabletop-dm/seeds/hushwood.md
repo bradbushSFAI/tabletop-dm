@@ -12,7 +12,10 @@ Cinder Row, a charcoal burners' hamlet of nine turf-roofed huts, a bowshot from 
 
 ## The opening scene
 
-The Leaf-wardens' yearly envoy to the Greywater fair is three weeks overdue. This evening her pack pony walks out of the trees alone. The trade goods are untouched. Her grey cloak is tied over the pony's eyes, carefully, the way one would lead an animal through something it should not see. While the burners are still staring, a goblin steps out from between the oaks holding a green branch over his head, and calls that the Wet Stone clan did not do this and wants that known before anyone gets ideas. The burners are reaching for their axes.
+The Leaf-wardens' yearly envoy to the Greywater fair is three weeks overdue. This evening her pack pony walks out of the trees alone. The trade goods are untouched. Her grey cloak is tied over the pony's eyes, carefully, the way one would lead an animal through something it should not see. While the burners are still staring, a goblin steps out from between the oaks holding a green branch over his head. He is Burr, speaker for the Wet Stone clan, and he calls that his clan did not do this and wants that known before anyone gets ideas. Garrick Ashby, the head burner, already has his axe in his hand.
+
+- **When:** dusk on day 1. Night 1 of the count begins as this scene ends. The counter reads 6.
+- **Before you start:** run the companion pitches first. Then ask the player, in one line, why the hero is here. Do not invent the reason for them.
 
 ## What is really going on here
 
@@ -20,35 +23,44 @@ The envoy, Ione of the first thaw, is not lost. She has left. There are eleven L
 
 The warden elder, Vael, wants her stopped. He is using everyone else to do it. He broke the first kiln himself and left goblin sign. He has told the Wet Stone clan that the burners took Ione. A border fight would fill the outer wood with fear and keep every stranger out for a generation.
 
+**Who knows what.**
+- Vael: knows all of it: why Ione left, where the stone lies, who broke the kiln. Wrongly believes that to be found is to be finished, with no middle road. Suspects Ione is already at the stone.
+- Ione: knows where the stone is and why she went. Wrongly believes she can seat it alone. Suspects Vael will send someone after her, and does not dream he would start a war.
+- Burr: knows his clan broke no kiln and took no elf. Wrongly believes the burners have Ione, because Vael told him so. Suspects Lucan's men broke the kiln.
+- Garrick: knows a kiln is broken and goblin sign lay beside it. Wrongly believes the Wet Stone did it and took the envoy too. Suspects Lucan is pleased.
+- Lucan: knows timber prices and nothing of elves. Wrongly believes the goblins are raiding. Does not care who is guilty, and suspects nobody.
+
 ## The local villain
 
-**Vael of the long dark**, eldest of the Leaf-wardens. Soft-spoken, grave, and kind to animals. He wants the stone left where it lies and Ione brought home. He thinks he is right because he remembers the legions, and because he has seen what loggers do. To him, to be found is to be finished. He is half right.
+**Vael of the long dark**, eldest of the Leaf-wardens. Soft-spoken, grave, and kind to animals. He wants the stone left where it lies and Ione brought home. He thinks he is right because he remembers the legions, and because he has seen what loggers do. To him, to be found is to be finished. He is half right. (talk +6, notice +5)
 - Next: a second kiln, a burner taken by the goblins as a hostage, and word sent to the timber factor that the border is lawless.
 - Cornered: he does not fight. He tells the truth, all of it, and asks the hero to choose for his people, because he no longer trusts himself to.
 
 ## Other people
 
-- **Ione of the first thaw**, the envoy. Brisk and dry, the only elf anyone in Greywater has talked to. Wants her people remembered, even if it costs the wood. Keeps a knotted cord and tells it like beads: one knot for each warden still living.
-- **Burr of the Wet Stone**, speaker for his clan. Funny, touchy, and exact about insults. Wants the border oaks talked about at last: they were planted forty paces inside goblin ground. Wears a burner's lost hat and will not say how he got it.
-- **Garrick Ashby**, head burner. Slow to anger and nearly there. Wants his kilns safe and someone to blame. Black to the elbows, with clean rings round his eyes.
-- **Lucan Marren**, a timber factor from Greywater, lodging at Cinder Row. Smooth and friendly. Wants a licence to cut past the oaks, and border trouble is his best argument. Admires every tree aloud, by the plank.
+- **Ione of the first thaw**, the envoy. Brisk and dry, the only elf anyone in Greywater has talked to. Wants her people remembered, even if it costs the wood. Keeps a knotted cord and tells it like beads: one knot for each warden still living. (talk +3, notice +4)
+- **Burr of the Wet Stone**, speaker for his clan. Funny, touchy, and exact about insults. Wants the border oaks talked about at last: they were planted forty paces inside goblin ground. Wears a burner's lost hat and will not say how he got it. (talk +4, notice +3)
+- **Garrick Ashby**, head burner. Slow to anger and nearly there. Wants his kilns safe and someone to blame. Black to the elbows, with clean rings round his eyes. (talk +2, notice +1)
+- **Lucan Marren**, a timber factor from Greywater, lodging at Cinder Row. Smooth and friendly. Wants a licence to cut past the oaks, and border trouble is his best argument. Admires every tree aloud, by the plank. (talk +5, notice +3)
 
 ## Companion candidates
 
 - **Snick of the Wet Stone**, Rogue. "A young goblin guide with a quick tongue and quicker feet, who knows the paths that do not stay put. He wants his clan cleared, and he finds tall people very funny."
-  - Private: his clan found Ione's last camp and took her knife from it, which looks bad. He hides it. He leaves if the hero lets anyone put an axe to a border oak.
+  - Private: his clan found Ione's last camp and took her knife from it, which looks bad. He hides it. He leaves if the hero lets anyone put an axe to a border oak. (talk +3, notice +4)
 - **Tess Ashby**, Fighter. "Garrick's daughter, a hunter, and the best shot in Cinder Row. She has been further past the oaks than she admits, and she wants to go further."
-  - Private: her brother walked into the wood two winters ago. Some nights she cannot call up his face, and she carries a carved likeness to check herself against. She leaves the party to follow any sign of him.
+  - Private: her brother walked into the wood two winters ago. Some nights she cannot call up his face, and she carries a carved likeness to check herself against. She leaves the party to follow any sign of him. (talk +0, notice +4)
 - **Master Edda Fenn**, Wizard. "A Greywater scholar who maps Builder stones and measures things nobody else thinks to measure. She is tireless and tactless, and she will pay her own way to see the deep wood."
-  - Private: Lucan Marren funds her survey and owns her maps. She hides that. She hands the maps over unless she is shown what his logging would do, or is offered a better patron.
+  - Private: Lucan Marren funds her survey and owns her maps. She hides that. She hands the maps over unless she is shown what his logging would do, or is offered a better patron. (talk -1, notice +2)
 
 ## If the hero does nothing
 
-Counter: `nights until the burners march`, set to 6.
-- Night 1: a second kiln is broken, with goblin sign left beside it.
-- Night 3: the Wet Stone clan takes a burner hostage against Ione's return.
-- Night 4: Lucan Marren's hired men arrive.
-- Night 6: burners and hired men march past the oaks. They walk for three days and come out one day later, four people short, having found nothing. The goblins raid that winter. Ione reaches the stone alone, cannot lift it, and does not come back. There are ten Leaf-wardens.
+Deadline: 6 nights, to the march. Night 1 is the night of the opening scene. Before the opening scene, start it as a SECRET counter: `track --name "nights until the burners march" --set 6 --secret`. Drop it by 1 at each dawn: `--add -1`. The night number is 7 minus the counter. The burners arm on night 6, when the counter reads 1, and march at the dawn that brings it to 0. Each event below has happened once the counter reads that number or lower.
+
+1. Counter 6 (night 1): a second kiln is broken, with goblin sign left beside it.
+2. Counter 4 (night 3): the Wet Stone clan takes a burner hostage against Ione's return.
+3. Counter 3 (night 4): Lucan Marren's hired men arrive.
+4. Counter 1 (night 6): burners and hired men arm and gather.
+5. Counter 0 (the dawn after): they march past the oaks. They walk for three days and come out one day later, four people short, having found nothing. The goblins raid that winter. Ione reaches the stone alone, cannot lift it, and does not come back. There are ten Leaf-wardens.
 
 ## Fights
 

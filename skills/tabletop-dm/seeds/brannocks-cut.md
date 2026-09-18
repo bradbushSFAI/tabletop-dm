@@ -12,7 +12,10 @@ The Lamp Stair in Brannock's Cut, outside the gate of the Fourth Gallery, at the
 
 ## The opening scene
 
-The fall bell is ringing. There has been a roof fall on the Fourth, and the cage is bringing men up grey with dust, two on stretchers and one under a coat. On the stair a dwarf foreman and a human shift-boss stand nose to nose over a snapped pit prop, soft with rot. A crowd from the lodge is filling the steps behind them. Someone shouts what everyone has said for a month: the upper silver is pinching out, the good ore is below, and the Moot will not open the Ninth. The hero is on the stair between the two crowds when the first stone is thrown.
+The fall bell is ringing. There has been a roof fall on the Fourth, and the cage is bringing men up grey with dust, two on stretchers and one under a coat. On the stair a dwarf foreman and a human shift-boss stand nose to nose over a snapped pit prop, soft with rot. A crowd from the lodge is filling the steps behind them. Hal Harrow, the lodge-master, climbs the lodge steps and shouts what everyone has said for a month: the upper silver is pinching out, the good ore is below, and the Moot will not open the Ninth. The hero is on the stair between the two crowds when the first stone is thrown.
+
+- **When:** the evening change of shift on day 1. Night 1 of the count follows this scene. The counter reads 8.
+- **Before you start:** run the companion pitches first. Then ask the player, in one line, why the hero is here. Do not invent the reason for them.
 
 ## What is really going on here
 
@@ -20,37 +23,48 @@ The upper galleries are nearly worked out. The Moot knows it and has told nobody
 
 The Ninth did not flood. Dorn Coldseam, eldest of the Moot, knows what is down there and is sworn on the anvil never to say. If the seal is broken, he means to open the sluices and drown the Eighth, and the town's future with it, sooner than break his word.
 
+**Who knows what.**
+- Harrow: knows the props are rotten and the Moot is lying. Wrongly believes the Ninth holds ore and nothing else, and that his patron is a friend of the lodge. Suspects Dorn would lose men sooner than lose the secret.
+- Dorn: knows what is on the Ninth, and where the pegs went. Wrongly believes silence and the sluices are his only two roads. Suspects the Greywater silver comes from someone who wants more pegs.
+- Brana: knows the books give the upper galleries two winters. Wrongly believes the Ninth flooded and the seal is about cost. Suspects Nan Lowe's pension is an elder's fraud.
+- Garsh: knows her contract, to the word. Wrongly believes this is a plain wage quarrel. Suspects the Moot will ask for more than it paid for.
+- Nan: knows a pension comes each quarter in a man's name she has never heard. Wrongly believes it is a clerk's mistake. Suspects nothing.
+- Brun: knows the orders for the bars come sealed from Greywater, and knows of the coffer. Wrongly believes the coffer is still full. Suspects no link between the two.
+- The lodge at large: knows the silver is pinching out. Wrongly believes the Moot is hoarding rich ground below.
+
 ## The local villain
 
-**Hal Harrow**, forty, lodge-master. A big, reasonable voice, and he remembers every miner's children by name. He wants the Ninth open and three hundred families in work. He thinks he is right because the Moot is lying (it is), and because men are dying under rotten props to protect a dwarven secret (they are).
+**Hal Harrow**, forty, lodge-master. A big, reasonable voice, and he remembers every miner's children by name. He wants the Ninth open and three hundred families in work. He thinks he is right because the Moot is lying (it is), and because men are dying under rotten props to protect a dwarven secret (they are). (talk +6, notice +3)
 - Next: a strike vote in three days, then a night crew with blasting powder.
 - Cornered: he goes down alone to prove the Ninth is dry. He is right about that too.
 
 ## Other people
 
-- **Dorn Coldseam**, Moot elder. Slow, courteous, immovable. Wants the Ninth shut for ever. Touches the anvil pin at his collar whenever the level is named.
-- **Brana Ironledger**, the Moot's young accountant. Quick, angry, fair. Wants the books opened to the lodge before someone dies over a guess. Carries her own abacus and trusts no one else's.
-- **Garsh Longroad**, orc captain of a caravan guard wintering in the Cut. Blunt, bored. Wants a clean contract and no surprises. Reads every contract aloud, twice, before she makes her mark.
-- **Nan Lowe**, eighty, who takes in washing. Sharp, and sick of being asked about it. Every quarter the Moot pays her a widow's pension, and she has never been married. She wants it to stop, or to make sense.
-- **Brun Ashweigh**, the dwarf silver factor. Dry, exact. Wants the bars delivered and no questions. Weighs a coin in his palm before he answers anything.
+- **Dorn Coldseam**, Moot elder. Slow, courteous, immovable. Wants the Ninth shut for ever. Touches the anvil pin at his collar whenever the level is named. (talk +2, notice +4)
+- **Brana Ironledger**, the Moot's young accountant. Quick, angry, fair. Wants the books opened to the lodge before someone dies over a guess. Carries her own abacus and trusts no one else's. (talk +2, notice +4)
+- **Garsh Longroad**, orc captain of a caravan guard wintering in the Cut. Blunt, bored. Wants a clean contract and no surprises. Reads every contract aloud, twice, before she makes her mark. (talk +3, notice +2)
+- **Nan Lowe**, eighty, who takes in washing. Sharp, and sick of being asked about it. Every quarter the Moot pays her a widow's pension, and she has never been married. She wants it to stop, or to make sense. (talk +1, notice +3)
+- **Brun Ashweigh**, the dwarf silver factor. Dry, exact. Wants the bars delivered and no questions. Weighs a coin in his palm before he answers anything. (talk +3, notice +4)
 
 ## Companion candidates
 
 - **Kella Pike**, Fighter. "A tally-man's daughter and a timberer who sets props for a living and can carry one on each shoulder. She is plain-spoken and furious, and she wants to know why that roof came down."
-  - Private: she signed off the props that failed, under pressure from the shift-boss. She hides it and means to make it right. She leaves if the hero backs a lock-out.
+  - Private: she signed off the props that failed, under pressure from the shift-boss. She hides it and means to make it right. She leaves if the hero backs a lock-out. (talk +1, notice +2)
 - **Rudd Quickwick**, Rogue. "A dwarf lamp-trimmer who sells candle-ends on the side and knows every air shaft in the hill. He is cheerful, he is in debt to the Moot, and he would like you to help him stop being."
-  - Private: he is Dorn's eyes inside the lodge, working off the debt. He turns the hero in if Dorn asks. He breaks with Dorn for good if he learns about the sluices.
+  - Private: he is Dorn's eyes inside the lodge, working off the debt. He turns the hero in if Dorn asks. He breaks with Dorn for good if he learns about the sluices. (talk +4, notice +4)
 - **Sister Yarrow**, Cleric of the Quiet. "She came up the gorge to bury the men from the Fourth, and she has not left. She is calm and unhurried, and she believes every dead miner is owed a name and a grave."
-  - Private: the Moot has refused her the Eighth, where she is sure the dead lie unburied, and she means to go anyway. She leaves if the hero lets bodies lie for the sake of an advantage.
+  - Private: the Moot has refused her the Eighth, where she is sure the dead lie unburied, and she means to go anyway. She leaves if the hero lets bodies lie for the sake of an advantage. (talk +2, notice +4)
 
 ## If the hero does nothing
 
-Counter: `nights until the seal breaks`, set to 8.
-- Night 1: a second fall, on the Third. Nobody is hurt, by luck.
-- Night 3: the strike vote passes.
-- Night 5: the Moot locks the gates and hires Garsh's guards to hold them.
-- Night 6: a brawl at the gate, and a death.
-- Night 8: Harrow's crew breaks the seal. By morning Dorn has opened the sluices, with twenty men below. Small grey pegs come up in pockets anyway. Within a year the Cut is half empty.
+Deadline: 8 nights, to the breaking of the seal. Night 1 is the night that follows the opening scene. Before the opening scene, start it as a SECRET counter: `track --name "nights until the seal breaks" --set 8 --secret`. Drop it by 1 at each dawn: `--add -1`. The night number is 9 minus the counter. The seal breaks on night 8, when the counter reads 1. Each event below has happened once the counter reads that number or lower.
+
+1. Counter 8 (night 1): a second fall, on the Third. Nobody is hurt, by luck.
+2. Counter 6 (night 3): the strike vote passes.
+3. Counter 4 (night 5): the Moot locks the gates and hires Garsh's guards to hold them.
+4. Counter 3 (night 6): a brawl at the gate, and a death.
+5. Counter 1 (night 8): Harrow's crew breaks the seal.
+6. Counter 0 (the dawn after): Dorn has opened the sluices, with twenty men below. Small grey pegs come up in pockets anyway. Within a year the Cut is half empty.
 
 ## Fights
 

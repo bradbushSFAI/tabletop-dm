@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Build output
+dist/
+
+# Playtest campaigns and transcripts. They hold spoilers (PRD section 13)
+playtests/
+
+# Tools and OS
+.playwright-mcp/
+.DS_Store

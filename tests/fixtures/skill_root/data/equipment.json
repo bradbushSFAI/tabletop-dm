@@ -1,0 +1,88 @@
+{
+ "format": "tabletop-dm/equipment",
+ "format_version": 1,
+ "equipment": {
+  "fixture-sword": {
+   "id": "fixture-sword",
+   "name": "Fixture Sword",
+   "category": "weapon",
+   "cost_cp": 1500,
+   "damage_expr": "1d8",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d10"
+  },
+  "fixture-dagger": {
+   "id": "fixture-dagger",
+   "name": "Fixture Dagger",
+   "category": "weapon",
+   "cost_cp": 200,
+   "damage_expr": "1d4",
+   "damage_type": "piercing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "finesse",
+    "light",
+    "thrown"
+   ]
+  },
+  "fixture-bow": {
+   "id": "fixture-bow",
+   "name": "Fixture Bow",
+   "category": "weapon",
+   "cost_cp": 2500,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "simple-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "two-handed"
+   ]
+  },
+  "fixture-mail": {
+   "id": "fixture-mail",
+   "name": "Fixture Mail",
+   "category": "armor",
+   "cost_cp": 7500,
+   "armor_type": "heavy",
+   "armor_class_base": 16,
+   "dex_bonus_max": 0
+  },
+  "fixture-leather": {
+   "id": "fixture-leather",
+   "name": "Fixture Leather",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "light",
+   "armor_class_base": 11,
+   "dex_bonus_max": null
+  },
+  "fixture-hide": {
+   "id": "fixture-hide",
+   "name": "Fixture Hide",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "medium",
+   "armor_class_base": 12,
+   "dex_bonus_max": 2
+  },
+  "fixture-shield": {
+   "id": "fixture-shield",
+   "name": "Fixture Shield",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "shield",
+   "ac_bonus": 2
+  },
+  "fixture-torch": {
+   "id": "fixture-torch",
+   "name": "Fixture Torch",
+   "category": "gear",
+   "cost_cp": 1
+  }
+ }
+}

@@ -1,0 +1,2 @@
+- fixture-seed-a: placeholder teaser A.
+- fixture-seed-b: placeholder teaser B.

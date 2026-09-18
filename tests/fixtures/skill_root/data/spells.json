@@ -1,0 +1,66 @@
+{
+ "format": "tabletop-dm/spells",
+ "format_version": 1,
+ "spells": {
+  "fixture-spark": {
+   "id": "fixture-spark",
+   "name": "Fixture Spark",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "1d10",
+   "damage_type": "fire",
+   "description": "Placeholder cantrip."
+  },
+  "fixture-bolt": {
+   "id": "fixture-bolt",
+   "name": "Fixture Bolt",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "3d4+3",
+   "damage_type": "force",
+   "description": "Placeholder level 1 spell."
+  },
+  "fixture-ward": {
+   "id": "fixture-ward",
+   "name": "Fixture Ward",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Placeholder level 1 spell."
+  },
+  "fixture-beam": {
+   "id": "fixture-beam",
+   "name": "Fixture Beam",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "4d6",
+   "damage_type": "radiant",
+   "description": "Placeholder level 2 spell."
+  },
+  "fixture-mend": {
+   "id": "fixture-mend",
+   "name": "Fixture Mend",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Placeholder spell no fixture class can take."
+  }
+ }
+}

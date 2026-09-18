@@ -1,0 +1,196 @@
+{
+ "format": "tabletop-dm/classes",
+ "format_version": 1,
+ "classes": {
+  "fighter": {
+   "id": "fighter",
+   "name": "Fighter",
+   "hit_die": "d10",
+   "primary_ability": "str",
+   "saving_throw_proficiencies": [
+    "str",
+    "con"
+   ],
+   "skill_choices": {
+    "count": 2,
+    "options": [
+     "athletics",
+     "perception",
+     "intimidation",
+     "survival"
+    ]
+   },
+   "default_skills": [
+    "athletics",
+    "perception"
+   ],
+   "armor_proficiencies": [
+    "light",
+    "medium",
+    "heavy",
+    "shield"
+   ],
+   "weapon_proficiencies": [
+    "simple",
+    "martial"
+   ],
+   "starting_equipment": [
+    {
+     "item": "fixture-mail",
+     "quantity": 1
+    },
+    {
+     "item": "fixture-shield",
+     "quantity": 1
+    },
+    {
+     "item": "fixture-sword",
+     "quantity": 1
+    },
+    {
+     "item": "fixture-torch",
+     "quantity": 3
+    }
+   ],
+   "starting_equipped": {
+    "armor": "fixture-mail",
+    "shield": "fixture-shield",
+    "weapons": [
+     "fixture-sword"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 15,
+    "dex": 13,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 10
+   },
+   "spellcasting": null,
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "fixture-wind",
+       "name": "Fixture Wind",
+       "rule": "Placeholder rule."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "fixture-surge",
+       "name": "Fixture Surge",
+       "rule": "Placeholder rule."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
+    }
+   }
+  },
+  "wizard": {
+   "id": "wizard",
+   "name": "Wizard",
+   "hit_die": "d6",
+   "primary_ability": "int",
+   "saving_throw_proficiencies": [
+    "int",
+    "wis"
+   ],
+   "skill_choices": {
+    "count": 2,
+    "options": [
+     "arcana",
+     "history",
+     "insight",
+     "investigation"
+    ]
+   },
+   "default_skills": [
+    "arcana",
+    "investigation"
+   ],
+   "armor_proficiencies": [],
+   "weapon_proficiencies": [
+    "fixture-dagger"
+   ],
+   "starting_equipment": [
+    {
+     "item": "fixture-dagger",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": null,
+    "shield": null,
+    "weapons": [
+     "fixture-dagger"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 8,
+    "dex": 14,
+    "con": 13,
+    "int": 15,
+    "wis": 12,
+    "cha": 10
+   },
+   "spellcasting": {
+    "ability": "int",
+    "spellbook": true,
+    "spellbook_start": 3,
+    "spellbook_per_level": 1,
+    "default_cantrips": [
+     "fixture-spark"
+    ],
+    "default_spells": [
+     "fixture-bolt",
+     "fixture-ward",
+     "fixture-beam"
+    ]
+   },
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": {
+      "1": 2
+     },
+     "cantrips_known": 1
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": {
+      "1": 3
+     },
+     "cantrips_known": 1
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": {
+      "1": 4,
+      "2": 2
+     },
+     "cantrips_known": 1
+    }
+   }
+  }
+ }
+}

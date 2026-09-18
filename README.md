@@ -15,9 +15,9 @@ You type what your hero does, in your own words. There are no menus. Useful thin
 
 | Host | How |
 |---|---|
-| Claude Cowork | Customize > Plugins > upload `dist/tabletop-dm-plugin.zip` |
+| Claude Cowork | Add `dist/tabletop-dm-skill.zip` as a skill, or upload `dist/tabletop-dm-plugin.zip` under Customize > Plugins. Same game either way |
 | Claude Code | Add this repo as a plugin, or link `skills/tabletop-dm` into `~/.claude/skills/` |
-| claude.ai (best effort) | Customize > Skills > upload `dist/tabletop-dm-skill.zip`. Chat has no lasting folder, so a campaign cannot continue across chats |
+| claude.ai chat | **Not supported.** Plain chat has no folder, so the game has nowhere to keep its save files |
 
 Requirement: a Python 3 that the host can run (3.9 or newer). Nothing to install.
 

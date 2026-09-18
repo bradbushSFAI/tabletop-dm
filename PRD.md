@@ -29,7 +29,7 @@ Brad wants to play a Dungeons-and-Dragons-style game where a top-tier creative m
 | Claude Cowork, local mode | Primary | Desktop GUI. The player opens a campaign folder |
 | Claude Cowork, cloud mode | Primary | Same skill. Tasks run on Anthropic's servers |
 | Claude Code | Secondary, and the development loop | Same skill format. Fastest place to test |
-| claude.ai (zip upload) | Best effort, NOT a first-version target | claude.ai chat has no persistent campaign folder, so a campaign cannot continue across chats. `build.py` still makes the zip, but no test layer covers claude.ai and nothing is promised there |
+| claude.ai chat | **Not supported** | Plain claude.ai chat has no folder, so the save game has nowhere to live and the game does not work there (confirmed by Brad, 2026-09-18). No test layer covers it |
 
 The design must not depend on which host or mode runs it. That gives the hard constraints in section 6.
 
@@ -321,7 +321,7 @@ The skill `description` must trigger on phrases such as "let's play D&D", "start
 
 - Private GitHub repo now. The metaplot and seeds are spoilers and the world is Brad's creative work. He makes it public when he decides to share.
 - While the repo is private, a person installs from a **file**: Brad sends them `dist/tabletop-dm-plugin.zip`, and they upload it as a custom plugin in Cowork (Customize > Plugins) or add it in Claude Code. When the repo goes public, they can also add the GitHub repo as a plugin marketplace. The exact upload format Cowork accepts is confirmed in M7.
-- claude.ai (best effort): upload `dist/tabletop-dm-skill.zip` under Customize > Skills.
+- claude.ai chat: not supported (no folder for the save game). The skill zip is for Cowork, or for any host that takes a bare skill.
 - Skill name is `tabletop-dm` for now. Rename to the world's name before a public release. The **name** avoids the Wizards trademarks "D&D" and "Dungeons & Dragons". The **description** may mention D&D-style play for triggering. "Compatible with fifth edition" is the allowed phrase.
 - Licence for Brad's own content is decided at release time. SRD-derived numbers stay CC-BY-4.0.
 - "Deploy" for this project means: tag a release, build the zip, install the plugin in Brad's Cowork.

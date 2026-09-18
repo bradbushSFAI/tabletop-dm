@@ -2,7 +2,7 @@
 """Builds the two release files into dist/.
 
   tabletop-dm-plugin.zip   .claude-plugin/ + skills/    install in Cowork or Claude Code
-  tabletop-dm-skill.zip    tabletop-dm/                 upload to claude.ai (Customize > Skills)
+  tabletop-dm-skill.zip    tabletop-dm/                 add as a bare skill in Cowork
 
 Neither file holds tests, docs, playtests, or caches. Standard library only.
 """

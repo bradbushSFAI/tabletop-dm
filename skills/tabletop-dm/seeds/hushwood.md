@@ -29,7 +29,7 @@ The warden elder, Vael, wants her stopped. He is using everyone else to do it. H
 ## Other people
 
 - **Ione of the first thaw**, the envoy. Brisk and dry, the only elf anyone in Greywater has talked to. Wants her people remembered, even if it costs the wood. Keeps a knotted cord and tells it like beads: one knot for each warden still living.
-- **Nail of the Wet Stone**, speaker for his clan. Funny, touchy, and exact about insults. Wants the border oaks talked about at last: they were planted forty paces inside goblin ground. Wears a burner's lost hat and will not say how he got it.
+- **Burr of the Wet Stone**, speaker for his clan. Funny, touchy, and exact about insults. Wants the border oaks talked about at last: they were planted forty paces inside goblin ground. Wears a burner's lost hat and will not say how he got it.
 - **Garrick Ashby**, head burner. Slow to anger and nearly there. Wants his kilns safe and someone to blame. Black to the elbows, with clean rings round his eyes.
 - **Lucan Marren**, a timber factor from Greywater, lodging at Cinder Row. Smooth and friendly. Wants a licence to cut past the oaks, and border trouble is his best argument. Admires every tree aloud, by the plank.
 
@@ -52,14 +52,16 @@ Counter: `nights until the burners march`, set to 6.
 
 ## Fights
 
+Counts suit a party of two. With three, add one more of the smallest monster to any fight that has several. For a hero alone, halve the counts (never below one), and treat every lone monster and every climax as Deadly: give the warning and show the way round.
+
 1. The edge of the hamlet, at night: wolf x2. Hungry and wary. Avoided with fire and noise.
-2. Goblin pickets on the border: goblin x4 (level 2). They want a hostage and not a corpse. Avoided with a green branch, or by returning Nail's clan a courtesy.
+2. Goblin pickets on the border: goblin x3 (level 2). They want a hostage and not a corpse. Avoided with a green branch, or by returning Burr's clan a courtesy.
 3. The folded paths: giant-spider x1 (level 2). Avoided by taking Snick's high path, or any goblin's.
-4. The fallen oak over the stone: owlbear x1 (level 3, a climax). The unhunted wood has let it grow old and strange, and it dens on the stone for the warmth. Avoided by waiting for its dusk hunt, or by laying a trail with the pony's pack of salt fish.
+4. The fallen oak over the stone: owlbear x1 (level 3, a climax, Hard and close to Deadly for two: the clawed trunks and the size of the den are the warning). The unhunted wood has let it grow old and strange, and it dens on the stone for the warmth. Avoided by waiting for its dusk hunt, or by laying a trail with the pony's pack of salt fish.
 
 ## Local secrets
 
-1. Nail's hat was won from Garrick at dice, and both would deny it.
+1. Burr's hat was won from Garrick at dice, and both would deny it.
 2. Edda Fenn's maps belong to Lucan Marren.
 3. No goblin broke a kiln. The sign is wrong: it is a Wet Stone mark drawn by someone who learned it three hundred years ago.
 4. Ione left of her own will.

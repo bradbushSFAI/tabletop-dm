@@ -48,15 +48,17 @@ The ram belongs to Underlea: five households in a fold of the hills a mile past 
 Counter: `days to the Fair Court`, set to 7.
 - Day 2: the prize ribbon is stolen. Each family blames the other.
 - Day 3: the wedding is called off, loudly, by the wrong people.
-- Day 5: hired rustlers take Magistrate in the night.
+- Day 5: rustlers hired by Hamo take Magistrate in the night, to hold him safe until the hearing.
 - Day 7: the Court awards the ram, and "the vacant land beyond Crook Stile", to Hamo. He walls it in spring. Fenced out of their own fields, with no neighbour's claim left to hold them, the people of Underlea slip entirely by winter.
 
 ## Fights
 
-1. The mill's grain store: giant-rat x3. Aldith insists they are large mice. Avoided with the mill cat, which she has locked out over a grudge.
+Counts suit a party of two. With three, add one more of the smallest monster to any fight that has several. For a hero alone, halve the counts (never below one), and treat every lone monster and every climax as Deadly: give the warning and show the way round.
+
+1. The mill's grain store: giant-rat x2. Aldith insists they are large mice. Avoided with the mill cat, which she has locked out over a grudge.
 2. The common at night, after the ram: wolf x2. Avoided with fire and noise. They are thin and wary.
 3. The rustlers at the ford: bandit x4 (level 2). They are from outside the hills and terrified of halfling lawsuits. Avoided by serving them with one.
-4. The pack in Underlea's fold: wolf x3 and dire-wolf x1 (level 3, a climax). Nobody hunts wolves on land nobody remembers, so they have bred there. Avoided by driving the flock in and lighting the old beacon.
+4. The pack in Underlea's fold: wolf x2 and dire-wolf x1 (level 3, a climax, Hard). Nobody hunts wolves on land nobody remembers, so they have bred there. Avoided by driving the flock in and lighting the old beacon.
 
 ## Local secrets
 
@@ -70,7 +72,7 @@ Counter: `days to the Fair Court`, set to 7.
 
 - **Session 1 detail:** by custom the green is pegged out for thirteen pitches. There are twelve hamlets. The thirteenth pitch always stands empty, and nobody has ever asked why. Today someone has left a cheese on it.
 - **R4:** Underlea itself, and Hamo's face when he sees his sister.
-- **R1:** Tobin's oldest rolls are rubbings of marks cut into the Longwall Stone, which is warm under the children's hands. Each hamlet once "beat its bounds" at the fair by touching its mark and saying its name aloud. Underlea's bound-beater, old Marl the recorder, died twelve years ago, and no one took it up. The mark is still there.
+- **R1:** Tobin's oldest rolls are rubbings of marks cut into the Longwall Stone, which is warm under the children's hands. Each hamlet once "beat its bounds" at the fair by touching its mark and saying its name aloud. Underlea's bound-beater, old Marl the recorder, died twelve years ago, and no one took it up. The mark is still there. The children on the stone count each other out with the old rhyme, and every one of them pauses after the ninth line, as if someone else were due to finish it.
 - **Never R2.** Nothing in the Tollhills points to the Cut. Here the mystery is green and open to the sky.
 
 ## Ways it can end

@@ -42,17 +42,17 @@ Distances are in days on foot by road. The King's Road runs the length of the va
 
 ### Greywater (the river port)
 
-The only real town: about four thousand people behind a stone wall, where the Senn is deep enough for barges. Warehouses, a fish market, three bridges, a guildhall, and the empty Judge's House that nobody has dared to move into. Run by the **Wharf Council**: seven seats, held by the guilds and two old families, the Marrens and the Tolls, who have hated each other for four generations. Everything that leaves the Senn Vale leaves through Greywater, so everyone has a reason to come here and a reason to resent it. The town's great bell, Old Senna, was recast after the flood of thirty years ago and has rung a little flat ever since.
+The only real town: about four thousand people behind a stone wall, where the Senn is deep enough for barges. Warehouses, a fish market, three bridges, a guildhall, and the empty Judge's House that nobody has dared to move into. Run by the **Wharf Council**: seven seats, held by the guilds and two old families, the Marrens and the Tolls, who have hated each other for four generations. Everything that leaves the Senn Vale leaves through Greywater, so everyone has a reason to come here and a reason to resent it. The town's great bell, Old Senna, was recast after the flood of thirty years ago and has rung a little flat ever since. The Greywater fair fills the town for a week at the end of summer.
 - Feel: crowded, wet, clever. Favours, debts, ledgers and gossip.
 
 ### The Tollhills (the hill farms)
 
-Rolling sheep country west of the river, two days from Greywater. Scattered steadings, drystone walls, and a dozen hamlets that share a fair, a mill and a feud. Half the families are halflings, who were here before the kingdom and keep the best records of anyone: births, boundary stones and every insult since the first survey. The Tollhills take their name from the old toll stations on the hill roads, which now stand empty, or house a family, or an inn.
+Rolling sheep country west of the river, two days from Greywater. Scattered steadings, drystone walls, and a dozen hamlets that share a fair, a mill and a feud. Half the families are halflings, who were here before the kingdom and keep the best records of anyone: births, boundary stones and every insult since the first survey. The Tollhills take their name from the old toll stations on the hill roads, which now stand empty, or house a family, or an inn. The fair is the Quarter Fair, held four times a year on the green at Longwall, and the Fair Court sits there under the oak.
 - Feel: pastoral, funny, stubborn. Everyone knows everyone. Small stakes, held very hard.
 
 ### Brannock's Cut (the mining town)
 
-A steep town built into a gorge in the eastern hills, three days from Greywater. Silver and tin. Founded by dwarves, who still own the deep workings and the smelters. Humans work the upper galleries for wages and do not love the arrangement. The Cut is loud, smoky, rich in coin and poor in daylight. The **Delvers' Moot** (the dwarven owners) and the **Pick and Lamp** (the human miners' lodge) govern it by glaring at each other. The lowest level, the Ninth, was sealed by the dwarves sixty years ago. They say it flooded.
+A steep town built into a gorge in the eastern hills, three days from Greywater. Silver and tin. Founded by dwarves, who still own the deep workings and the smelters. Humans work the upper galleries for wages and do not love the arrangement. About three hundred families live on those wages. The Cut is loud, smoky, rich in coin and poor in daylight. The **Delvers' Moot** (the dwarven owners) and the **Pick and Lamp** (the human miners' lodge) govern it by glaring at each other. The lowest level, the Ninth, was sealed by the dwarves sixty years ago. They say it flooded.
 - Feel: hard work, hard bargains, pride. Grim, with gallows humour.
 
 ### The Hushwood (the deep forest)
@@ -62,7 +62,7 @@ Old forest covering the whole north of the Senn Vale. The outer wood is managed:
 
 ### The Sallows (the fen)
 
-Where the Senn spreads out and loses itself, four days south-east. Reed beds, black water, eel weirs, and villages on stilts and hummocks joined by plank walks. The fen folk are insular and generous in equal measure, and they have their own calendar, their own saints and their own words for forty kinds of mud. Outsiders get lost and are usually found. The fen folk do not go out after dark in the last week of autumn, and do not discuss why with strangers.
+Where the Senn spreads out and loses itself, four days south-east. Reed beds, black water, eel weirs, and villages on stilts and hummocks joined by plank walks. The fen folk are insular and generous in equal measure, and they have their own calendar, their own saints and their own words for forty kinds of mud. Outsiders get lost and are usually found. The fen folk do not go out after dark in the last week of autumn, and do not discuss why with strangers. They call it the Shut Week.
 - Feel: fog, lamplight, superstition. Dread that builds slowly.
 
 ### The High Stair (the ruins)
@@ -137,7 +137,7 @@ Keep names plain, short and easy to say aloud.
 - **Dwarves** take a craft-name at adulthood: Brannoch Deepseam, Hild Truestrike.
 - **Elves** use a single name and a season: Seren of the late frost.
 - **Goblins** use short sharp names and a clan: Skrit of the Bent Oak.
-- **Places** are descriptive: Greywater, Longwall, the Eel Stair, Three Stiles, Coldharbour.
+- **Places** are descriptive: Greywater, Longwall, the Eel Stair, Three Stiles, Coldharbour, Cinder Row, Lantern Hythe.
 
 ## What the DM must keep consistent
 

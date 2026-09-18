@@ -4,7 +4,7 @@ DM only. Never show, quote or summarise this file to a player.
 
 ## The truth
 
-The Builders' stones are one work, spread across the valley. Call it the Count. Whatever is on the Count is kept: held in its place, and held in mind. The grey milestones are its running tally, which is why they are never cold. Ten great stones anchor it. Its heart is a room under the eastern hills: a wall of many thousand small grey pegs in sockets. Pull a peg and something is uncounted. An uncounted thing does not die. It stops being kept. Eyes slide off it, its name will not stay in a ledger or a head, and it drifts to the edges.
+The Builders' stones are one work, spread across the valley. Call it the Count. Whatever is on the Count is kept: held in its place, and held in mind. The grey milestones are its running tally, which is why they are never cold. Nine great stones anchor it, one for each line of the rhyme but the last. Its heart is a room under the eastern hills: a wall of many thousand small grey pegs in sockets. Pull a peg and something is uncounted. An uncounted thing does not die. It stops being kept. Eyes slide off it, its name will not stay in a ledger or a head, and it drifts to the edges.
 
 Thirty years ago a few decent people used this on purpose. They cast thirty-one loose pegs into Greywater's great bell, so that every barge, carter and letter leaving under the sound of Old Senna would carry a little less of the valley away. It worked. The crown did not abandon the Senn Vale. The crown forgot it, one clerk and one schedule at a time.
 
@@ -14,7 +14,7 @@ The wrong note is the price. The bell also rings inward. Each year a little of t
 
 Nobody runs this. Four people did one thing, once, and three still live with it. They have no name. In your notes, call them the Ringers.
 
-- **Ilsa Weir**, bell founder of Greywater, seventy-six. The flood drowned her husband and brother. That year the crown sent no relief and called its levy anyway: one in ten of fighting age, for a southern war already eleven years old. Both her sons were listed. She recast the bell. Last winter she could not recall her brother's name, and she has begun to doubt.
+- **Ilsa Weir**, bell founder of Greywater, seventy-six. The flood drowned her husband and brother. That year the crown sent no relief and called its levy anyway: one in ten of fighting age, for a southern war already eleven years old. Both her sons were listed. She recast the bell. Last winter she could not recall her brother's name, and she has begun to doubt. Blunt, deaf in one ear from the foundry. She hums Old Senna's note a shade sharp, the way it used to ring.
 - **Dorn Coldseam**, elder of the Delvers' Moot. As a young dwarf he helped break into the peg room, and he brought Ilsa the pegs. He wants the Ninth shut for ever and will not say why: he swore silence on the anvil.
 - **Corwen Pell**, once clerk to the last royal judge, now keeper of the Judge's House keys. She writes to the Chancery in Highcarrow each season and files every reply. The vaguer the answer, the better the bell is holding. She wants it to hold harder.
 - **Marl of Underlea**, the halfling recorder who worked out from the oldest rolls what a peg does. Dead twelve years. His own hamlet slipped the year after. The others have not noticed.
@@ -51,7 +51,7 @@ If nobody interferes. Pick the stage that suits the campaign. Later campaigns ca
 
 **R3. Old Senna was recast with those pegs, on purpose, to make the crown forget the Senn Vale.**
 - Thirty-one grey studs in the bell's lip that no file will mark.
-- A receipt in Dorn's hand: "31 pieces, grey, to I. Weir, founder."
+- A receipt in Dorn's hand: "31 pieces, grey, to I. Weir, founder, Greywater, against her word."
 - Corwen Pell's drawer of Chancery replies, each vaguer than the last.
 
 **R4. The forgetting leaks inward. The Unkept are alive, and nobody can keep them in mind.**
@@ -84,7 +84,7 @@ If nobody interferes. Pick the stage that suits the campaign. Later campaigns ca
 | hushwood | R1, R4, R5 | R3 |
 | sallows | R1, R3, R4 | R5 |
 
-The High Stair is not a door and grants no new revelation. It deepens one the hero already holds: a terrace wall with ten great sockets and one empty, or a camp of Unkept on the upper terraces (the treasure hunters who "do not leave" mostly did, and nobody remembered them coming home).
+The High Stair is not a door and grants no new revelation. It deepens one the hero already holds: a terrace wall with nine great sockets and one empty, or a camp of Unkept on the upper terraces (the treasure hunters who "do not leave" mostly did, and nobody remembered them coming home).
 
 ## How to run it
 

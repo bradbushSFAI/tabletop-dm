@@ -30,10 +30,10 @@ It half worked. Maud comes to his door each night now, and he can see her clearl
 
 ## Other people
 
-- **Mother Sedge**, eldest of Lantern Hythe, keeper of the saints' names. Speaks in weather: "There's a wind in that question." Wants the village inside by dark and the Nail back. Knots a cord while she talks and unknots it before she leaves.
+- **Mother Sedge**, eldest of Lantern Hythe, keeper of the saints' names. Speaks in weather: "There's a wind in that question." Wants the village inside by dark and the Nail back. Counts the people in any room under her breath before she will sit down.
 - **Linnet Reedmoor**, an eel-wife. Fierce, practical. Wants her husband Col found. He is alive on a hummock two miles out, reachable until the third night. Carries his second-best boots.
 - **Maud Withy**. Soft-voiced, polite. Asks what year it is and thanks you for telling her. Wants to come in, or to be let go. Her hem is dry, whatever the weather.
-- **Perrin Lampwick**, a lamp-oil pedlar stuck here until the road is safe. Cheerful, mercenary, the only one who jokes. Has doubled his prices and wants out before the Week. Tastes his own oil to prove that it is good.
+- **Perrin Glim**, a lamp-oil pedlar stuck here until the road is safe. Cheerful, mercenary, the only one who jokes. Has doubled his prices and wants out before the Week. Tastes his own oil to prove that it is good.
 - **Old Jory Reedmoor**, Col's uncle, a net-mender. Slow, contented. Wants to be left to his evenings. Talks to the empty place at his table, and listens to it, and some nights he laughs.
 
 ## Companion candidates
@@ -56,10 +56,12 @@ Counter: `nights until the Shut Week`, set to 9.
 
 ## Fights
 
-1. The stilts at night: giant-rat x4, driven up out of the falling water. Avoided by pulling the ladders and setting fire pots.
+Counts suit a party of two. With three, add one more of the smallest monster to any fight that has several. For a hero alone, halve the counts (never below one), and treat every lone monster and every climax as Deadly: give the warning and show the way round.
+
+1. The stilts at night: giant-rat x2, driven up out of the falling water. Avoided by pulling the ladders and setting fire pots.
 2. The old village site, uncovered by the drop: zombie x2. They are the flood's drowned, never laid to rest, walking toward the chapel bell. Avoided by ringing it for them, or with a rite of the Quiet.
 3. The reed beds: harpy x1 (level 2). The falling water exposed her hummock, and she has moved close. The elders blame her for the vanishings, and they are wrong. Avoided with wax in the ears. She flees from fire.
-4. The drowned chapel: ghoul x1 and zombie x2 (level 3, a climax). The ghoul has been at the opened graves. Avoided by coming at noon, when it lies up under the altar, and barring the crypt.
+4. The drowned chapel: ghoul x1 and zombie x2 (level 3, a climax, Hard). The ghoul has been at the opened graves. Avoided by coming at noon, when it lies up under the altar, and barring the crypt.
 
 ## Local secrets
 

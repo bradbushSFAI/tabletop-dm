@@ -38,7 +38,7 @@ The Ninth did not flood. Dorn Coldseam, eldest of the Moot, knows what is down t
 
 - **Kella Pike**, Fighter. "A tally-man's daughter and a timberer who sets props for a living and can carry one on each shoulder. She is plain-spoken and furious, and she wants to know why that roof came down."
   - Private: she signed off the props that failed, under pressure from the shift-boss. She hides it and means to make it right. She leaves if the hero backs a lock-out.
-- **Hod Quickwick**, Rogue. "A dwarf lamp-trimmer who sells candle-ends on the side and knows every air shaft in the hill. He is cheerful, he is in debt to the Moot, and he would like you to help him stop being."
+- **Rudd Quickwick**, Rogue. "A dwarf lamp-trimmer who sells candle-ends on the side and knows every air shaft in the hill. He is cheerful, he is in debt to the Moot, and he would like you to help him stop being."
   - Private: he is Dorn's eyes inside the lodge, working off the debt. He turns the hero in if Dorn asks. He breaks with Dorn for good if he learns about the sluices.
 - **Sister Yarrow**, Cleric of the Quiet. "She came up the gorge to bury the men from the Fourth, and she has not left. She is calm and unhurried, and she believes every dead miner is owed a name and a grave."
   - Private: the Moot has refused her the Eighth, where she is sure the dead lie unburied, and she means to go anyway. She leaves if the hero lets bodies lie for the sake of an advantage.
@@ -54,15 +54,17 @@ Counter: `nights until the seal breaks`, set to 8.
 
 ## Fights
 
+Counts suit a party of two. With three, add one more of the smallest monster to any fight that has several. For a hero alone, halve the counts (never below one), and treat every lone monster and every climax as Deadly: give the warning and show the way round.
+
 1. An abandoned drift off the Third: giant-fire-beetle x4. They follow light. Avoided with shuttered lamps.
 2. The lock-out gate: orc x2 (level 2). Avoided by talking. An orc is honest in a contract, and Garsh's says "guard the gate", not "break a strike".
-3. The dead end of the Eighth: skeleton x4 (level 2 or 3). Miners nobody buried, because nobody remembered to. Avoided by reading aloud the numbers on the lamp tags they still wear, or with Sister Yarrow's rite.
-4. The wet fill at the seal: ochre-jelly x1 (level 3, a climax). Avoided by luring it into the sump with a cart of kitchen slops. It cannot climb the dry salt ramp.
+3. The dead end of the Eighth: skeleton x3 (level 2 or 3). Miners nobody buried, because nobody remembered to. Avoided by reading aloud the numbers on the lamp tags they still wear, or with Sister Yarrow's rite.
+4. The wet fill at the seal: ochre-jelly x1 (level 3, a climax, Hard). Avoided by luring it into the sump with a cart of kitchen slops. It cannot climb the dry salt ramp.
 
 ## Local secrets
 
 1. Kella signed off the props.
-2. Hod reports to Dorn.
+2. Rudd reports to Dorn.
 3. The upper galleries have two winters left, and the Moot's books say so.
 4. The strike fund is Greywater silver. Somebody outside the Cut wants the Ninth open.
 5. The Ninth is dry. Past the seal is a Builder room: one wall, floor to roof, of small grey pegs in sockets. Thirty-one sockets are empty.

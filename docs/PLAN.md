@@ -3,6 +3,25 @@
 Source: the code-architect blueprint of 2026-09-18. Schemas, module layout, command contracts and test layout are in `docs/ARCHITECTURE.md`.
 M0 (before any code) is Brad's 2-minute Cowork check, PRD section 18.
 
+## Build status (2026-09-18)
+
+| Milestone | State | Evidence |
+|---|---|---|
+| M0 Cowork check (python3, and a file that survives a new session, in local and cloud mode) | **Open. Only Brad can run it** | Reported as unverified |
+| M1 Script core | Done | `2307372` |
+| M2 Data and characters | Done | `ce829da` |
+| M3 Play state | Done | `ce829da` |
+| M4 The skill (SKILL.md, four reference files) | Done | `78bebd0` |
+| M5 The world (bible, metaplot, five seeds, teasers) | Done, behind the spoiler wall | `607f12d`, `f7060e0`, then a review agent's verdict |
+| M6 Playtests | Four DM runs and one audit: free run, death run, the Grit moment, hostile campaign. A fifth run goes through a real seed | `5184db8`, `5d5dcb9`, `8215e96`, `947d20f` |
+| M7 Package | Done: `plugin.json`, `build.py`, README | `5be56c0` |
+| Codex adversarial review | 8 findings, all fixed | `76a8880` |
+| Security audit | 5 findings, all fixed. Report in `docs/security-audit-2026-09-18.md` | `9b89da0` |
+
+The suite runs on Python 3.9.6 and 3.14. Commands added beyond the blueprint are listed in `PRD.md` section 9, and the places where the code differs from the blueprint are in `docs/ARCHITECTURE.md` under "Build amendments".
+
+Still unverified, and only a person can verify it: that the skill loads and saves in Claude Cowork, and that the game is fun.
+
 ## PART 5 — Task List Per Milestone
 
 Each task is one thing, verified before the next task starts (TDD: test written and red, then made green). Task IDs `M<n>-T<k>`.

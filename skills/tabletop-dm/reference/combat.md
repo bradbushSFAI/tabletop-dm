@@ -30,6 +30,10 @@ Not every threat is a fight. Offer a way to talk, sneak, trick or run whenever t
 | 4 | 125 | 250 | 375 | 500 |
 | 5 | 250 | 500 | 750 | 1100 |
 
+A total that falls between two columns takes the HARDER label: 60 XP against a level 1 budget of 50 and 75 is a Hard fight, not a Standard one.
+
+**A hero with no companion** has a budget of one character, so almost any single monster above challenge rating 1/8 is Hard or Deadly. When the hero travels alone, halve the monster counts a seed gives (never below one), prefer foes that can be talked to, tricked or outrun, and give the warning early.
+
 If the monsters outnumber the party, count their XP as one and a half times for this comparison. If they outnumber it two to one, count double. (The XP the party earns is never multiplied.)
 
 A level 1 party is fragile: one hit can drop a character. Use Easy and Standard fights at level 1. Save Hard for a climax. Use Deadly only when the player walked into it after a clear warning.

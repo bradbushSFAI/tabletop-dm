@@ -528,3 +528,48 @@ class TestPlaytestFindings(PlayCase):
         self.ok("track", "--name", "day", "--set", "4")
         self.ok("track", "--name", "day", "--clear")
         self.assertEqual(self.ok("status")["trackers"], {})
+
+
+class TestDeathRunFindings(PlayCase):
+    """Defects found by the death-run playtest (2026-09-18)."""
+
+    def test_encounter_start_shows_the_natural_initiative_die_of_everyone(self):
+        out = self.ok("encounter", "start", "--monster", "fixture-goblin:1", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        naturals = {c["id"]: c["natural"] for c in out["initiative_order"]}
+        self.assertEqual(naturals, {"kira": 20, "thorn": 10, "fixture-goblin-1": 1})
+
+    def test_the_stabilising_death_save_reports_the_third_success(self):
+        self.drop("kira")
+        for _ in range(2):
+            self.ok("deathsave", "--who", "kira", rng=ScriptedRng([15]))
+        out = self.ok("deathsave", "--who", "kira", rng=ScriptedRng([15]))
+        self.assertEqual((out["life_state"], out["successes"]), ("stable", 3))
+
+    def test_the_fatal_death_save_reports_the_third_failure(self):
+        self.drop("thorn")
+        for _ in range(2):
+            self.ok("deathsave", "--who", "thorn", rng=ScriptedRng([5]))
+        out = self.ok("deathsave", "--who", "thorn", rng=ScriptedRng([5]))
+        self.assertEqual((out["life_state"], out["failures"]), ("dead", 3))
+
+    def test_status_shows_whether_the_hero_still_has_the_grit_save(self):
+        self.assertTrue(self.ok("status")["characters"]["kira"]["grit_available"])
+        self.assertNotIn("grit_available", self.ok("status")["characters"]["thorn"])
+        self.patch("kira", grit_used_since_long_rest=True)
+        self.assertFalse(self.ok("status")["characters"]["kira"]["grit_available"])
+
+    def test_a_party_with_nobody_standing_earns_no_xp(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:2", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        self.ok("damage", "--who", "fixture-goblin-1", "--amount", "99")
+        self.drop("kira")
+        self.drop("thorn")
+        out = self.ok("encounter", "end")
+        self.assertEqual((out["xp_awarded"], out["party_defeated"]), (0, True))
+        self.assertEqual(self.char("kira")["xp"], 0)
+
+    def test_a_party_with_one_member_standing_still_earns_xp(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:1", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        self.ok("damage", "--who", "fixture-goblin-1", "--amount", "99")
+        self.drop("thorn")
+        out = self.ok("encounter", "end")
+        self.assertEqual((out["xp_awarded"], out["party_defeated"]), (50, False))

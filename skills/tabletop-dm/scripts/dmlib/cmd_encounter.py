@@ -73,10 +73,10 @@ def _add_monsters(encounter: Dict[str, Any], groups: List[Tuple[Dict[str, Any], 
     for record, count, custom in groups:
         dex = derive.ability_modifier(record["abilities"]["dex"])
         natural = dice.roll_d20(rng)["kept"]
-        rolled.append(natural + dex)
+        rolled.append((natural + dex, natural))
         entries.append(io_campaign.roll_entry(command, {"who": record["name"], "kind": "initiative",
                                                         "expr": "1d20%+d" % dex, "rolls": [natural], "total": natural + dex}))
-    for (record, count, custom), initiative in zip(groups, rolled):
+    for (record, count, custom), (initiative, natural) in zip(groups, rolled):
         source = party_ops.slugify(record["name"]) if custom else record["id"]
         dex = derive.ability_modifier(record["abilities"]["dex"])
         for _ in range(count):
@@ -97,7 +97,8 @@ def _add_monsters(encounter: Dict[str, Any], groups: List[Tuple[Dict[str, Any], 
                 "attacks": record.get("attacks", []), "tactic": record.get("tactic", ""),
                 "conditions": [], "defeated": False,
             }
-            encounter["initiative_order"].append({"id": mid, "kind": "monster", "initiative": initiative, "dex": dex})
+            encounter["initiative_order"].append({"id": mid, "kind": "monster", "initiative": initiative,
+                                                  "dex": dex, "natural": natural})
             added.append(mid)
     return added, entries
 
@@ -127,7 +128,8 @@ def start(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
     for character in fighters:
         dex = character["ability_modifiers"]["dex"]
         natural = dice.roll_d20(rng)["kept"]
-        encounter["initiative_order"].append({"id": character["id"], "kind": "party", "initiative": natural + dex, "dex": dex})
+        encounter["initiative_order"].append({"id": character["id"], "kind": "party", "initiative": natural + dex,
+                                              "dex": dex, "natural": natural})
         entries.append(io_campaign.roll_entry("encounter_start", {"who": character["id"], "kind": "initiative",
                                                                   "expr": "1d20%+d" % dex, "rolls": [natural],
                                                                   "total": natural + dex}))
@@ -226,8 +228,11 @@ def end(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
         if character["life_state"] == "fallen":
             raise DmError("hero_not_resolved", "%s is fallen. Run grit before the fight ends." % character["id"])
     records = data.load_all(skill_root)
-    total = 0 if args.no_xp else sum(m["xp_value"] for m in encounter["monsters"].values() if m["defeated"])
     members = party_ops.active_characters(party)
+    # A party with nobody left standing lost the fight. A lost fight pays nothing.
+    party_defeated = not any(c["life_state"] == "alive" for c in members)
+    earned = sum(m["xp_value"] for m in encounter["monsters"].values() if m["defeated"])
+    total = 0 if (args.no_xp or party_defeated) else earned
     share = total // len(members) if members and total else 0
     entries, level_ups = [], {}
     if share:
@@ -241,4 +246,4 @@ def end(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
     party_ops.commit(campaign_dir, party, entries)
     io_campaign.delete_encounter(campaign_dir)
     return {"xp_awarded": total, "xp_per_member": share, "members": [c["id"] for c in members],
-            "level_ups": level_ups, "rounds": encounter["round"]}
+            "level_ups": level_ups, "rounds": encounter["round"], "party_defeated": party_defeated}

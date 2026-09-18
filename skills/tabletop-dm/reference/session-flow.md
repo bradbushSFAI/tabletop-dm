@@ -80,7 +80,7 @@ Show the finished sheet in a short, readable form: abilities, AC, HP, attacks, s
 
 ## Companions
 
-The seed names two or three companion candidates. Introduce each in two sentences **in the fiction**, with a reason to travel with the hero. Do not show their secrets. The player picks one or two, or none.
+The seed names two or three companion candidates. This happens before the opening scene, so pitch each one to the player in two plain sentences, as someone the hero could already know or is about to meet: who they are, how they come across, and a reason to travel with the hero. Do not show their secrets. The player picks one or two, or none.
 
 For each pick, run `character create` with a class that fits, `--quick`, and the hero's level. Then write their private motive under `## Companion motives` in `dm-secrets.md`: what they want, what they hide, and what would make them leave or turn.
 
@@ -90,7 +90,7 @@ The player can also start alone and meet companions later. A companion who joins
 
 ## The opening scene
 
-Start in motion, at the seed's start place, with a problem already arriving. Use the hero's bond or flaw within the first three turns. This is the one turn that may run long: up to about 250 words. End it on a choice.
+Start in motion, at the seed's start place, with a problem already arriving. Say where the hero is, and do not invent what she did before this moment or why she came: if you need a reason, ask the player for one line first. Use the hero's bond or flaw within the first three turns. This is the one turn that may run long: up to about 250 words. End it on a choice.
 
 ## Continue
 
@@ -98,14 +98,17 @@ Start in motion, at the seed's start place, with a problem already arriving. Use
 2. Read `journal.md`, `world.md` and `dm-secrets.md`. Read the DM style reference that SKILL.md links to before the first scene.
 3. If `status` shows an active fight, the session stopped in the middle of it. Read the last journal lines, and resume the fight on the turn that `status` reports.
 4. Give a recap of three or four sentences, **in the fiction** ("Previously..."), and end it on the situation the hero is in right now.
-5. Move the world forward first: in `dm-secrets.md`, note what the villain did while the hero rested. Let one sign of it show in the first scene.
-6. Ask what the hero does.
+5. Check the counters in `status` (`trackers`). Every character with a limited-use feature should have a counter for it: add any that are missing (`sheet <id> C` lists the features). If the seed has a deadline, it should be a counter too.
+6. Move the world forward first: in `dm-secrets.md`, note what the villain did while the hero rested. Let one sign of it show in the first scene.
+7. Ask what the hero does.
+
+**The clock is yours to move.** When a night passes in the fiction (a long rest, or the story skips to morning), move every day or deadline counter: `track C --name "nights left" --add -1`. Do it at the moment the night passes, and let the world show what changed.
 
 ## Stop
 
 When the player says "let's stop here", or similar:
 
-1. Bring the scene to a resting point if one is a turn away. Do not force one.
+1. Stop where the hero stands. Do not move the hero to a safe place or wrap up the scene for her in order to end tidily. If the player stops in the middle of danger, the next session opens in the middle of danger.
 2. Under today's date heading in `journal.md`, add a session summary of one short paragraph: what happened, what changed, what is unresolved. **Then re-read that paragraph and delete anything the hero does not know.** This is the moment a secret most easily leaks: a villain's deadline, a companion's motive, the true cause of something. The journal is the player's file.
 3. Update `world.md`: new people, places and factions, and the list of open quests.
 4. Update `dm-secrets.md`: which clues were found, what the villain does next, how each companion's motive moved.
@@ -122,6 +125,7 @@ When the player says "let's stop here", or similar:
 Session summary: one short paragraph, written at Stop.
 ```
 
+- **Every session gets its own heading** with the next session number, even when the date is the same as the last one.
 - **One line at every scene change**: where, what happened, what changed. Write it the moment the scene changes, before you describe the next one.
 - The journal is for the player to read. Never put a secret in it.
 - `status` reports `journal_bytes`. When it passes **30000**, fold every session except the last two into one section at the top, `## Previously`, of 15 lines at most. Keep names, debts, promises and open threads. Drop the blow-by-blow.

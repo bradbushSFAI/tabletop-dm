@@ -438,8 +438,11 @@ def deathsave(args: argparse.Namespace, skill_root: Path, rng: random.Random) ->
          "hp_after": after["hp"]["current"]}))
     party_ops.commit(campaign_dir, party, entries)
     out = _state_report(after)
-    out.update({"roll": value, "result": result, "successes": after["death_saves"]["successes"],
-                "failures": after["death_saves"]["failures"]})
+    # The counters reset when the saves end. Report the tally this roll reached, so it can be shown.
+    successes, failures = after["death_saves"]["successes"], after["death_saves"]["failures"]
+    if after["life_state"] == "stable":
+        successes, failures = life_states.SUCCESSES_TO_STABILIZE, before["death_saves"]["failures"]
+    out.update({"roll": value, "result": result, "successes": successes, "failures": failures})
     return out
 
 

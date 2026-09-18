@@ -9,6 +9,7 @@
 - Spells
 - Special rules the script does not apply for you
 - Dying, death saves and the Grit save
+- When the whole party is down
 - Ending the fight
 - Rests
 - Keeping a fight fast in text
@@ -33,13 +34,15 @@ If the monsters outnumber the party, count their XP as one and a half times for 
 
 A level 1 party is fragile: one hit can drop a character. Use Easy and Standard fights at level 1. Save Hard for a climax. Use Deadly only when the player walked into it after a clear warning.
 
+**The warning** comes from the fiction and gives away no secret: what the hero can see, hear or smell, a companion who says plainly that this is a bad idea and why ("You can barely stand, and I count four of them"), the state the hero is in. Give it once, clearly. If the player goes ahead, run the fight honestly.
+
 **Use `lookup monster --list --cr 0.25`** to find monsters of a rating. To invent one, copy the numbers of a monster of the same rating and change the skin: that is what `--custom` is for.
 
 ## Start
 
 `encounter start C --monster goblin:3 --monster hobgoblin:1`
 
-The script rolls initiative for every party member and one roll for each group of monsters, rolls each monster's hit points, and returns the order. `damage` and `encounter next` report monster hit points every time, so never carry them in your head. Add `--average-hp` to skip the hit-point rolls. Tell the player the order in one line. Do not read out monster hit points or AC: describe how hurt a monster looks.
+The script rolls initiative for every party member and one roll for each group of monsters, rolls each monster's hit points, and returns the order. `damage` and `encounter next` report monster hit points every time, so never carry them in your head. Add `--average-hp` to skip the hit-point rolls. Tell the player the order in one line. Never read out monster hit points: describe how hurt a monster looks. A monster's AC does appear in the open roll line (`vs AC 15`), and that is fine: the dice are open.
 
 Surprise: if one side is unaware, give the other side a free round before you call `encounter start`, or simply skip the surprised creatures' first turns.
 
@@ -55,13 +58,15 @@ The hero acts as the player says. For a companion, the player may give a short o
 
 Show it openly: `d20 (14) + 4 = 18 vs AC 15: hit. 1d8 (5) + 2 = 7 piercing.`
 
+**Finish a turn before you advance it.** Roll the attack, roll the damage and run `damage` for the combatant whose turn it is, and only then run `encounter next`.
+
 **Anything else** (shove, grapple, swing from a rope, throw sand): pick the ability or skill, set a DC or an opposed roll, and roll it. Say yes to creative plans. Give advantage for a good one.
 
 **Class features** are on the sheet as rule text (`sheet <id> C`, under `feature_rules`). You apply them. Second Wind is a `roll` followed by `heal`. A feature with limited uses gets a counter when the character gains it (`track C --name "mara second wind" --set 1`), is spent with `--add -1`, and is set again after the rest its rule names.
 
 **Sneak Attack without a map.** The script does not track positions, so use this ruling every time: the Rogue gets it, once per turn, when they attack with a finesse or ranged weapon AND either they have advantage, or a conscious ally is fighting the same enemy in melee. Hiding first, or a companion who was ordered to engage that enemy, is how the player earns it.
 
-**0 hit points for a monster.** `"defeated": true` means out of the fight. Whether that is dead, dying or knocked out is your call in the fiction. A melee attacker may always choose to knock a foe out and not kill (5e), so ask the player when it could matter: prisoners talk.
+**0 hit points for a monster.** `"defeated": true` means out of the fight. Say "goes down" or "drops", and do not call it dead on your own: killing is the player's choice. Whether it is dead, dying or knocked out is settled by what the hero does next, or by a blow that leaves no doubt. A melee attacker may always choose to knock a foe out and not kill (5e), so ask the player when it could matter: prisoners talk.
 
 Then `encounter next C`.
 
@@ -74,7 +79,14 @@ Then `encounter next C`.
 5. A monster's own saving throw: `roll C "1d20+2" --dc 13 --reason "goblin-1 dex save"`. Use the modifier from its ability score: (score minus 10) divided by 2, rounded down.
 6. `traits` on the record list multiattack, resistances, regeneration and similar. Apply them yourself: halve damage for a resistance before you call `damage`.
 
-Spread attacks in a way that fits the fiction, not always on the hero and not always on the weakest. Do not pile on a character who is down, unless the monster is a mindless eater or a true killer.
+Spread attacks in a way that fits the fiction, not always on the hero and not always on the weakest.
+
+**Who attacks a character who is down.** Decide it from the monster's nature, before you roll, and hold to it:
+
+| The monster is | While someone still stands | When everyone is down |
+|---|---|---|
+| Mindless and made to kill (skeletons, zombies, animated armour, most undead), a hungry predator or eater (ghouls, wolves, oozes), or a sworn killer (an assassin, a zealot, a personal enemy) | It finishes a downed target only if no standing enemy is in reach | It keeps attacking the downed. Each hit is a failed death save (two on a critical, and a melee hit on an unconscious target is a critical). This is the road to the Grit save, and it is meant to be |
+| Anything with a mind and a purpose (bandits, goblins, soldiers, cultists who want a captive, most humanoids) | It turns to the enemies still standing | It stops. It takes prisoners, robs the party, leaves them for dead, or drags them to its master |
 
 Then `encounter next C`.
 
@@ -128,10 +140,24 @@ The script moves each character through these states. `damage` and `status` alwa
 
 **Never soften a roll to avoid this.** The Grit save IS the safety net, and it only means something if the dice were true.
 
+## When the whole party is down
+
+Nobody is `alive`. Do not stop the dice and do not rescue anyone.
+
+1. Keep going round by round: `encounter next`, a `deathsave` on each dying character's turn, and the monsters act by the table above.
+2. It ends when every party member is `stable`, `dead`, or the hero is `fallen`. A `fallen` hero gets the Grit save at once.
+3. Run `encounter end`. A party with nobody standing earns no XP: the script reports `"party_defeated": true`.
+4. **A lost fight always costs something, even when everyone lives.** The enemy decides what happens to the bodies, by its nature: prisoners, robbed and left in a ditch, carried to a master, or simply left among the dead. Apply the numbers with the normal commands (`item remove`, `gold --spend`). Open the next scene where the enemy's choice put the hero. This is the one time the DM places the hero, because the hero was unconscious.
+5. If the hero is dead, see "If the hero is truly dead" above.
+
+**Waking up.** Any healing wakes a `stable` or `dying` character. With no healer, a `stable` character wakes on its own with 1 hit point after 1d4 hours: `roll C "1d4" --reason "hours until mara-voss wakes"`, then `heal C --who mara-voss --amount 1`. An unconscious character cannot spend hit dice, so a short rest helps only after they wake.
+
 ## Ending the fight
 
 `encounter end C` adds up the XP of **defeated** monsters, splits it among the party members who are not dead or departed, applies it, and reports level-ups. It is refused while the hero is `fallen`.
 
+- The party lost (nobody left standing): the script pays no XP on its own.
+- If monsters survive and could return, note their remaining hit points in `dm-secrets.md` before you end the fight: `encounter.json` is deleted.
 - The party fled, or the enemy surrendered or ran: monsters that were not defeated give no XP. If the party solved the fight by wit, give story XP of about the same size with `xp`.
 - Use `--no-xp` when the fight was a story beat that should not pay out.
 - A level-up rolls the hit die in the script. Tell the player the new HP and what is new. If the report shows `pending_asi`, ask the player and run `character asi`. If it shows spell or cantrip picks, offer choices and run `spells learn`.

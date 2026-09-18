@@ -78,7 +78,7 @@ def gp(cp: int) -> float:
     return round(cp / 100.0, 2)
 
 
-def summarize(character: Dict[str, Any]) -> Dict[str, Any]:
+def summarize(character: Dict[str, Any], is_hero: bool = False) -> Dict[str, Any]:
     """The compact per-character line for status."""
     out = {
         "name": character["name"],
@@ -94,6 +94,8 @@ def summarize(character: Dict[str, Any]) -> Dict[str, Any]:
     }  # type: Dict[str, Any]
     if character["life_state"] == "dying":
         out["death_saves"] = character["death_saves"]
+    if is_hero:
+        out["grit_available"] = not character["grit_used_since_long_rest"]
     casting = character.get("spellcasting")
     if casting:
         out["slots"] = {
@@ -109,7 +111,7 @@ def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
     encounter = io_campaign.load_encounter(campaign_dir)
     out = {
         "hero_id": party["hero_id"],
-        "characters": {cid: summarize(ch) for cid, ch in party["characters"].items()},
+        "characters": {cid: summarize(ch, cid == party["hero_id"]) for cid, ch in party["characters"].items()},
         "settings": party["settings"],
         "encounter_active": encounter is not None,
         "trackers": party.get("trackers", {}),

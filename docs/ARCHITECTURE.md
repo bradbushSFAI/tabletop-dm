@@ -15,6 +15,20 @@ These correct or extend the blueprint below. Where an amendment and the blueprin
 5. **Banned-names list** corrected to the real SRD 5.1 product-identity list (see Part 4).
 6. **`atomic_write_json`** writes to a temp file in the SAME campaign folder and then uses `os.replace`. The temp name starts with a dot, so the write guard's "hidden dot-files do not count" rule ignores a stray one after a crash.
 
+## Build amendments (2026-09-18, after M1 to M4, M7 and three playtests)
+
+The blueprint below is the design as planned. The code is the truth where they differ. The differences:
+
+1. **Modules added:** `party_ops.py` (shared helpers: slugs, `require_character`, `commit`), and `cmd_seed.py` gained `seed list`. `validate_data` became a light check inside `data.load_all`, and the deep checks live in `tests/test_data_real.py`, which also builds a character of every class at every level through the real command.
+2. **Commands added:** `character set`, `character asi`, `spells learn`, `stabilize`, `track`, `encounter flee`, `roll --proficient`. See the table in `PRD.md` section 9.
+3. **Sheet fields added:** `skill_proficiencies`, `expertise`, `fighting_style`, `features` (ids), `pending_asi`, `pending_spell_picks`, `pending_cantrip_picks`, `passive_perception`. `spellcasting` also holds `spellbook`, `prepare_limit`, `cantrips_known_limit`, `max_spell_level`. `party.json` gained an optional top-level `trackers` object.
+4. **Class data fields added:** `default_skills`, `default_background_skills`, `quick_scores`, `armor_proficiencies`, `weapon_proficiencies`, `starting_equipped`, `starting_gold_cp` (a fixed amount, not `starting_gold_expr`), `fighting_styles`, `expertise`, and per level `cantrips_known`. HP gain is computed from the hit die, so `hp_gain_fixed` and `hp_gain_expr` are not stored.
+5. **Monsters use group initiative:** one roll per `--monster` entry. Every `initiative_order` entry also carries `dex` (the tie-break) and `natural` (the die, so it can be shown).
+6. **Dice:** an expression may end in `*N` (for example `5d4*10`). A lone `1d20` roll reports `natural` and honours advantage. Against an AC, a natural 20 is `critical_hit` and a natural 1 is `miss`.
+7. **Life states:** `apply_death_save` and `apply_grit` return `(character, result)`. `apply_rest_hp_change` is named `apply_hp_gain_from_rest`. Temporary hit points absorb damage first.
+8. **Tests use `ScriptedRng`**, a `random.Random` whose `randint` returns a fixed queue of dice, so a test states the exact dice it wants. Every dice call in `dmlib` goes through `rng.randint`.
+9. **Mutation checks must run Python with `-B`** and clear `__pycache__`: a file restored within the same second and at the same size reuses the mutated bytecode.
+
 ## PART 1 — Structure Decision
 
 **DECISION: (b) — `scripts/dm.py` as a thin entry point plus `scripts/dmlib/` as a package.** Reasoning: the ~25-command surface needs unit-testable seams smaller than "the whole CLI"; a single file would force every test through argparse and full-process I/O. Zip file size and line count cost nothing (only stdout enters the model's context — constraint 8), so there's no token-budget argument for a monolith. The upload audience is non-technical and never opens the code, so "readability as one file for a human browsing it" isn't a real constraint either. A package gives pure, disk-free unit tests for dice math, derived-number math, and life-state transitions, which is where most of the row-by-row test coverage in section 16 lives.

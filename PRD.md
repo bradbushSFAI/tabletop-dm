@@ -185,6 +185,23 @@ Every command prints JSON. Only `--version` and `lookup` work without a campaign
 
 The architect may merge or rename commands. The table is the required **behaviour**, row by row. Any row that is deferred must be named as deferred in the plan.
 
+**Commands added during the build (2026-09-18).** Each closed a gap that legal 5e play or a playtest exposed. `SKILL.md` is the current command reference, and a test fails if it misses a command.
+
+| Command | Why it was needed |
+|---|---|
+| `character set` | Quick start could not save background, bond and flaw (playtest 1) |
+| `character asi` | The level 4 ability score improvement had no command. A Constitution increase raises HP for every level |
+| `spells learn` | A level-up grants cantrip picks and Wizard spellbook picks, and nothing could spend them |
+| `stabilize` | A DC 10 Medicine check or a healer's kit must be able to stop death saves |
+| `roll --check <ability> --proficient` | Tool proficiency (thieves' tools) adds the bonus in the script, not in the DM's head |
+| `track` | Named counters for what the rules engine does not model: the in-world day, a seed's deadline, uses of a feature, item charges. Never below zero. Shown in `status` (playtest 1) |
+| `encounter flee` | A monster that runs or yields leaves the turn order and gives no XP (playtest 1) |
+| `seed list`, `heal --temp`, `--give-to` on `item remove` and `gold` | Small things a DM needs often |
+
+**Behaviour added by the playtests:** `encounter next` reports the HP of every monster still in the fight. `encounter start` shows each natural initiative die. `rest short` shows the modifier and the sum. `status` shows `grit_available` for the hero. `encounter end` pays no XP when nobody in the party is left standing (`party_defeated`).
+
+**Simplifications, stated so nobody mistakes them for bugs:** monsters use group initiative (one roll per `--monster` entry). Ancestry (race) has no mechanical effect. Starting gold is a fixed 10 gp on top of the class's gear. Each class has its one SRD subclass, with no choice. Skills are the class's count from the class list plus any two for the background.
+
 ## 10. Rules scope and data
 
 - **Rules:** D&D 5e SRD 5.1, trimmed core. Six abilities, proficiency, AC, HP, advantage and disadvantage, saving throws, skills, spell slots, conditions, rests, death saves, XP levelling.

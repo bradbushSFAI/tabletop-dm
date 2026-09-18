@@ -123,6 +123,7 @@ def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
         out["encounter"] = {
             "round": encounter["round"],
             "turn": order[encounter["turn_index"]]["id"] if order else None,
+            "order": [c["id"] for c in order],
             "monsters": {
                 mid: "%d/%d" % (m["hp"]["current"], m["hp"]["max"]) for mid, m in encounter["monsters"].items()
             },

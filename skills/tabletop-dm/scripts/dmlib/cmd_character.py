@@ -515,6 +515,8 @@ def retire(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
                       "retiring the hero as dead needs --player-accepted, in every difficulty. Ask the player first.")
     before = character["life_state"]
     character["life_state"] = args.status
+    character["conditions"] = []
+    character["death_saves"] = {"successes": 0, "failures": 0}
     party_ops.commit(campaign_dir, party, [io_campaign.change_entry(
         "character_retire", character["id"], "life_state", before, args.status,
         {"hero": is_hero, "player_accepted": bool(args.player_accepted)})])

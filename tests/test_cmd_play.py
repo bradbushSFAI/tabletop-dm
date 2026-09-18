@@ -573,3 +573,17 @@ class TestDeathRunFindings(PlayCase):
         self.drop("thorn")
         out = self.ok("encounter", "end")
         self.assertEqual((out["xp_awarded"], out["party_defeated"]), (50, False))
+
+
+class TestGritRunFindings(PlayCase):
+    """Defects found by the third playtest (2026-09-18)."""
+
+    def test_status_shows_the_turn_order_so_a_resumed_fight_needs_no_memory(self):
+        self.ok("encounter", "start", "--monster", "fixture-goblin:1", "--average-hp", rng=ScriptedRng([20, 10, 1]))
+        self.assertEqual(self.ok("status")["encounter"]["order"], ["kira", "thorn", "fixture-goblin-1"])
+
+    def test_a_retired_character_carries_no_stale_conditions_or_death_saves(self):
+        self.drop("thorn")
+        self.ok("character", "retire", "--who", "thorn", "--status", "dead")
+        thorn = self.char("thorn")
+        self.assertEqual((thorn["conditions"], thorn["death_saves"]), ([], {"successes": 0, "failures": 0}))

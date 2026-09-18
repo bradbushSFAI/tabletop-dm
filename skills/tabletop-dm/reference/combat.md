@@ -85,7 +85,7 @@ Spread attacks in a way that fits the fiction, not always on the hero and not al
 
 | The monster is | While someone still stands | When everyone is down |
 |---|---|---|
-| Mindless and made to kill (skeletons, zombies, animated armour, most undead), a hungry predator or eater (ghouls, wolves, oozes), or a sworn killer (an assassin, a zealot, a personal enemy) | It finishes a downed target only if no standing enemy is in reach | It keeps attacking the downed. Each hit is a failed death save (two on a critical, and a melee hit on an unconscious target is a critical). This is the road to the Grit save, and it is meant to be |
+| Mindless and made to kill (skeletons, zombies, animated armour, most undead), a hungry predator or eater (ghouls, wolves, oozes), or a sworn killer (an assassin, a zealot, a personal enemy) | It finishes a downed target only if no standing enemy is in reach | It keeps attacking the downed. This is the road to the Grit save, and it is meant to be |
 | Anything with a mind and a purpose (bandits, goblins, soldiers, cultists who want a captive, most humanoids) | It turns to the enemies still standing | It stops. It takes prisoners, robs the party, leaves them for dead, or drags them to its master |
 
 Then `encounter next C`.
@@ -116,15 +116,22 @@ The script moves each character through these states. `damage` and `status` alwa
 |---|---|---|
 | `alive` | Above 0 HP | |
 | `dying` | 0 HP and unconscious | On that character's turn: `deathsave C --who id`. Any healing wakes them. Damage while dying is a failed save, or two with `--crit`. An ally can try a DC 10 Medicine check, and on a success: `stabilize` |
-| `stable` | 0 HP, unconscious, no more saves | Healing or a rest wakes them |
+| `stable` | 0 HP, unconscious, no more saves | Healing or a rest wakes them. New damage makes them `dying` again, with one failed save already (two on a critical) |
 | `fallen` | **Hero only.** By the 5e rules the hero is dead | Run the Grit save, at once |
 | `dead` | True death | A companion: narrate it, and let it matter. The hero: see below |
 
 **A companion has no Grit save.** Three failed death saves, or massive damage, and they are dead. Give the moment weight.
 
 **The Grit save (`fallen` hero).** Stop the fight narration. This is the biggest moment of the session.
-1. Set the DC. The base is **10**. Use 12 to 13 for massive damage, or 15 for a hostile place with no help near (deep water, a collapsing mine, alone among enemies). Say the DC aloud before the roll.
-2. `grit C --dc 10`. It is one Constitution save, once per long rest. If it was already used, there is no roll and it fails. Show the roll.
+1. Set the DC from this table. When more than one row applies, use the single highest. Never add rows together. Say the DC aloud before the roll.
+
+| Situation | DC |
+|---|---|
+| The normal case: allies near, or a place where help could come | 10 |
+| The hero fell to massive damage | 13 |
+| A hostile place with no help near: every ally down or gone, deep water, a collapse, alone among enemies | 15 |
+
+2. `grit C --dc 10`. It is one Constitution save, once per long rest. A total that meets or beats the DC is a success (`light_cost`). Below it is a failure, and the difficulty decides what a failure means. If the Grit save was already used since the last long rest, there is no roll and it fails. Show the roll.
 3. Apply the `outcome`:
 
 | Outcome | What happens |
@@ -136,19 +143,26 @@ The script moves each character through these states. `damage` and `status` alwa
 4. Apply any part of the cost that is a number with the normal commands (`item remove`, `gold --spend`, `character retire` for a companion).
 5. Write the cost into `journal.md`, and its long-term meaning into `dm-secrets.md`. A cost the story forgets was not a cost.
 
+**After the Grit save.** Whatever the outcome, the hero is out of this fight and nothing attacks her again in it. She is `stable` at 0 HP with the Grit save spent, so a second attack could only kill her outright, and the save would have meant nothing. **The cost you choose must explain why the danger to her stopped:** the enemy took what it came for, took someone else, thinks she is dead, was driven off at a price, or something worse arrived and drew it away. With eaters and killers this needs care: a light cost still needs a reason in the fiction (the ghoul drags off her pack and the meat in it, a companion hauls her clear, the floor gives way).
+
 **If the hero is truly dead:** offer the player a choice. The campaign ends with an epilogue, or it goes on: a companion steps up (`character promote <id> C`), or a new hero arrives (`character create`, then `character promote`).
 
 **Never soften a roll to avoid this.** The Grit save IS the safety net, and it only means something if the dice were true.
+
+**Attacking an unconscious character (5e).** The attack roll has advantage (`--adv`), and a hit from within reach is a critical hit: double the damage dice, and pass `--crit` to `damage`. On a character already at 0 HP that is two failed death saves. Know what this means at levels 1 and 2: a doubled bite or claw often does damage equal to the character's hit point maximum, which is massive damage, so the hero goes straight to `fallen` and a companion straight to `dead`. That is by design. It is why the Grit save exists. Do not avoid it, and do not walk into it carelessly: an eater reaching a downed hero is the most dangerous moment in the game, so make sure the player saw it coming.
+
+**When the hero is down but others still stand.** The player has no hero to act with, so do not make them wait through many turns. Run each round briskly in one short paragraph: the hero's death save shown openly, the companions and the monsters together. Pause once per round, only to ask for an order for the companions. If the player has nothing to add, keep going.
 
 ## When the whole party is down
 
 Nobody is `alive`. Do not stop the dice and do not rescue anyone.
 
 1. Keep going round by round: `encounter next`, a `deathsave` on each dying character's turn, and the monsters act by the table above.
-2. It ends when every party member is `stable`, `dead`, or the hero is `fallen`. A `fallen` hero gets the Grit save at once.
-3. Run `encounter end`. A party with nobody standing earns no XP: the script reports `"party_defeated": true`.
-4. **A lost fight always costs something, even when everyone lives.** The enemy decides what happens to the bodies, by its nature: prisoners, robbed and left in a ditch, carried to a master, or simply left among the dead. Apply the numbers with the normal commands (`item remove`, `gold --spend`). Open the next scene where the enemy's choice put the hero. This is the one time the DM places the hero, because the hero was unconscious.
-5. If the hero is dead, see "If the hero is truly dead" above.
+2. The moment the hero becomes `fallen`, stop and run the Grit save (above), in the middle of the round if need be. The Grit save settles the hero's fate for this fight: see "After the Grit save".
+3. The fight is not over while a companion is still `alive` or `dying`. Keep rolling their death saves, and eaters keep attacking them. It ends when every party member is `stable` or `dead`, or the enemy has done what it came to do and stopped.
+4. Run `encounter end`. (A companion who is still `dying` when the fight ends keeps rolling one `deathsave` per round until stable, dead or healed.) A party with nobody standing earns no XP: the script reports `"party_defeated": true`.
+5. **A lost fight always costs something, even when everyone lives.** The enemy decides what happens to the bodies, by its nature: prisoners, robbed and left in a ditch, carried to a master, or simply left among the dead. Apply the numbers with the normal commands (`item remove`, `gold --spend`). Open the next scene where the enemy's choice put the hero. This is the one time the DM places the hero, because the hero was unconscious.
+6. If the hero is dead, see "If the hero is truly dead" above.
 
 **Waking up.** Any healing wakes a `stable` or `dying` character. With no healer, a `stable` character wakes on its own with 1 hit point after 1d4 hours: `roll C "1d4" --reason "hours until mara-voss wakes"`, then `heal C --who mara-voss --amount 1`. An unconscious character cannot spend hit dice, so a short rest helps only after they wake.
 

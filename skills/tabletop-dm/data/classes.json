@@ -695,7 +695,21 @@
      "cure-wounds",
      "healing-word",
      "guiding-bolt"
-    ]
+    ],
+    "always_prepared": {
+     "1": [
+      "bless",
+      "cure-wounds"
+     ],
+     "3": [
+      "lesser-restoration",
+      "spiritual-weapon"
+     ],
+     "5": [
+      "beacon-of-hope",
+      "revivify"
+     ]
+    }
    },
    "levels": {
     "1": {

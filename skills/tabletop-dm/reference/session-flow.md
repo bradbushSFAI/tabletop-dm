@@ -38,11 +38,12 @@ Record the answers in one command:
 `settings set C --difficulty standard --tone genre=grim --tone balance=talk --tone length=campaign`
 
 **Step 3. The doors.** Read `seeds/teasers.md` (its format is below). Show the player every teaser, numbered 1, 2, 3 and so on: show the teaser text only, and never the seed's file name. Say that every door leads into the same larger world, so a later campaign can take a different door. The player picks one, or says "surprise me".
-- A pick: `seed choose <name> C`.
-- Surprise me: `seed pick C`. Show the roll.
+- A pick: `seed choose 3 C` (the door number works, and so does the name).
+- Surprise me: `seed pick C`. Show the player the `show_the_player` text from the output ("d5 (3): door 3"), and nothing else from it.
 
 **Step 4. Prepare in secret.** Read `world/bible.md`, `world/metaplot.md`, and the chosen `seeds/<name>.md`. Then write `dm-secrets.md`:
 - Under `## Seed`: copy the whole seed file.
+- Start the seed's deadline as a SECRET counter, with the number the seed gives: `track C --name "<what the deadline is>" --set N --secret`. The name of a deadline is a spoiler, and `--secret` keeps it out of `status` and out of plain sight in `party.json`.
 - Under `## Campaign plan`: 8 to 12 lines for THIS campaign, shaped by the tone answers. The local villain's next three moves if nobody stops them. Three scenes you expect. Which metaplot revelations this door can reach, and the clue that points to each. What the villain does between sessions.
 - Under `## Companion motives`: leave empty until step 5.
 
@@ -73,7 +74,7 @@ Then ask for a one-sentence background, one bond and one flaw, in the player's w
    - Rolled: run `roll C "4d6kh3" --reason "ability score"` six times, show every roll, and let the player assign the six totals.
    Pass them as `--scores str,dex,con,int,wis,cha`.
 4. **Skills.** Offer the class defaults. A player who wants to choose picks the class's number from the class list, plus any two more for their background: `--skills a,b,c,d`.
-5. **Class choices.** Fighter: a fighting style (`--fighting-style`). Rogue: two skills for expertise (`--expertise`). Wizard and Cleric: offer the default spells, or let the player pick with `--cantrips` and `--spells` (`lookup spell --list --class wizard --level 1`).
+5. **Class choices.** Fighter: a fighting style (`--fighting-style`). Rogue: two skills for expertise (`--expertise`). Wizard and Cleric: offer the default spells, or let the player pick with `--cantrips` and `--spells` (`lookup spell --list --class wizard --level 1`). Create the character first and read the spells back from its output before you name them to the player: a Cleric's domain spells are `always_prepared` and do not use up the `prepare_limit`, and the rest of the list is cut to that limit.
 6. **Background, bond, flaw.** One sentence each: `--background`, `--bond`, `--flaw`. Use the bond and the flaw in play. They are hooks, not decoration.
 
 Show the finished sheet in a short, readable form: abilities, AC, HP, attacks, skills, spells, gear, gold. Not the raw JSON.
@@ -98,7 +99,7 @@ Start in motion, at the seed's start place, with a problem already arriving. Say
 2. Read `journal.md`, `world.md` and `dm-secrets.md`. Read the DM style reference that SKILL.md links to before the first scene.
 3. If `status` shows an active fight, the session stopped in the middle of it. Read the last journal lines, and resume the fight on the turn that `status` reports.
 4. Give a recap of three or four sentences, **in the fiction** ("Previously..."), and end it on the situation the hero is in right now.
-5. Check the counters in `status` (`trackers`). Every character with a limited-use feature should have a counter for it: add any that are missing (`sheet <id> C` lists the features). If the seed has a deadline, it should be a counter too.
+5. Check the counters: `status` shows the open ones, and `track C --list` shows the secret ones too. Every character with a limited-use feature should have a counter for it: add any that are missing (`sheet <id> C` lists the features). If the seed has a deadline, it should be a counter too.
 6. Move the world forward first: in `dm-secrets.md`, note what the villain did while the hero rested. Let one sign of it show in the first scene.
 7. Ask what the hero does.
 

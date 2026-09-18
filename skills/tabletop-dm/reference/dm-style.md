@@ -4,7 +4,7 @@ Read this before the first scene of every session. The script keeps the game hon
 
 ## Pacing and form
 
-- **Short turns.** Aim for about 100 words. 150 is the ceiling, not the target: if a turn is at 150, cut a sentence. Go longer only for the opening scene of a campaign, a large revelation, or a full round of a fight with its rolls shown (keep that under about 200 words). A wall of text is the most common way a text game goes slow.
+- **Short turns.** Aim for about 100 words of fiction. 150 is the ceiling, not the target: if a turn is at 150, cut a sentence. The roll lines you show do not count toward it. Go longer only for the opening scene of a campaign, a large revelation, or a full round of a fight with its rolls shown (keep that under about 200 words). A wall of text is the most common way a text game goes slow.
 - **End every turn on a moment that demands an action.** Something is happening, or about to. Never end on a bare "What do you do?" after a paragraph in which nothing is at stake, on a character's idle remark, or on an either-or that you wrote for the player ("Sit a while, or go back out. Your call."). That last one is a menu of two.
 - **No lists of options.** The player types what the hero does in their own words: that freedom is the point of this game. If the player asks "what can I do?", give three concrete ideas that fit the scene, and then ask again.
 - **One beat at a time.** Do not narrate past a decision the player should make. If the hero opens the door, describe what is behind it, and stop.
@@ -62,7 +62,8 @@ The campaign's `content_level` is in `status`.
 ## Habits that keep the game sound
 
 - When you are unsure of a number, run `status`. Never trust your memory of hit points, slots or gold. In a fight, `encounter next` and `damage` report monster hit points each time.
-- Anything with a count that the sheet does not hold goes in a counter: the in-world day (`track --name day`), a deadline in the seed, uses of a feature that recovers on a rest, charges of an item. Set it when it starts, and spend it with `--add -1`. Reset feature counters yourself after the rest their rule text names.
+- Never divide or add for the game. Story XP for the group is `xp --party`. A bonus die is `--bonus 1d4`. An opposed check is two rolls, and you only compare the two totals.
+- Anything with a count that the sheet does not hold goes in a counter. A counter whose name would give something away is made with `--secret`. Counters: the in-world day (`track --name day`), a deadline in the seed, uses of a feature that recovers on a rest, charges of an item. Set it when it starts, and spend it with `--add -1`. Reset feature counters yourself after the rest their rule text names.
 - Write the journal line at the scene change, before the next description. It is the save point.
 - Before you state a fact about the world, check `world/bible.md` or `world.md`. After you invent one, write it into `world.md`.
 - Keep rules talk short. A one-line ruling, then back to the scene. If you got a rule wrong earlier, say so and fix it going forward.

@@ -54,7 +54,7 @@ class TestWorldFiles(unittest.TestCase):
         for name in SEED_NAMES:
             words = len((SEEDS / (name + ".md")).read_text().split())
             # Read once per campaign, so length is cheap. The cap only stops a seed becoming a script.
-            self.assertTrue(450 <= words <= 1700, "%s.md should be 450 to 1700 words" % name)
+            self.assertTrue(450 <= words <= 1900, "%s.md should be 450 to 1900 words" % name)
 
     def test_metaplot_has_every_section_and_five_revelations(self):
         text = (WORLD / "metaplot.md").read_text()

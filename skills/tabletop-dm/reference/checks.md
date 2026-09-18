@@ -49,6 +49,8 @@ Do not allow the same check twice in the same situation. A second try needs a ne
 
 ## Kinds of check
 
+- **Bonus dice.** Guidance, Bless and similar add a die: `roll C --who ilsa --check insight --bonus 1d4 --dc 15`. The script rolls it and adds it.
+- **Stealth in noisy armour.** The sheet has `stealth_disadvantage`. The script applies it to a Stealth check on its own, and says so in the output.
 - **Opposed.** Two rolls, the higher wins: the hero's `--check stealth` against a guard's `roll C "1d20+2" --reason "guard perception"`. A tie keeps things as they were.
 - **Passive Perception.** Every sheet has `passive_perception`. Use it, with no roll, to decide what a character notices without looking. Monsters have 10 plus their Wisdom modifier. Roll only when someone is actively searching.
 - **Group.** Everyone rolls, and the group succeeds if at least half do. Use it for sneaking or travelling together.

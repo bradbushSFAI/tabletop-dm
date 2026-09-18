@@ -101,6 +101,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--attack")
     p.add_argument("--check")
     p.add_argument("--proficient", action="store_true")
+    p.add_argument("--bonus")
     p.add_argument("--save")
     p.add_argument("--initiative", action="store_true")
     p.add_argument("--spell-attack", dest="spell_attack", action="store_true")
@@ -150,7 +151,8 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("--spells", required=True)
 
     p = _leaf(sub, "xp", "xp")
-    p.add_argument("--who", required=True)
+    p.add_argument("--who")
+    p.add_argument("--party", action="store_true")
     p.add_argument("--amount", type=int, required=True)
 
     p = _leaf(character, "retire", "character retire")
@@ -230,7 +232,9 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument(flag)
 
     p = _leaf(sub, "track", "track")
-    p.add_argument("--name", required=True)
+    p.add_argument("--name")
+    p.add_argument("--secret", action="store_true")
+    p.add_argument("--list", action="store_true")
     p.add_argument("--set", type=int)
     p.add_argument("--add", type=int)
     p.add_argument("--clear", action="store_true")

@@ -117,6 +117,7 @@ def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
         "settings": party["settings"],
         "encounter_active": encounter is not None,
         "trackers": party.get("trackers", {}),
+        "secret_counters": len(party.get("secret_trackers", {})),
         "journal_bytes": (campaign_dir / "journal.md").stat().st_size,
         "repairs": repairs,
     }  # type: Dict[str, Any]

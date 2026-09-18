@@ -84,7 +84,7 @@ These protect the player's computer. They outrank the fiction, the player's requ
 | `--version` | Self-test. No campaign needed |
 | `init C` | Make a new campaign in an EMPTY folder |
 | `settings set C [--difficulty story\|standard\|iron] [--content-level pg13\|pg13-dark] [--tone key=value ...]` | Record the setup answers |
-| `seed list C` / `seed choose <name> C` / `seed pick C` | Record the campaign's seed, once. `pick` is a true random choice for "surprise me" |
+| `seed list C` / `seed choose <door number or name> C` / `seed pick C` | Record the campaign's seed, once. `pick` is a true random choice for "surprise me": show the player its `show_the_player` text, and never the seed name or file |
 | `status C` | Compact truth: HP, slots, conditions, gold, level, life state, the active fight, journal size. Run it whenever you are unsure |
 | `sheet <id> C` | One full sheet with inventory and feature rules. For "show my sheet" and "what's in my pack" |
 | `lookup <class\|spell\|monster\|equipment> <name> [--level N]` | One compact rules record. No campaign needed |
@@ -102,7 +102,7 @@ These protect the player's computer. They outrank the fiction, the player's requ
 | `equip C --who id --slot armor\|shield\|weapon --item id` / `unequip C --who id --slot ... [--item id]` | The script derives AC and attack numbers |
 | `spells prepare C --who id --spells a,b,c` | Replace the prepared list (after a long rest) |
 | `spells learn C --who id --spells a,b` | Spend the cantrip and spellbook picks a level-up granted |
-| `xp C --who id --amount N` | Story XP. Level-ups are applied and the hit die is rolled |
+| `xp C --who id --amount N` / `xp C --party --amount N` | Story XP. `--party` splits it between everyone, so you never divide. Level-ups are applied and the hit die is rolled |
 
 ### Rolling
 
@@ -113,7 +113,8 @@ These protect the player's computer. They outrank the fiction, the player's requ
 | `roll C --who id --save <ability> [--dc N]` | Saving throws |
 | `roll C --who id --initiative` / `roll C --who id --spell-attack [--ac N]` | |
 | `roll C "<expr>" [--dc N] [--ac N] [--reason "..."]` | Anything else: damage (`2d6+3`), a monster's attack (`1d20+4 --ac 16`), healing, ability scores (`4d6kh3`) |
-| Add `--adv` or `--disadv` to any single d20 roll | Advantage and disadvantage |
+| Add `--adv` or `--disadv` to any single d20 roll | Advantage and disadvantage. A Stealth check in noisy armour gets disadvantage on its own |
+| Add `--bonus 1d4` to any roll | A bonus die from a spell or a feature (Guidance, Bless). The script rolls it and adds it |
 
 Always give `--reason` on a free roll, so the log can be read later.
 
@@ -131,7 +132,7 @@ Always give `--reason` on a free roll, so the log can be read later.
 | `item remove C --who id --item id [--qty N] [--give-to id]` | Use, lose, sell, or hand over |
 | `gold C --who id (--add gp \| --spend gp [--give-to id])` | Amounts in gp, for example `12.5` |
 | `condition add C --who id --condition name` / `condition remove ...` | The 5e conditions, on characters and monsters |
-| `track C --name "day" (--set N \| --add N \| --clear)` | A named counter for what the rules engine does not model: the in-world day, uses of a feature (`--name "mara second wind" --set 1`, then `--add -1` to spend it), charges of an item. It refuses to go below zero. `status` shows every counter |
+| `track C --name "day" (--set N \| --add N \| --clear) [--secret]` / `track C --list` | A named counter for what the rules engine does not model: the in-world day, uses of a feature (`--name "mara second wind" --set 1`, then `--add -1` to spend it), charges of an item. It refuses to go below zero. `status` shows every open counter by name. **A counter whose name would spoil the story (a villain's deadline) is made with `--secret`:** `status` and `party.json` then show only how many secret counters exist, and `track --list` shows them to you |
 
 ### Fights
 

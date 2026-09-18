@@ -52,6 +52,8 @@ def roll_with_d20_rules(expr: str, rng: random.Random, adv: bool, disadv: bool) 
 def roll(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
+    check_bonus(args)
+    args.rng_for_bonus = rng
     forms = [name for name in NAMED_FORMS if getattr(args, name)]
     if len(forms) + (1 if args.expr else 0) > 1:
         raise DmError("bad_arguments", "one roll at a time: an expression, or one of --attack, --check, "
@@ -65,6 +67,9 @@ def roll(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
         raise DmError("bad_arguments", "a named roll needs --who <id>, so the bonus can come from the sheet.")
     character = party_ops.require_character(party, args.who)
     modifier, kind, extra = named_modifier(character, forms[0], getattr(args, forms[0]))
+    if forms[0] == "check" and party_ops.slugify(args.check) == "stealth" and character.get("stealth_disadvantage"):
+        args.disadv = True
+        extra["note"] = "disadvantage: this armour is noisy (stealth disadvantage)"
     if args.proficient:
         # A tool or kit the character is proficient with (thieves' tools) adds the proficiency bonus.
         if forms[0] != "check" or party_ops.slugify(args.check) not in ABILITIES:
@@ -112,9 +117,20 @@ def named_modifier(character: Dict[str, Any], form: str, value: Any) -> Tuple[in
     return casting["attack_bonus"], "spell_attack", {"save_dc": casting["save_dc"]}
 
 
+def check_bonus(args: argparse.Namespace) -> None:
+    """Refuse a bad --bonus before any real die is rolled."""
+    if getattr(args, "bonus", None):
+        dice.roll_expression(args.bonus, random.Random(0))
+
+
 def finish(campaign_dir: Path, out: Dict[str, Any], args: argparse.Namespace,
            who: Optional[str], kind: str) -> Dict[str, Any]:
     """Add the target and result, log the roll, and return the output."""
+    if getattr(args, "bonus", None):
+        # A bonus die (Guidance, Bless): the script rolls it and adds it, so the DM never does.
+        extra_roll = dice.roll_expression(args.bonus, args.rng_for_bonus)
+        out["bonus"] = {"expr": extra_roll["expr"], "dice": extra_roll["dice"], "total": extra_roll["total"]}
+        out["total"] += extra_roll["total"]
     if args.dc is not None:
         out["target"] = {"dc": args.dc}
     elif args.ac is not None:

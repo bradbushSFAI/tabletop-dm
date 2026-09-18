@@ -1,5 +1,6 @@
 """damage, heal, stabilize, cast, rest, item, gold, condition, deathsave, grit."""
 import argparse
+import base64
 import copy
 import random
 import re
@@ -142,7 +143,7 @@ def cast(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
                           % (character["id"], sid, ", ".join(casting["cantrips"])))
         slot = 0
     else:
-        if sid not in casting["prepared"]:
+        if sid not in casting["prepared"] and sid not in (casting.get("always_prepared") or []):
             raise DmError("spell_not_prepared", "%s has not prepared %s. Prepared: %s."
                           % (character["id"], sid, ", ".join(casting["prepared"]) or "nothing"))
         slot = args.slot if args.slot is not None else spell["level"]
@@ -373,10 +374,19 @@ def track(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
     uses of a feature, charges of an item. A counter cannot go below zero."""
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
-    trackers = party.setdefault("trackers", {})
+    hidden = party.setdefault("secret_trackers", {})
+    if args.list:
+        return {"trackers": party.get("trackers", {}), "secret": {_unveil(k): v for k, v in hidden.items()}}
+    if not args.name:
+        raise DmError("bad_arguments", "give --name, or --list.")
     name = party_ops.slugify(party_ops.clean_text(args.name, "--name", party_ops.MAX_SHORT))
     if not name:
         raise DmError("illegal_value", "--name must contain a letter or a number.")
+    # A secret counter (a villain's deadline) is kept under a veiled key, so that its NAME does not
+    # spoil the story for a player who runs status or opens party.json. It is obscured, not encrypted.
+    is_secret = args.secret or _veil(name) in hidden
+    trackers = hidden if is_secret else party.setdefault("trackers", {})
+    shown, name = name, (_veil(name) if is_secret else name)
     chosen = [flag for flag in ("set", "add") if getattr(args, flag) is not None] + (["clear"] if args.clear else [])
     if len(chosen) != 1:
         raise DmError("bad_arguments", "give exactly one of --set N, --add N (may be negative), or --clear.")
@@ -392,8 +402,17 @@ def track(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
             raise DmError("tracker_empty", "%s is at %d. It cannot go to %d: nothing is left to spend."
                           % (name, before or 0, after))
         trackers[name] = after
-    party_ops.commit(campaign_dir, party, [io_campaign.change_entry("track", None, "trackers." + name, before, after)])
-    return {"name": name, "value": after, "trackers": trackers}
+    field = ("secret_trackers." if is_secret else "trackers.") + name
+    party_ops.commit(campaign_dir, party, [io_campaign.change_entry("track", None, field, before, after)])
+    return {"name": shown, "value": after, "secret": is_secret}
+
+
+def _veil(name: str) -> str:
+    return base64.urlsafe_b64encode(name.encode("utf-8")).decode("ascii").rstrip("=")
+
+
+def _unveil(key: str) -> str:
+    return base64.urlsafe_b64decode(key + "=" * (-len(key) % 4)).decode("utf-8")
 
 
 # ---------- condition ----------

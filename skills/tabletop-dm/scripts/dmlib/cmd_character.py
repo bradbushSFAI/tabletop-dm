@@ -213,8 +213,12 @@ def _starting_spells(args: argparse.Namespace, rules: Dict[str, Any], class_data
         _check_spell_picks(picks, spells, class_id, max_level, False, book_size, "illegal_spell_pick")
         known = _fill(picks, rules.get("default_spells", []), spells, class_id, max_level, False, book_size)
         return {"cantrips": cantrips, "known": known, "prepared": known[:limit], "slots": {}}
+    always = [s for lvl, ids in (rules.get("always_prepared") or {}).items() if int(lvl) <= level for s in ids]
+    picks = [s for s in picks if s not in always]
     _check_spell_picks(picks, spells, class_id, max_level, False, limit, "illegal_spell_pick")
-    prepared = picks or _fill([], rules.get("default_spells", []), spells, class_id, max_level, False, limit)
+    defaults = [s for s in rules.get("default_spells", []) if s not in always]
+    pool = {sid: s for sid, s in spells.items() if sid not in always}
+    prepared = picks or _fill([], defaults, pool, class_id, max_level, False, limit)
     return {"cantrips": cantrips, "known": None, "prepared": prepared[:limit], "slots": {}}
 
 
@@ -382,7 +386,8 @@ def spells_prepare(args: argparse.Namespace, skill_root: Path, rng: random.Rando
     character = party_ops.require_character(party, args.who)
     party_ops.require_active(character)
     casting = _require_caster(character)
-    picks = party_ops.split_list(args.spells)
+    always = casting.get("always_prepared") or []
+    picks = [s for s in party_ops.split_list(args.spells) if s not in always]
     if len(picks) > casting["prepare_limit"]:
         raise DmError("too_many_spells_prepared", "level %d %s can prepare %d, tried %d."
                       % (character["level"], character["class"], casting["prepare_limit"], len(picks)))
@@ -400,7 +405,8 @@ def spells_prepare(args: argparse.Namespace, skill_root: Path, rng: random.Rando
     casting["prepared"] = picks
     entries = [io_campaign.change_entry("spells_prepare", character["id"], "spellcasting.prepared", before, picks)]
     party_ops.commit(campaign_dir, party, entries)
-    return {"who": character["id"], "prepared": picks, "prepare_limit": casting["prepare_limit"]}
+    return {"who": character["id"], "prepared": picks, "always_prepared": always,
+            "prepare_limit": casting["prepare_limit"]}
 
 
 def spells_learn(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
@@ -499,10 +505,14 @@ def xp(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[s
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
     records = data.load_all(skill_root)
-    character = party_ops.require_character(party, args.who)
-    party_ops.require_active(character)
+    if bool(args.who) == bool(args.party):
+        raise DmError("bad_arguments", "give exactly one of --who <id> or --party (split between the whole party).")
     if not 1 <= args.amount <= MAX_AMOUNT:
         raise DmError("illegal_value", "--amount must be 1 to %d." % MAX_AMOUNT)
+    if args.party:
+        return _xp_party(campaign_dir, party, records, args.amount, rng)
+    character = party_ops.require_character(party, args.who)
+    party_ops.require_active(character)
     if character["level"] >= MAX_LEVEL:
         raise DmError("level_cap_reached", "%s is already level %d. This build supports no higher level."
                       % (character["id"], MAX_LEVEL))
@@ -514,6 +524,24 @@ def xp(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[s
     if summary:
         out["level_up"] = summary
     return out
+
+
+def _xp_party(campaign_dir: Path, party: Dict[str, Any], records: Dict[str, Any], amount: int,
+              rng: random.Random) -> Dict[str, Any]:
+    """Story XP for everyone: the script does the division, so the DM never does."""
+    members = party_ops.active_characters(party)
+    if not members:
+        raise DmError("no_party", "there is nobody to give XP to.")
+    share = amount // len(members)
+    entries, level_ups = [], {}  # type: List[Dict[str, Any]], Dict[str, Any]
+    for character in members:
+        summary, more = award_xp(character, share, records, rng, "xp")
+        entries.extend(more)
+        if summary:
+            level_ups[character["id"]] = summary
+    party_ops.commit(campaign_dir, party, entries)
+    return {"xp_awarded": amount, "xp_per_member": share, "members": {c["id"]: c["xp"] for c in members},
+            "level_ups": level_ups}
 
 
 # ---------- retire / promote ----------

@@ -125,6 +125,10 @@ def derive_spellcasting(character: Dict[str, Any], class_data: Dict[str, Any]) -
     for slot_level, maximum in sorted((level_row.get("slots") or {}).items()):
         used = (old_slots.get(slot_level) or {}).get("used", 0)
         slots[slot_level] = {"max": maximum, "used": max(0, min(used, maximum))}
+    always = []  # type: list
+    for gained_at, spell_ids in sorted((rules.get("always_prepared") or {}).items(), key=lambda kv: int(kv[0])):
+        if int(gained_at) <= character["level"]:
+            always.extend(spell_ids)
     return {
         "ability": rules["ability"],
         "save_dc": SPELL_DC_BASE + pb + mod,
@@ -132,7 +136,9 @@ def derive_spellcasting(character: Dict[str, Any], class_data: Dict[str, Any]) -
         "spellbook": bool(rules.get("spellbook")),
         "cantrips": list(current.get("cantrips") or []),
         "known": current.get("known"),
-        "prepared": list(current.get("prepared") or []),
+        # Domain spells are always prepared and never count against the limit (SRD).
+        "always_prepared": always,
+        "prepared": [s for s in (current.get("prepared") or []) if s not in always],
         "prepare_limit": max(1, mod + character["level"]),
         "cantrips_known_limit": level_row.get("cantrips_known", 0),
         "max_spell_level": max([int(k) for k in slots] or [0]),
@@ -150,6 +156,8 @@ def recompute_all(character: Dict[str, Any], classes_data: Dict[str, Any],
     character["skills"] = derive_skills(character)
     character["passive_perception"] = PASSIVE_BASE + character["skills"]["perception"]["bonus"]
     character["ac"] = derive_ac(character, equipment_data)
+    armor_id = character["equipped"]["armor"]
+    character["stealth_disadvantage"] = bool(armor_id and equipment_data[armor_id].get("stealth_disadvantage"))
     character["attacks"] = derive_attacks(character, class_data, equipment_data)
     character["spellcasting"] = derive_spellcasting(character, class_data)
     character["hit_dice"]["max"] = character["level"]

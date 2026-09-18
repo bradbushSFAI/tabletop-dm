@@ -5,7 +5,7 @@ import random
 from pathlib import Path
 from typing import Any, Dict
 
-from . import CURRENT_FORMAT_VERSION, __version__, data, io_campaign
+from . import CURRENT_FORMAT_VERSION, __version__, data, io_campaign, party_ops
 from .errors import DmError
 
 DIFFICULTIES = ("story", "standard", "iron")
@@ -125,3 +125,19 @@ def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
             },
         }
     return out
+
+
+def sheet(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
+    """One full sheet, with the rule text of every feature and gold shown as gp."""
+    campaign_dir = Path(args.campaign)
+    party = io_campaign.load_party(campaign_dir)
+    character = dict(party_ops.require_character(party, args.id))
+    class_data = data.load_all(skill_root)["classes"][character["class"]]
+    rules = []
+    for level in range(1, character["level"] + 1):
+        for feature in class_data["levels"][str(level)]["features"]:
+            if feature["id"] in character["features"] and feature not in rules:
+                rules.append(feature)
+    character["feature_rules"] = rules
+    character["gold_gp"] = gp(character["gold_cp"])
+    return {"character": character, "is_hero": party["hero_id"] == character["id"]}

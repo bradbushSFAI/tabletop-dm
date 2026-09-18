@@ -5,7 +5,7 @@ import random
 from pathlib import Path
 from typing import Any, Callable, Dict, List
 
-from . import cmd_roll, cmd_setup
+from . import cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup
 from .errors import DmError, error_envelope, success_envelope
 
 Handler = Callable[[argparse.Namespace, Path, random.Random], Dict[str, Any]]
@@ -16,6 +16,37 @@ HANDLERS = {
     "settings set": cmd_setup.settings_set,
     "status": cmd_setup.status,
     "roll": cmd_roll.roll,
+    "sheet": cmd_setup.sheet,
+    "lookup": cmd_lookup.lookup,
+    "character create": cmd_character.create,
+    "character asi": cmd_character.asi,
+    "equip": cmd_character.equip,
+    "unequip": cmd_character.unequip,
+    "spells prepare": cmd_character.spells_prepare,
+    "spells learn": cmd_character.spells_learn,
+    "xp": cmd_character.xp,
+    "character retire": cmd_character.retire,
+    "character promote": cmd_character.promote,
+    "damage": cmd_play.damage,
+    "heal": cmd_play.heal,
+    "stabilize": cmd_play.stabilize,
+    "cast": cmd_play.cast,
+    "rest short": cmd_play.rest_short,
+    "rest long": cmd_play.rest_long,
+    "item add": cmd_play.item_add,
+    "item remove": cmd_play.item_remove,
+    "gold": cmd_play.gold,
+    "condition add": cmd_play.condition_add,
+    "condition remove": cmd_play.condition_remove,
+    "deathsave": cmd_play.deathsave,
+    "grit": cmd_play.grit,
+    "encounter start": cmd_encounter.start,
+    "encounter add": cmd_encounter.add,
+    "encounter next": cmd_encounter.next_turn,
+    "encounter end": cmd_encounter.end,
+    "seed list": cmd_seed.seed_list,
+    "seed choose": cmd_seed.seed_choose,
+    "seed pick": cmd_seed.seed_pick,
 }  # type: Dict[str, Handler]
 
 
@@ -62,6 +93,134 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dc", type=int)
     p.add_argument("--ac", type=int)
     p.add_argument("--reason")
+    p.add_argument("--who")
+    p.add_argument("--attack")
+    p.add_argument("--check")
+    p.add_argument("--save")
+    p.add_argument("--initiative", action="store_true")
+    p.add_argument("--spell-attack", dest="spell_attack", action="store_true")
+
+    p = _leaf(sub, "sheet", "sheet")
+    p.add_argument("id")
+
+    p = _leaf(sub, "lookup", "lookup", campaign=False)
+    p.add_argument("kind", choices=["class", "spell", "monster", "equipment"])
+    p.add_argument("name", nargs="?")
+    p.add_argument("--list", action="store_true")
+    p.add_argument("--level", type=int)
+    p.add_argument("--class", dest="char_class")
+    p.add_argument("--cr", type=float)
+
+    character = _group(sub, "character")
+    p = _leaf(character, "create", "character create")
+    p.add_argument("--id")
+    p.add_argument("--name", required=True)
+    p.add_argument("--class", dest="char_class", required=True)
+    p.add_argument("--scores")
+    p.add_argument("--standard-array", dest="standard_array", action="store_true")
+    p.add_argument("--quick", action="store_true")
+    p.add_argument("--level", type=int, default=1)
+    p.add_argument("--skills")
+    p.add_argument("--expertise")
+    p.add_argument("--fighting-style", dest="fighting_style")
+    p.add_argument("--cantrips")
+    p.add_argument("--spells")
+    p.add_argument("--background")
+    p.add_argument("--bond")
+    p.add_argument("--flaw")
+    p = _leaf(character, "asi", "character asi")
+    p.add_argument("--who", required=True)
+    p.add_argument("--increase", required=True)
+
+    for name in ("equip", "unequip"):
+        p = _leaf(sub, name, name)
+        p.add_argument("--who", required=True)
+        p.add_argument("--slot", required=True, choices=["armor", "shield", "weapon"])
+        p.add_argument("--item", required=(name == "equip"))
+
+    spells = _group(sub, "spells")
+    for name in ("prepare", "learn"):
+        p = _leaf(spells, name, "spells " + name)
+        p.add_argument("--who", required=True)
+        p.add_argument("--spells", required=True)
+
+    p = _leaf(sub, "xp", "xp")
+    p.add_argument("--who", required=True)
+    p.add_argument("--amount", type=int, required=True)
+
+    p = _leaf(character, "retire", "character retire")
+    p.add_argument("--who", required=True)
+    p.add_argument("--status", required=True, choices=["dead", "departed"])
+    p.add_argument("--player-accepted", dest="player_accepted", action="store_true")
+    p = _leaf(character, "promote", "character promote")
+    p.add_argument("id")
+
+    for name in ("damage", "heal"):
+        p = _leaf(sub, name, name)
+        p.add_argument("--who", required=True)
+        p.add_argument("--amount", type=int, required=True)
+        if name == "damage":
+            p.add_argument("--crit", action="store_true")
+        else:
+            p.add_argument("--temp", action="store_true")
+    p = _leaf(sub, "stabilize", "stabilize")
+    p.add_argument("--who", required=True)
+
+    p = _leaf(sub, "cast", "cast")
+    p.add_argument("--who", required=True)
+    p.add_argument("--spell", required=True)
+    p.add_argument("--slot", type=int)
+
+    rest = _group(sub, "rest")
+    p = _leaf(rest, "short", "rest short")
+    p.add_argument("--dice")
+    _leaf(rest, "long", "rest long")
+
+    item = _group(sub, "item")
+    p = _leaf(item, "add", "item add")
+    p.add_argument("--who", required=True)
+    p.add_argument("--item")
+    p.add_argument("--name")
+    p.add_argument("--note")
+    p.add_argument("--qty", type=int, default=1)
+    p = _leaf(item, "remove", "item remove")
+    p.add_argument("--who", required=True)
+    p.add_argument("--item", required=True)
+    p.add_argument("--qty", type=int, default=1)
+    p.add_argument("--give-to", dest="give_to")
+
+    p = _leaf(sub, "gold", "gold")
+    p.add_argument("--who", required=True)
+    p.add_argument("--add")
+    p.add_argument("--spend")
+    p.add_argument("--give-to", dest="give_to")
+
+    condition = _group(sub, "condition")
+    for name in ("add", "remove"):
+        p = _leaf(condition, name, "condition " + name)
+        p.add_argument("--who", required=True)
+        p.add_argument("--condition", required=True)
+
+    p = _leaf(sub, "deathsave", "deathsave")
+    p.add_argument("--who", required=True)
+    p = _leaf(sub, "grit", "grit")
+    p.add_argument("--dc", type=int, required=True)
+
+    encounter = _group(sub, "encounter")
+    for name in ("start", "add"):
+        p = _leaf(encounter, name, "encounter " + name)
+        p.add_argument("--monster", action="append")
+        p.add_argument("--custom", action="append")
+        p.add_argument("--average-hp", dest="average_hp", action="store_true")
+    _leaf(encounter, "next", "encounter next")
+    p = _leaf(encounter, "end", "encounter end")
+    p.add_argument("--no-xp", dest="no_xp", action="store_true")
+
+    seed = _group(sub, "seed")
+    _leaf(seed, "list", "seed list")
+    p = _leaf(seed, "choose", "seed choose")
+    p.add_argument("name")
+    _leaf(seed, "pick", "seed pick")
     return parser
 
 

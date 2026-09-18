@@ -1,0 +1,1714 @@
+{
+ "format": "tabletop-dm/monsters",
+ "format_version": 1,
+ "monsters": {
+  "commoner": {
+   "id": "commoner",
+   "name": "Commoner",
+   "challenge_rating": 0,
+   "xp_value": 10,
+   "ac": 10,
+   "hp_expr": "1d8",
+   "speed": 30,
+   "abilities": {
+    "str": 10,
+    "dex": 10,
+    "con": 10,
+    "int": 10,
+    "wis": 10,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "club",
+     "attack_bonus": 2,
+     "damage_expr": "1d4",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Runs or surrenders unless cornered or defending family.",
+   "type": "humanoid",
+   "traits": [],
+   "hp_average": 4
+  },
+  "giant-fire-beetle": {
+   "id": "giant-fire-beetle",
+   "name": "Giant Fire Beetle",
+   "challenge_rating": 0,
+   "xp_value": 10,
+   "ac": 13,
+   "hp_expr": "1d6+1",
+   "speed": 30,
+   "abilities": {
+    "str": 8,
+    "dex": 10,
+    "con": 12,
+    "int": 1,
+    "wis": 7,
+    "cha": 3
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 1,
+     "damage_expr": "1d6-1",
+     "damage_type": "slashing"
+    }
+   ],
+   "tactic": "Bites whatever comes closest and does not retreat.",
+   "type": "beast",
+   "traits": [
+    "Illumination: bright light 10 ft., dim light 10 ft. more",
+    "Blindsight 30 ft."
+   ],
+   "hp_average": 4
+  },
+  "lemure": {
+   "id": "lemure",
+   "name": "Lemure",
+   "challenge_rating": 0,
+   "xp_value": 10,
+   "ac": 7,
+   "hp_expr": "3d8",
+   "speed": 15,
+   "abilities": {
+    "str": 10,
+    "dex": 5,
+    "con": 11,
+    "int": 1,
+    "wis": 11,
+    "cha": 3
+   },
+   "attacks": [
+    {
+     "name": "fist",
+     "attack_bonus": 3,
+     "damage_expr": "1d4",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Shambles at the nearest enemy in a mindless mob.",
+   "type": "fiend",
+   "traits": [
+    "Resistant to cold",
+    "Immune to fire and poison; immune to charmed, frightened, poisoned",
+    "Darkvision 120 ft., sees through magical darkness",
+    "Hellish Rejuvenation: re-forms in 1d10 days in its home plane unless killed by a good creature under bless or doused in holy water"
+   ],
+   "hp_average": 13
+  },
+  "kobold": {
+   "id": "kobold",
+   "name": "Kobold",
+   "challenge_rating": 0.125,
+   "xp_value": 25,
+   "ac": 12,
+   "hp_expr": "2d6-2",
+   "speed": 30,
+   "abilities": {
+    "str": 7,
+    "dex": 15,
+    "con": 9,
+    "int": 8,
+    "wis": 7,
+    "cha": 8
+   },
+   "attacks": [
+    {
+     "name": "dagger",
+     "attack_bonus": 4,
+     "damage_expr": "1d4+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "sling",
+     "attack_bonus": 4,
+     "damage_expr": "1d4+2",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Swarms one target for pack tactics and flees when outnumbered.",
+   "type": "humanoid",
+   "traits": [
+    "Pack Tactics: advantage on attacks if an ally is within 5 ft. of the target",
+    "Sunlight Sensitivity: disadvantage on attacks and sight Perception in sunlight",
+    "Sling range 30/120 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 5
+  },
+  "bandit": {
+   "id": "bandit",
+   "name": "Bandit",
+   "challenge_rating": 0.125,
+   "xp_value": 25,
+   "ac": 12,
+   "hp_expr": "2d8+2",
+   "speed": 30,
+   "abilities": {
+    "str": 11,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "wis": 10,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "scimitar",
+     "attack_bonus": 3,
+     "damage_expr": "1d6+1",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "light crossbow",
+     "attack_bonus": 3,
+     "damage_expr": "1d8+1",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Opens with crossbows from cover, then closes in; runs once the fight turns.",
+   "type": "humanoid",
+   "traits": [
+    "Light crossbow range 80/320 ft."
+   ],
+   "hp_average": 11
+  },
+  "cultist": {
+   "id": "cultist",
+   "name": "Cultist",
+   "challenge_rating": 0.125,
+   "xp_value": 25,
+   "ac": 12,
+   "hp_expr": "2d8",
+   "speed": 30,
+   "abilities": {
+    "str": 11,
+    "dex": 12,
+    "con": 10,
+    "int": 10,
+    "wis": 11,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "scimitar",
+     "attack_bonus": 3,
+     "damage_expr": "1d6+1",
+     "damage_type": "slashing"
+    }
+   ],
+   "tactic": "Fights with zeal to protect the leader and rarely flees.",
+   "type": "humanoid",
+   "traits": [
+    "Dark Devotion: advantage on saves against charmed and frightened"
+   ],
+   "hp_average": 9
+  },
+  "guard": {
+   "id": "guard",
+   "name": "Guard",
+   "challenge_rating": 0.125,
+   "xp_value": 25,
+   "ac": 16,
+   "hp_expr": "2d8+2",
+   "speed": 30,
+   "abilities": {
+    "str": 13,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "wis": 11,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "spear",
+     "attack_bonus": 3,
+     "damage_expr": "1d6+1",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Holds a line, calls for help, and tries to arrest before killing.",
+   "type": "humanoid",
+   "traits": [
+    "Spear deals 1d8+1 two-handed; thrown range 20/60 ft."
+   ],
+   "hp_average": 11
+  },
+  "giant-rat": {
+   "id": "giant-rat",
+   "name": "Giant Rat",
+   "challenge_rating": 0.125,
+   "xp_value": 25,
+   "ac": 12,
+   "hp_expr": "2d6",
+   "speed": 30,
+   "abilities": {
+    "str": 7,
+    "dex": 15,
+    "con": 11,
+    "int": 2,
+    "wis": 10,
+    "cha": 4
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 4,
+     "damage_expr": "1d4+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Attacks in a swarm and scatters when half the pack is dead.",
+   "type": "beast",
+   "traits": [
+    "Pack Tactics: advantage on attacks if an ally is within 5 ft. of the target",
+    "Keen Smell: advantage on smell Perception",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 7
+  },
+  "goblin": {
+   "id": "goblin",
+   "name": "Goblin",
+   "challenge_rating": 0.25,
+   "xp_value": 50,
+   "ac": 15,
+   "hp_expr": "2d6",
+   "speed": 30,
+   "abilities": {
+    "str": 8,
+    "dex": 14,
+    "con": 10,
+    "int": 10,
+    "wis": 8,
+    "cha": 8
+   },
+   "attacks": [
+    {
+     "name": "scimitar",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "shortbow",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Shoots from hiding, then uses Nimble Escape to hide again; flees when losing.",
+   "type": "humanoid",
+   "traits": [
+    "Nimble Escape: Disengage or Hide as a bonus action",
+    "Stealth +6",
+    "Shortbow range 80/320 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 7
+  },
+  "skeleton": {
+   "id": "skeleton",
+   "name": "Skeleton",
+   "challenge_rating": 0.25,
+   "xp_value": 50,
+   "ac": 13,
+   "hp_expr": "2d8+4",
+   "speed": 30,
+   "abilities": {
+    "str": 10,
+    "dex": 14,
+    "con": 15,
+    "int": 6,
+    "wis": 8,
+    "cha": 5
+   },
+   "attacks": [
+    {
+     "name": "shortsword",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "shortbow",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Follows its last order without fear and never retreats.",
+   "type": "undead",
+   "traits": [
+    "Vulnerable to bludgeoning",
+    "Immune to poison; immune to exhaustion and poisoned",
+    "Shortbow range 80/320 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 13
+  },
+  "zombie": {
+   "id": "zombie",
+   "name": "Zombie",
+   "challenge_rating": 0.25,
+   "xp_value": 50,
+   "ac": 8,
+   "hp_expr": "3d8+9",
+   "speed": 20,
+   "abilities": {
+    "str": 13,
+    "dex": 6,
+    "con": 16,
+    "int": 3,
+    "wis": 6,
+    "cha": 5
+   },
+   "attacks": [
+    {
+     "name": "slam",
+     "attack_bonus": 3,
+     "damage_expr": "1d6+1",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Walks straight at the nearest living creature and keeps slamming.",
+   "type": "undead",
+   "traits": [
+    "Undead Fortitude: when reduced to 0 HP, Con save DC 5 + damage taken to drop to 1 HP instead, unless radiant or a critical hit",
+    "Immune to poison and poisoned",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 22
+  },
+  "wolf": {
+   "id": "wolf",
+   "name": "Wolf",
+   "challenge_rating": 0.25,
+   "xp_value": 50,
+   "ac": 13,
+   "hp_expr": "2d8+2",
+   "speed": 40,
+   "abilities": {
+    "str": 12,
+    "dex": 15,
+    "con": 12,
+    "int": 3,
+    "wis": 12,
+    "cha": 6
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 4,
+     "damage_expr": "2d4+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Circles with the pack, drags one target prone, and breaks off when badly hurt.",
+   "type": "beast",
+   "traits": [
+    "Bite: target makes a DC 11 Str save or falls prone",
+    "Pack Tactics: advantage on attacks if an ally is within 5 ft. of the target",
+    "Keen Hearing and Smell: advantage on those Perception checks"
+   ],
+   "hp_average": 11
+  },
+  "orc": {
+   "id": "orc",
+   "name": "Orc",
+   "challenge_rating": 0.5,
+   "xp_value": 100,
+   "ac": 13,
+   "hp_expr": "2d8+6",
+   "speed": 30,
+   "abilities": {
+    "str": 16,
+    "dex": 12,
+    "con": 16,
+    "int": 7,
+    "wis": 11,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "greataxe",
+     "attack_bonus": 5,
+     "damage_expr": "1d12+3",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "javelin",
+     "attack_bonus": 5,
+     "damage_expr": "1d6+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Throws a javelin, then charges with Aggressive and fights to the death.",
+   "type": "humanoid",
+   "traits": [
+    "Aggressive: bonus action to move up to its speed toward a hostile creature",
+    "Javelin range 30/120 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 15
+  },
+  "hobgoblin": {
+   "id": "hobgoblin",
+   "name": "Hobgoblin",
+   "challenge_rating": 0.5,
+   "xp_value": 100,
+   "ac": 18,
+   "hp_expr": "2d8+2",
+   "speed": 30,
+   "abilities": {
+    "str": 13,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "wis": 10,
+    "cha": 9
+   },
+   "attacks": [
+    {
+     "name": "longsword",
+     "attack_bonus": 3,
+     "damage_expr": "1d8+1",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "longbow",
+     "attack_bonus": 3,
+     "damage_expr": "1d8+1",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Fights in disciplined ranks and pairs up on targets for Martial Advantage.",
+   "type": "humanoid",
+   "traits": [
+    "Martial Advantage: once per turn +2d6 damage if an ally is within 5 ft. of the target",
+    "Longsword deals 1d10+1 two-handed",
+    "Longbow range 150/600 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 11
+  },
+  "gnoll": {
+   "id": "gnoll",
+   "name": "Gnoll",
+   "challenge_rating": 0.5,
+   "xp_value": 100,
+   "ac": 15,
+   "hp_expr": "5d8",
+   "speed": 30,
+   "abilities": {
+    "str": 14,
+    "dex": 12,
+    "con": 11,
+    "int": 6,
+    "wis": 10,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "spear",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "bite",
+     "attack_bonus": 4,
+     "damage_expr": "1d4+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "longbow",
+     "attack_bonus": 3,
+     "damage_expr": "1d8+1",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Goes for the weakest target to trigger Rampage and chain kills.",
+   "type": "humanoid",
+   "traits": [
+    "Rampage: after dropping a creature to 0 HP in melee, bonus action to move half speed and bite",
+    "Spear deals 1d8+2 two-handed; thrown range 20/60 ft.",
+    "Longbow range 150/600 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 22
+  },
+  "giant-spider": {
+   "id": "giant-spider",
+   "name": "Giant Spider",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 14,
+   "hp_expr": "4d10+4",
+   "speed": 30,
+   "abilities": {
+    "str": 14,
+    "dex": 16,
+    "con": 12,
+    "int": 2,
+    "wis": 11,
+    "cha": 4
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 5,
+     "damage_expr": "1d8+3",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "bite venom",
+     "attack_bonus": null,
+     "damage_expr": "2d8",
+     "damage_type": "poison",
+     "save": "con 11"
+    }
+   ],
+   "tactic": "Webs a target from above, then bites the restrained prey.",
+   "type": "beast",
+   "traits": [
+    "Bite venom: on a bite hit, DC 11 Con save for 2d8 poison, half on success; at 0 HP from it the target is stable but poisoned and paralyzed for 1 hour",
+    "Web (recharge 5-6): ranged attack 30/60 ft., target restrained; DC 12 Str check to escape; web has AC 10, 5 HP, vulnerable to fire",
+    "Spider Climb, Web Sense, Web Walker; climb 30 ft.",
+    "Stealth +7",
+    "Blindsight 10 ft., darkvision 60 ft."
+   ],
+   "hp_average": 26
+  },
+  "bugbear": {
+   "id": "bugbear",
+   "name": "Bugbear",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 16,
+   "hp_expr": "5d8+5",
+   "speed": 30,
+   "abilities": {
+    "str": 15,
+    "dex": 14,
+    "con": 13,
+    "int": 8,
+    "wis": 11,
+    "cha": 9
+   },
+   "attacks": [
+    {
+     "name": "morningstar",
+     "attack_bonus": 4,
+     "damage_expr": "2d8+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "javelin",
+     "attack_bonus": 4,
+     "damage_expr": "2d6+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Ambushes from hiding for Surprise Attack and retreats if the ambush fails.",
+   "type": "humanoid",
+   "traits": [
+    "Brute: extra weapon die already included in melee damage",
+    "Surprise Attack: +2d6 damage on a hit against a surprised creature in the first round",
+    "Javelin thrown deals 1d6+2, range 30/120 ft.",
+    "Stealth +6",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 27
+  },
+  "ghoul": {
+   "id": "ghoul",
+   "name": "Ghoul",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 12,
+   "hp_expr": "5d8",
+   "speed": 30,
+   "abilities": {
+    "str": 13,
+    "dex": 15,
+    "con": 10,
+    "int": 7,
+    "wis": 10,
+    "cha": 6
+   },
+   "attacks": [
+    {
+     "name": "claws",
+     "attack_bonus": 4,
+     "damage_expr": "2d4+2",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "bite",
+     "attack_bonus": 2,
+     "damage_expr": "2d6+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Claws to paralyze, then bites the helpless victim.",
+   "type": "undead",
+   "traits": [
+    "Claws: non-elf, non-undead target makes a DC 10 Con save or is paralyzed for 1 minute, repeating the save at the end of each turn",
+    "Immune to poison; immune to charmed, exhaustion, poisoned",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 22
+  },
+  "dire-wolf": {
+   "id": "dire-wolf",
+   "name": "Dire Wolf",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 14,
+   "hp_expr": "5d10+10",
+   "speed": 50,
+   "abilities": {
+    "str": 17,
+    "dex": 15,
+    "con": 15,
+    "int": 3,
+    "wis": 12,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 5,
+     "damage_expr": "2d6+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Knocks a target prone so the pack can tear into it.",
+   "type": "beast",
+   "traits": [
+    "Bite: target makes a DC 13 Str save or falls prone",
+    "Pack Tactics: advantage on attacks if an ally is within 5 ft. of the target",
+    "Keen Hearing and Smell: advantage on those Perception checks"
+   ],
+   "hp_average": 37
+  },
+  "brown-bear": {
+   "id": "brown-bear",
+   "name": "Brown Bear",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 11,
+   "hp_expr": "4d10+12",
+   "speed": 40,
+   "abilities": {
+    "str": 19,
+    "dex": 10,
+    "con": 16,
+    "int": 2,
+    "wis": 13,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 6,
+     "damage_expr": "1d8+4",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "claws",
+     "attack_bonus": 6,
+     "damage_expr": "2d6+4",
+     "damage_type": "slashing"
+    }
+   ],
+   "tactic": "Mauls whatever threatens it or its cubs and leaves once the threat backs off.",
+   "type": "beast",
+   "traits": [
+    "Multiattack: one bite and one claws",
+    "Keen Smell: advantage on smell Perception",
+    "Climb 30 ft."
+   ],
+   "hp_average": 34
+  },
+  "specter": {
+   "id": "specter",
+   "name": "Specter",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 12,
+   "hp_expr": "5d8",
+   "speed": 50,
+   "abilities": {
+    "str": 1,
+    "dex": 14,
+    "con": 11,
+    "int": 10,
+    "wis": 10,
+    "cha": 11
+   },
+   "attacks": [
+    {
+     "name": "life drain",
+     "attack_bonus": 4,
+     "damage_expr": "3d6",
+     "damage_type": "necrotic"
+    }
+   ],
+   "tactic": "Strikes out of walls and floors, then withdraws back into them.",
+   "type": "undead",
+   "traits": [
+    "Speed is fly 50 ft. (hover); walking speed 0",
+    "Life Drain: DC 10 Con save or HP maximum drops by the damage taken until a long rest",
+    "Resistant to acid, cold, fire, lightning, thunder, and nonmagical bludgeoning, piercing, slashing",
+    "Immune to necrotic and poison; immune to charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious",
+    "Incorporeal Movement: moves through creatures and objects; 1d10 force if it ends its turn inside an object",
+    "Sunlight Sensitivity: disadvantage on attacks and sight Perception in sunlight",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 22
+  },
+  "animated-armor": {
+   "id": "animated-armor",
+   "name": "Animated Armor",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 18,
+   "hp_expr": "6d8+6",
+   "speed": 25,
+   "abilities": {
+    "str": 14,
+    "dex": 11,
+    "con": 13,
+    "int": 1,
+    "wis": 3,
+    "cha": 1
+   },
+   "attacks": [
+    {
+     "name": "slam",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Stands still until intruders pass, then attacks the nearest until destroyed.",
+   "type": "construct",
+   "traits": [
+    "Multiattack: two slams",
+    "Immune to poison and psychic; immune to blinded, charmed, deafened, exhaustion, frightened, paralyzed, petrified, poisoned",
+    "Antimagic Susceptibility: incapacitated in an antimagic field; dispel magic forces a Con save against the caster's DC or it falls unconscious for 1 minute",
+    "False Appearance: looks like a normal suit of armor while motionless",
+    "Blindsight 60 ft."
+   ],
+   "hp_average": 33
+  },
+  "harpy": {
+   "id": "harpy",
+   "name": "Harpy",
+   "challenge_rating": 1,
+   "xp_value": 200,
+   "ac": 11,
+   "hp_expr": "7d8+7",
+   "speed": 20,
+   "abilities": {
+    "str": 12,
+    "dex": 13,
+    "con": 12,
+    "int": 7,
+    "wis": 10,
+    "cha": 13
+   },
+   "attacks": [
+    {
+     "name": "claws",
+     "attack_bonus": 3,
+     "damage_expr": "2d4+1",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "club",
+     "attack_bonus": 3,
+     "damage_expr": "1d4+1",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Sings victims toward a hazard, then attacks the charmed from the air.",
+   "type": "monstrosity",
+   "traits": [
+    "Multiattack: one claws and one club",
+    "Fly 40 ft.",
+    "Luring Song: humanoids and giants within 300 ft. make a DC 11 Wis save or are charmed and must move toward the harpy; repeat save at end of each turn"
+   ],
+   "hp_average": 38
+  },
+  "ogre": {
+   "id": "ogre",
+   "name": "Ogre",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 11,
+   "hp_expr": "7d10+21",
+   "speed": 40,
+   "abilities": {
+    "str": 19,
+    "dex": 8,
+    "con": 16,
+    "int": 5,
+    "wis": 7,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "greatclub",
+     "attack_bonus": 6,
+     "damage_expr": "2d8+4",
+     "damage_type": "bludgeoning"
+    },
+    {
+     "name": "javelin",
+     "attack_bonus": 6,
+     "damage_expr": "2d6+4",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Smashes the biggest or nearest target and is easily tricked or bribed.",
+   "type": "giant",
+   "traits": [
+    "Javelin range 30/120 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 59
+  },
+  "gelatinous-cube": {
+   "id": "gelatinous-cube",
+   "name": "Gelatinous Cube",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 6,
+   "hp_expr": "8d10+40",
+   "speed": 15,
+   "abilities": {
+    "str": 14,
+    "dex": 3,
+    "con": 20,
+    "int": 1,
+    "wis": 6,
+    "cha": 1
+   },
+   "attacks": [
+    {
+     "name": "pseudopod",
+     "attack_bonus": 4,
+     "damage_expr": "3d6",
+     "damage_type": "acid"
+    },
+    {
+     "name": "engulf",
+     "attack_bonus": null,
+     "damage_expr": "3d6",
+     "damage_type": "acid",
+     "save": "dex 12"
+    }
+   ],
+   "tactic": "Slides down corridors engulfing everything in its path.",
+   "type": "ooze",
+   "traits": [
+    "Engulf: moves into creatures' spaces; DC 12 Dex save or engulfed, restrained, and takes 6d6 acid at the start of each cube turn; DC 12 Str check to escape",
+    "Transparent: DC 15 Perception to spot it when motionless",
+    "Immune to blinded, charmed, deafened, exhaustion, frightened, prone",
+    "Blindsight 60 ft."
+   ],
+   "hp_average": 84
+  },
+  "ochre-jelly": {
+   "id": "ochre-jelly",
+   "name": "Ochre Jelly",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 8,
+   "hp_expr": "6d10+12",
+   "speed": 10,
+   "abilities": {
+    "str": 15,
+    "dex": 6,
+    "con": 14,
+    "int": 2,
+    "wis": 6,
+    "cha": 1
+   },
+   "attacks": [
+    {
+     "name": "pseudopod",
+     "attack_bonus": 4,
+     "damage_expr": "2d6+2",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Drops from walls or ceilings onto prey and follows it relentlessly.",
+   "type": "ooze",
+   "traits": [
+    "Pseudopod hit adds 1d6 acid",
+    "Resistant to acid; immune to lightning and slashing",
+    "Split: when a Medium or larger jelly with 10+ HP takes lightning or slashing, it splits into two jellies with half its HP each, one size smaller",
+    "Amorphous: squeezes through 1-inch gaps",
+    "Spider Climb; climb 10 ft.",
+    "Immune to blinded, charmed, deafened, exhaustion, frightened, prone",
+    "Blindsight 60 ft."
+   ],
+   "hp_average": 45
+  },
+  "mimic": {
+   "id": "mimic",
+   "name": "Mimic",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 12,
+   "hp_expr": "9d8+18",
+   "speed": 15,
+   "abilities": {
+    "str": 17,
+    "dex": 12,
+    "con": 15,
+    "int": 5,
+    "wis": 13,
+    "cha": 8
+   },
+   "attacks": [
+    {
+     "name": "pseudopod",
+     "attack_bonus": 5,
+     "damage_expr": "1d8+3",
+     "damage_type": "bludgeoning"
+    },
+    {
+     "name": "bite",
+     "attack_bonus": 5,
+     "damage_expr": "1d8+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Waits as an object for a touch, sticks the victim, then bites.",
+   "type": "monstrosity",
+   "traits": [
+    "Bite hit adds 1d8 acid",
+    "Adhesive: a creature hit by the pseudopod is grappled, escape DC 13 with disadvantage",
+    "Grappler: advantage on attacks against a creature it grapples",
+    "Immune to acid; immune to prone",
+    "Shapechanger and False Appearance: looks like an ordinary object while motionless",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 58
+  },
+  "gargoyle": {
+   "id": "gargoyle",
+   "name": "Gargoyle",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 15,
+   "hp_expr": "7d8+21",
+   "speed": 30,
+   "abilities": {
+    "str": 15,
+    "dex": 11,
+    "con": 16,
+    "int": 6,
+    "wis": 11,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "claws",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "slashing"
+    }
+   ],
+   "tactic": "Poses as a statue, then dives on the rear of the party.",
+   "type": "elemental",
+   "traits": [
+    "Multiattack: one bite and one claws",
+    "Fly 60 ft.",
+    "Resistant to nonmagical bludgeoning, piercing, slashing that is not adamantine",
+    "Immune to poison; immune to exhaustion, petrified, poisoned",
+    "False Appearance: looks like a statue while motionless",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 52
+  },
+  "ghast": {
+   "id": "ghast",
+   "name": "Ghast",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 13,
+   "hp_expr": "8d8",
+   "speed": 30,
+   "abilities": {
+    "str": 16,
+    "dex": 17,
+    "con": 10,
+    "int": 11,
+    "wis": 10,
+    "cha": 8
+   },
+   "attacks": [
+    {
+     "name": "claws",
+     "attack_bonus": 5,
+     "damage_expr": "2d6+3",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "bite",
+     "attack_bonus": 3,
+     "damage_expr": "2d8+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Leads ghouls, paralyzes the strongest fighter, and lets the pack feed.",
+   "type": "undead",
+   "traits": [
+    "Claws: non-undead target makes a DC 10 Con save or is paralyzed for 1 minute, repeating the save at the end of each turn",
+    "Stench: a creature starting its turn within 5 ft. makes a DC 10 Con save or is poisoned until its next turn; success gives 24-hour immunity",
+    "Turning Defiance: it and ghouls within 30 ft. have advantage on saves against turning",
+    "Resistant to necrotic; immune to poison; immune to charmed, exhaustion, poisoned",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 36
+  },
+  "bandit-captain": {
+   "id": "bandit-captain",
+   "name": "Bandit Captain",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 15,
+   "hp_expr": "10d8+20",
+   "speed": 30,
+   "abilities": {
+    "str": 15,
+    "dex": 16,
+    "con": 14,
+    "int": 14,
+    "wis": 11,
+    "cha": 14
+   },
+   "attacks": [
+    {
+     "name": "scimitar",
+     "attack_bonus": 5,
+     "damage_expr": "1d6+3",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "dagger",
+     "attack_bonus": 5,
+     "damage_expr": "1d4+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Duels the most dangerous foe while ordering bandits to flank; bargains when losing.",
+   "type": "humanoid",
+   "traits": [
+    "Multiattack: two scimitar attacks and one dagger, or two thrown daggers",
+    "Parry: reaction, +2 AC against one melee attack it can see",
+    "Dagger range 20/60 ft.",
+    "Saves: Str +4, Dex +5, Wis +2"
+   ],
+   "hp_average": 65
+  },
+  "priest": {
+   "id": "priest",
+   "name": "Priest",
+   "challenge_rating": 2,
+   "xp_value": 450,
+   "ac": 13,
+   "hp_expr": "5d8+5",
+   "speed": 25,
+   "abilities": {
+    "str": 10,
+    "dex": 10,
+    "con": 12,
+    "int": 13,
+    "wis": 16,
+    "cha": 13
+   },
+   "attacks": [
+    {
+     "name": "mace",
+     "attack_bonus": 2,
+     "damage_expr": "1d6",
+     "damage_type": "bludgeoning"
+    },
+    {
+     "name": "guiding bolt",
+     "attack_bonus": 5,
+     "damage_expr": "4d6",
+     "damage_type": "radiant"
+    },
+    {
+     "name": "sacred flame",
+     "attack_bonus": null,
+     "damage_expr": "2d8",
+     "damage_type": "radiant",
+     "save": "dex 13"
+    }
+   ],
+   "tactic": "Opens with spirit guardians, heals allies, and keeps fighters between itself and the enemy.",
+   "type": "humanoid",
+   "traits": [
+    "Spellcasting: 5th-level caster, save DC 13, +5 to hit, slots 4/3/2; cure wounds, guiding bolt, sanctuary, lesser restoration, spiritual weapon, dispel magic, spirit guardians",
+    "Divine Eminence: bonus action, spend a slot for +3d6 radiant on mace hits until end of turn, +1d6 per slot level above 1st"
+   ],
+   "hp_average": 27
+  },
+  "owlbear": {
+   "id": "owlbear",
+   "name": "Owlbear",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 13,
+   "hp_expr": "7d10+21",
+   "speed": 40,
+   "abilities": {
+    "str": 20,
+    "dex": 12,
+    "con": 17,
+    "int": 3,
+    "wis": 12,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "beak",
+     "attack_bonus": 7,
+     "damage_expr": "1d10+5",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "claws",
+     "attack_bonus": 7,
+     "damage_expr": "2d8+5",
+     "damage_type": "slashing"
+    }
+   ],
+   "tactic": "Charges the first creature it notices and fights until dead.",
+   "type": "monstrosity",
+   "traits": [
+    "Multiattack: one beak and one claws",
+    "Keen Sight and Smell: advantage on those Perception checks",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 59
+  },
+  "werewolf": {
+   "id": "werewolf",
+   "name": "Werewolf",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 12,
+   "hp_expr": "9d8+18",
+   "speed": 30,
+   "abilities": {
+    "str": 15,
+    "dex": 13,
+    "con": 14,
+    "int": 10,
+    "wis": 11,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 4,
+     "damage_expr": "1d8+2",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "claws",
+     "attack_bonus": 4,
+     "damage_expr": "2d4+2",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "spear",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Shifts to hybrid form, trusts its immunity, and targets unarmored victims.",
+   "type": "humanoid",
+   "traits": [
+    "Multiattack: two attacks, one bite and one claws or spear (humanoid or hybrid form)",
+    "AC 12 in wolf or hybrid form, 11 in humanoid form; speed 40 ft. in wolf form",
+    "Bite: humanoid target makes a DC 12 Con save or is cursed with werewolf lycanthropy",
+    "Immune to nonmagical bludgeoning, piercing, slashing that is not silvered",
+    "Shapechanger: action to change between humanoid, wolf, and hybrid forms",
+    "Spear deals 1d8+2 two-handed (humanoid form only); claws hybrid form only",
+    "Keen Hearing and Smell: advantage on those Perception checks"
+   ],
+   "hp_average": 58
+  },
+  "wight": {
+   "id": "wight",
+   "name": "Wight",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 14,
+   "hp_expr": "6d8+18",
+   "speed": 30,
+   "abilities": {
+    "str": 15,
+    "dex": 14,
+    "con": 16,
+    "int": 10,
+    "wis": 13,
+    "cha": 15
+   },
+   "attacks": [
+    {
+     "name": "longsword",
+     "attack_bonus": 4,
+     "damage_expr": "1d8+2",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "life drain",
+     "attack_bonus": 4,
+     "damage_expr": "1d6+2",
+     "damage_type": "necrotic"
+    },
+    {
+     "name": "longbow",
+     "attack_bonus": 4,
+     "damage_expr": "1d8+2",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Commands lesser undead, drains wounded foes, and avoids daylight.",
+   "type": "undead",
+   "traits": [
+    "Multiattack: two longsword or two longbow attacks; Life Drain can replace one longsword attack",
+    "Life Drain: DC 13 Con save or HP maximum drops by the damage taken until a long rest; a humanoid slain rises as a zombie in 24 hours",
+    "Resistant to necrotic and to nonmagical bludgeoning, piercing, slashing that is not silvered",
+    "Immune to poison; immune to exhaustion and poisoned",
+    "Sunlight Sensitivity: disadvantage on attacks and sight Perception in sunlight",
+    "Longsword deals 1d10+2 two-handed",
+    "Longbow range 150/600 ft.",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 45
+  },
+  "mummy": {
+   "id": "mummy",
+   "name": "Mummy",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 11,
+   "hp_expr": "9d8+18",
+   "speed": 20,
+   "abilities": {
+    "str": 16,
+    "dex": 8,
+    "con": 15,
+    "int": 6,
+    "wis": 10,
+    "cha": 12
+   },
+   "attacks": [
+    {
+     "name": "rotting fist",
+     "attack_bonus": 5,
+     "damage_expr": "2d6+3",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Glares to freeze one intruder and pounds it with the rotting fist.",
+   "type": "undead",
+   "traits": [
+    "Multiattack: Dreadful Glare and one rotting fist",
+    "Rotting Fist hit adds 3d6 necrotic; DC 12 Con save or cursed with mummy rot: no HP recovery and HP maximum drops 3d6 every 24 hours",
+    "Dreadful Glare: one creature within 60 ft. makes a DC 11 Wis save or is frightened until the end of the mummy's next turn; paralyzed too if it fails by 5 or more",
+    "Vulnerable to fire",
+    "Resistant to nonmagical bludgeoning, piercing, slashing",
+    "Immune to necrotic and poison; immune to charmed, exhaustion, frightened, paralyzed, poisoned",
+    "Saves: Wis +2",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 58
+  },
+  "basilisk": {
+   "id": "basilisk",
+   "name": "Basilisk",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 15,
+   "hp_expr": "8d8+16",
+   "speed": 20,
+   "abilities": {
+    "str": 16,
+    "dex": 8,
+    "con": 15,
+    "int": 2,
+    "wis": 8,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 5,
+     "damage_expr": "2d6+3",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Lets its gaze do the work and bites whatever is slowed.",
+   "type": "monstrosity",
+   "traits": [
+    "Bite hit adds 2d6 poison",
+    "Petrifying Gaze: a creature starting its turn within 30 ft. that can see its eyes makes a DC 12 Con save; fail is restrained, a second fail at the end of its next turn is petrified; fail by 5 or more is petrified at once",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 52
+  },
+  "veteran": {
+   "id": "veteran",
+   "name": "Veteran",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 17,
+   "hp_expr": "9d8+18",
+   "speed": 30,
+   "abilities": {
+    "str": 16,
+    "dex": 13,
+    "con": 14,
+    "int": 10,
+    "wis": 11,
+    "cha": 10
+   },
+   "attacks": [
+    {
+     "name": "longsword",
+     "attack_bonus": 5,
+     "damage_expr": "1d8+3",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "shortsword",
+     "attack_bonus": 5,
+     "damage_expr": "1d6+3",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "heavy crossbow",
+     "attack_bonus": 3,
+     "damage_expr": "1d10+1",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Fights with discipline, focuses one foe at a time, and withdraws in good order.",
+   "type": "humanoid",
+   "traits": [
+    "Multiattack: two longsword attacks, plus one shortsword attack if it has a shortsword drawn",
+    "Longsword deals 1d10+3 two-handed",
+    "Heavy crossbow range 100/400 ft."
+   ],
+   "hp_average": 58
+  },
+  "knight": {
+   "id": "knight",
+   "name": "Knight",
+   "challenge_rating": 3,
+   "xp_value": 700,
+   "ac": 18,
+   "hp_expr": "8d8+16",
+   "speed": 30,
+   "abilities": {
+    "str": 16,
+    "dex": 11,
+    "con": 14,
+    "int": 11,
+    "wis": 11,
+    "cha": 15
+   },
+   "attacks": [
+    {
+     "name": "greatsword",
+     "attack_bonus": 5,
+     "damage_expr": "2d6+3",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "heavy crossbow",
+     "attack_bonus": 2,
+     "damage_expr": "1d10",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Uses Leadership first, challenges the strongest foe, and honors a surrender.",
+   "type": "humanoid",
+   "traits": [
+    "Multiattack: two melee attacks",
+    "Brave: advantage on saves against frightened",
+    "Leadership (recharges on a short or long rest): for 1 minute, allies within 30 ft. that can hear it add 1d4 to attack rolls and saves",
+    "Parry: reaction, +2 AC against one melee attack it can see",
+    "Saves: Con +4, Wis +2",
+    "Heavy crossbow range 100/400 ft."
+   ],
+   "hp_average": 52
+  },
+  "ettin": {
+   "id": "ettin",
+   "name": "Ettin",
+   "challenge_rating": 4,
+   "xp_value": 1100,
+   "ac": 12,
+   "hp_expr": "10d10+30",
+   "speed": 40,
+   "abilities": {
+    "str": 21,
+    "dex": 8,
+    "con": 17,
+    "int": 6,
+    "wis": 10,
+    "cha": 8
+   },
+   "attacks": [
+    {
+     "name": "battleaxe",
+     "attack_bonus": 7,
+     "damage_expr": "2d8+5",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "morningstar",
+     "attack_bonus": 7,
+     "damage_expr": "2d8+5",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Splits its two attacks between the two nearest enemies while its heads argue.",
+   "type": "giant",
+   "traits": [
+    "Multiattack: one battleaxe and one morningstar",
+    "Two Heads: advantage on Perception and on saves against blinded, charmed, deafened, frightened, stunned, unconscious",
+    "Wakeful: one head stays awake while the other sleeps",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 85
+  },
+  "ghost": {
+   "id": "ghost",
+   "name": "Ghost",
+   "challenge_rating": 4,
+   "xp_value": 1100,
+   "ac": 11,
+   "hp_expr": "10d8",
+   "speed": 40,
+   "abilities": {
+    "str": 7,
+    "dex": 13,
+    "con": 10,
+    "int": 10,
+    "wis": 12,
+    "cha": 17
+   },
+   "attacks": [
+    {
+     "name": "withering touch",
+     "attack_bonus": 5,
+     "damage_expr": "4d6+3",
+     "damage_type": "necrotic"
+    }
+   ],
+   "tactic": "Frightens the group, possesses the strongest body, and turns it on its friends.",
+   "type": "undead",
+   "traits": [
+    "Speed is fly 40 ft. (hover); walking speed 0",
+    "Horrifying Visage: non-undead within 60 ft. make a DC 13 Wis save or are frightened for 1 minute; fail by 5 or more also ages 1d4 x 10 years",
+    "Possession (recharge 6): one humanoid within 5 ft. makes a DC 13 Cha save or is possessed; ends at 0 HP or when turned",
+    "Etherealness: shifts between the Ethereal and Material planes",
+    "Resistant to acid, fire, lightning, thunder, and nonmagical bludgeoning, piercing, slashing",
+    "Immune to cold, necrotic, poison; immune to charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    "Incorporeal Movement: moves through creatures and objects; 1d10 force if it ends its turn inside an object",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 45
+  },
+  "red-dragon-wyrmling": {
+   "id": "red-dragon-wyrmling",
+   "name": "Red Dragon Wyrmling",
+   "challenge_rating": 4,
+   "xp_value": 1100,
+   "ac": 17,
+   "hp_expr": "10d8+30",
+   "speed": 30,
+   "abilities": {
+    "str": 19,
+    "dex": 10,
+    "con": 17,
+    "int": 12,
+    "wis": 11,
+    "cha": 15
+   },
+   "attacks": [
+    {
+     "name": "bite",
+     "attack_bonus": 6,
+     "damage_expr": "1d10+4",
+     "damage_type": "piercing"
+    },
+    {
+     "name": "fire breath",
+     "attack_bonus": null,
+     "damage_expr": "7d6",
+     "damage_type": "fire",
+     "save": "dex 13"
+    }
+   ],
+   "tactic": "Breathes fire on the largest cluster, then bites from the air; flees to guard its hoard.",
+   "type": "dragon",
+   "traits": [
+    "Bite hit adds 1d6 fire",
+    "Fire Breath (recharge 5-6): 15-ft. cone, DC 13 Dex save, half damage on success",
+    "Immune to fire",
+    "Climb 30 ft., fly 60 ft.",
+    "Saves: Dex +2, Con +5, Wis +2, Cha +4",
+    "Blindsight 10 ft., darkvision 60 ft."
+   ],
+   "hp_average": 75
+  },
+  "troll": {
+   "id": "troll",
+   "name": "Troll",
+   "challenge_rating": 5,
+   "xp_value": 1800,
+   "ac": 15,
+   "hp_expr": "8d10+40",
+   "speed": 30,
+   "abilities": {
+    "str": 18,
+    "dex": 13,
+    "con": 20,
+    "int": 7,
+    "wis": 9,
+    "cha": 7
+   },
+   "attacks": [
+    {
+     "name": "claw",
+     "attack_bonus": 7,
+     "damage_expr": "2d6+4",
+     "damage_type": "slashing"
+    },
+    {
+     "name": "bite",
+     "attack_bonus": 7,
+     "damage_expr": "1d6+4",
+     "damage_type": "piercing"
+    }
+   ],
+   "tactic": "Wades in without fear of wounds and only backs away from fire or acid.",
+   "type": "giant",
+   "traits": [
+    "Multiattack: one bite and two claws",
+    "Regeneration: regains 10 HP at the start of its turn; acid or fire damage stops it for one turn; dies only if it starts its turn at 0 HP and cannot regenerate",
+    "Keen Smell: advantage on smell Perception",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 84
+  },
+  "air-elemental": {
+   "id": "air-elemental",
+   "name": "Air Elemental",
+   "challenge_rating": 5,
+   "xp_value": 1800,
+   "ac": 15,
+   "hp_expr": "12d10+24",
+   "speed": 90,
+   "abilities": {
+    "str": 14,
+    "dex": 20,
+    "con": 14,
+    "int": 6,
+    "wis": 10,
+    "cha": 6
+   },
+   "attacks": [
+    {
+     "name": "slam",
+     "attack_bonus": 8,
+     "damage_expr": "2d8+5",
+     "damage_type": "bludgeoning"
+    },
+    {
+     "name": "whirlwind",
+     "attack_bonus": null,
+     "damage_expr": "3d8+2",
+     "damage_type": "bludgeoning",
+     "save": "str 13"
+    }
+   ],
+   "tactic": "Sweeps through the group with Whirlwind, then slams scattered targets.",
+   "type": "elemental",
+   "traits": [
+    "Speed is fly 90 ft. (hover); walking speed 0",
+    "Multiattack: two slams",
+    "Whirlwind (recharge 4-6): creatures in its space make a DC 13 Str save or take the damage, are flung up to 20 ft., and fall prone; half damage and not flung on success",
+    "Resistant to lightning, thunder, and nonmagical bludgeoning, piercing, slashing",
+    "Immune to poison; immune to exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious",
+    "Air Form: enters hostile spaces and passes through 1-inch gaps",
+    "Darkvision 60 ft."
+   ],
+   "hp_average": 90
+  },
+  "hill-giant": {
+   "id": "hill-giant",
+   "name": "Hill Giant",
+   "challenge_rating": 5,
+   "xp_value": 1800,
+   "ac": 13,
+   "hp_expr": "10d12+40",
+   "speed": 40,
+   "abilities": {
+    "str": 21,
+    "dex": 8,
+    "con": 19,
+    "int": 5,
+    "wis": 9,
+    "cha": 6
+   },
+   "attacks": [
+    {
+     "name": "greatclub",
+     "attack_bonus": 8,
+     "damage_expr": "3d8+5",
+     "damage_type": "bludgeoning"
+    },
+    {
+     "name": "rock",
+     "attack_bonus": 8,
+     "damage_expr": "3d10+5",
+     "damage_type": "bludgeoning"
+    }
+   ],
+   "tactic": "Hurls rocks while foes approach, then clubs the closest; backs down from a show of strength.",
+   "type": "giant",
+   "traits": [
+    "Multiattack: two greatclub attacks",
+    "Rock range 60/240 ft."
+   ],
+   "hp_average": 105
+  }
+ }
+}

@@ -26,7 +26,10 @@
      "damage_type": "slashing"
     }
    ],
-   "tactic": "Placeholder tactic."
+   "tactic": "Placeholder tactic.",
+   "type": "fixture",
+   "traits": [],
+   "hp_average": 7
   },
   "fixture-wolf": {
    "id": "fixture-wolf",
@@ -52,7 +55,10 @@
      "damage_type": "piercing"
     }
    ],
-   "tactic": "Placeholder tactic."
+   "tactic": "Placeholder tactic.",
+   "type": "fixture",
+   "traits": [],
+   "hp_average": 11
   },
   "fixture-brute": {
    "id": "fixture-brute",
@@ -78,7 +84,10 @@
      "damage_type": "bludgeoning"
     }
    ],
-   "tactic": "Placeholder tactic."
+   "tactic": "Placeholder tactic.",
+   "type": "fixture",
+   "traits": [],
+   "hp_average": 59
   }
  }
 }

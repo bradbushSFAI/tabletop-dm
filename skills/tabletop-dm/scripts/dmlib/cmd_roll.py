@@ -3,10 +3,11 @@ import argparse
 import random
 import re
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
-from . import dice, io_campaign
+from . import dice, io_campaign, party_ops
 from .errors import DmError
+from .rules_tables import ABILITIES, SKILLS
 
 # "1d20", "1d20+5", "1d20+2-1": the only shape advantage can apply to.
 _SINGLE_D20 = re.compile(r"^1d20((?:[+-]\d+)*)$")
@@ -50,11 +51,58 @@ def roll_with_d20_rules(expr: str, rng: random.Random, adv: bool, disadv: bool) 
 
 def roll(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
     campaign_dir = Path(args.campaign)
-    io_campaign.load_party(campaign_dir)
-    if not args.expr:
-        raise DmError("bad_arguments", "give a dice expression, for example: roll 2d6+3")
-    out = roll_with_d20_rules(args.expr, rng, args.adv, args.disadv)
-    return finish(campaign_dir, out, args, who=None, kind="free")
+    party = io_campaign.load_party(campaign_dir)
+    forms = [name for name in NAMED_FORMS if getattr(args, name)]
+    if len(forms) + (1 if args.expr else 0) > 1:
+        raise DmError("bad_arguments", "one roll at a time: an expression, or one of --attack, --check, "
+                                       "--save, --initiative, --spell-attack.")
+    if not forms:
+        if not args.expr:
+            raise DmError("bad_arguments", "give a dice expression, for example: roll 2d6+3")
+        out = roll_with_d20_rules(args.expr, rng, args.adv, args.disadv)
+        return finish(campaign_dir, out, args, who=args.who, kind="free")
+    if not args.who:
+        raise DmError("bad_arguments", "a named roll needs --who <id>, so the bonus can come from the sheet.")
+    character = party_ops.require_character(party, args.who)
+    modifier, kind, extra = named_modifier(character, forms[0], getattr(args, forms[0]))
+    out = roll_with_d20_rules("1d20%+d" % modifier, rng, args.adv, args.disadv)
+    out.update(extra)
+    return finish(campaign_dir, out, args, who=character["id"], kind=kind)
+
+
+NAMED_FORMS = ("attack", "check", "save", "initiative", "spell_attack")
+
+
+def named_modifier(character: Dict[str, Any], form: str, value: Any) -> Tuple[int, str, Dict[str, Any]]:
+    """The modifier the sheet gives for a named roll. The model never computes one."""
+    if form == "attack":
+        weapon = party_ops.slugify(value)
+        if weapon not in character["attacks"]:
+            raise DmError("unknown_weapon", "%s is not in %s's hands. Ready to use: %s. Use equip first."
+                          % (value, character["id"], ", ".join(sorted(character["attacks"]))))
+        attack = character["attacks"][weapon]
+        extra = {"damage_expr": attack["damage_expr"], "damage_type": attack["damage_type"]}
+        if "versatile_damage_expr" in attack:
+            extra["versatile_damage_expr"] = attack["versatile_damage_expr"]
+        return attack["attack_bonus"], "attack:" + weapon, extra
+    if form == "check":
+        name = party_ops.slugify(value)
+        if name in SKILLS:
+            return character["skills"][name]["bonus"], "check:" + name, {}
+        if name in ABILITIES:
+            return character["ability_modifiers"][name], "check:" + name, {}
+        raise DmError("unknown_skill", "'%s' is not a skill or an ability. Skills: %s." % (value, ", ".join(sorted(SKILLS))))
+    if form == "save":
+        name = party_ops.slugify(value)
+        if name not in ABILITIES:
+            raise DmError("unknown_skill", "a save takes an ability: %s." % ", ".join(ABILITIES))
+        return character["saves"][name]["bonus"], "save:" + name, {}
+    if form == "initiative":
+        return character["ability_modifiers"]["dex"], "initiative", {}
+    casting = character.get("spellcasting")
+    if not casting:
+        raise DmError("not_a_caster", "%s casts no spells." % character["id"])
+    return casting["attack_bonus"], "spell_attack", {"save_dc": casting["save_dc"]}
 
 
 def finish(campaign_dir: Path, out: Dict[str, Any], args: argparse.Namespace,

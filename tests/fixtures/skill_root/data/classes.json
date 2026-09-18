@@ -99,8 +99,37 @@
      "features": [],
      "slots": null,
      "cantrips_known": 0
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability by 2, or two abilities by 1. Maximum 20."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
     }
-   }
+   },
+   "default_background_skills": [
+    "intimidation",
+    "survival"
+   ],
+   "fighting_styles": [
+    "archery",
+    "defense",
+    "dueling",
+    "great-weapon-fighting"
+   ],
+   "default_fighting_style": "defense"
   },
   "wizard": {
    "id": "wizard",
@@ -189,6 +218,150 @@
       "2": 2
      },
      "cantrips_known": 1
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability by 2, or two abilities by 1. Maximum 20."
+      }
+     ],
+     "slots": {
+      "1": 4,
+      "2": 3
+     },
+     "cantrips_known": 2
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [],
+     "slots": {
+      "1": 4,
+      "2": 3,
+      "3": 2
+     },
+     "cantrips_known": 2
+    }
+   },
+   "default_background_skills": [
+    "history",
+    "insight"
+   ]
+  },
+  "rogue": {
+   "id": "rogue",
+   "name": "Rogue",
+   "hit_die": "d8",
+   "primary_ability": "dex",
+   "saving_throw_proficiencies": [
+    "dex",
+    "int"
+   ],
+   "skill_choices": {
+    "count": 4,
+    "options": [
+     "acrobatics",
+     "deception",
+     "perception",
+     "sleight-of-hand",
+     "stealth",
+     "investigation"
+    ]
+   },
+   "default_skills": [
+    "acrobatics",
+    "perception",
+    "sleight-of-hand",
+    "stealth"
+   ],
+   "default_background_skills": [
+    "deception",
+    "insight"
+   ],
+   "expertise": {
+    "level": 1,
+    "count": 2,
+    "default": [
+     "stealth",
+     "perception"
+    ]
+   },
+   "armor_proficiencies": [
+    "light"
+   ],
+   "weapon_proficiencies": [
+    "simple",
+    "fixture-sword"
+   ],
+   "starting_equipment": [
+    {
+     "item": "fixture-leather",
+     "quantity": 1
+    },
+    {
+     "item": "fixture-dagger",
+     "quantity": 2
+    },
+    {
+     "item": "fixture-bow",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": "fixture-leather",
+    "shield": null,
+    "weapons": [
+     "fixture-dagger"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 8,
+    "dex": 15,
+    "con": 13,
+    "int": 12,
+    "wis": 14,
+    "cha": 10
+   },
+   "spellcasting": null,
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability by 2, or two abilities by 1. Maximum 20."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [],
+     "slots": null,
+     "cantrips_known": 0
     }
    }
   }

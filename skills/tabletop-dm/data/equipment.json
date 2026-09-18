@@ -1,0 +1,806 @@
+{
+ "format": "tabletop-dm/equipment",
+ "format_version": 1,
+ "equipment": {
+  "club": {
+   "id": "club",
+   "name": "Club",
+   "category": "weapon",
+   "cost_cp": 10,
+   "damage_expr": "1d4",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "light"
+   ]
+  },
+  "dagger": {
+   "id": "dagger",
+   "name": "Dagger",
+   "category": "weapon",
+   "cost_cp": 200,
+   "damage_expr": "1d4",
+   "damage_type": "piercing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "finesse",
+    "light",
+    "thrown"
+   ]
+  },
+  "greatclub": {
+   "id": "greatclub",
+   "name": "Greatclub",
+   "category": "weapon",
+   "cost_cp": 20,
+   "damage_expr": "1d8",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "two-handed"
+   ]
+  },
+  "handaxe": {
+   "id": "handaxe",
+   "name": "Handaxe",
+   "category": "weapon",
+   "cost_cp": 500,
+   "damage_expr": "1d6",
+   "damage_type": "slashing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "light",
+    "thrown"
+   ]
+  },
+  "javelin": {
+   "id": "javelin",
+   "name": "Javelin",
+   "category": "weapon",
+   "cost_cp": 50,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "thrown"
+   ]
+  },
+  "light-hammer": {
+   "id": "light-hammer",
+   "name": "Light Hammer",
+   "category": "weapon",
+   "cost_cp": 200,
+   "damage_expr": "1d4",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "light",
+    "thrown"
+   ]
+  },
+  "mace": {
+   "id": "mace",
+   "name": "Mace",
+   "category": "weapon",
+   "cost_cp": 500,
+   "damage_expr": "1d6",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-melee",
+   "properties": []
+  },
+  "quarterstaff": {
+   "id": "quarterstaff",
+   "name": "Quarterstaff",
+   "category": "weapon",
+   "cost_cp": 20,
+   "damage_expr": "1d6",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d8"
+  },
+  "sickle": {
+   "id": "sickle",
+   "name": "Sickle",
+   "category": "weapon",
+   "cost_cp": 100,
+   "damage_expr": "1d4",
+   "damage_type": "slashing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "light"
+   ]
+  },
+  "spear": {
+   "id": "spear",
+   "name": "Spear",
+   "category": "weapon",
+   "cost_cp": 100,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "simple-melee",
+   "properties": [
+    "thrown",
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d8"
+  },
+  "light-crossbow": {
+   "id": "light-crossbow",
+   "name": "Light Crossbow",
+   "category": "weapon",
+   "cost_cp": 2500,
+   "damage_expr": "1d8",
+   "damage_type": "piercing",
+   "weapon_class": "simple-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "loading",
+    "two-handed"
+   ]
+  },
+  "dart": {
+   "id": "dart",
+   "name": "Dart",
+   "category": "weapon",
+   "cost_cp": 5,
+   "damage_expr": "1d4",
+   "damage_type": "piercing",
+   "weapon_class": "simple-ranged",
+   "properties": [
+    "ranged",
+    "finesse",
+    "thrown"
+   ]
+  },
+  "shortbow": {
+   "id": "shortbow",
+   "name": "Shortbow",
+   "category": "weapon",
+   "cost_cp": 2500,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "simple-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "two-handed"
+   ]
+  },
+  "sling": {
+   "id": "sling",
+   "name": "Sling",
+   "category": "weapon",
+   "cost_cp": 10,
+   "damage_expr": "1d4",
+   "damage_type": "bludgeoning",
+   "weapon_class": "simple-ranged",
+   "properties": [
+    "ranged",
+    "ammunition"
+   ]
+  },
+  "battleaxe": {
+   "id": "battleaxe",
+   "name": "Battleaxe",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "1d8",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d10"
+  },
+  "flail": {
+   "id": "flail",
+   "name": "Flail",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "1d8",
+   "damage_type": "bludgeoning",
+   "weapon_class": "martial-melee",
+   "properties": []
+  },
+  "glaive": {
+   "id": "glaive",
+   "name": "Glaive",
+   "category": "weapon",
+   "cost_cp": 2000,
+   "damage_expr": "1d10",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "reach",
+    "two-handed"
+   ]
+  },
+  "greataxe": {
+   "id": "greataxe",
+   "name": "Greataxe",
+   "category": "weapon",
+   "cost_cp": 3000,
+   "damage_expr": "1d12",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "two-handed"
+   ]
+  },
+  "greatsword": {
+   "id": "greatsword",
+   "name": "Greatsword",
+   "category": "weapon",
+   "cost_cp": 5000,
+   "damage_expr": "2d6",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "two-handed"
+   ]
+  },
+  "halberd": {
+   "id": "halberd",
+   "name": "Halberd",
+   "category": "weapon",
+   "cost_cp": 2000,
+   "damage_expr": "1d10",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "reach",
+    "two-handed"
+   ]
+  },
+  "lance": {
+   "id": "lance",
+   "name": "Lance",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "1d12",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "reach",
+    "special"
+   ]
+  },
+  "longsword": {
+   "id": "longsword",
+   "name": "Longsword",
+   "category": "weapon",
+   "cost_cp": 1500,
+   "damage_expr": "1d8",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d10"
+  },
+  "maul": {
+   "id": "maul",
+   "name": "Maul",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "2d6",
+   "damage_type": "bludgeoning",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "two-handed"
+   ]
+  },
+  "morningstar": {
+   "id": "morningstar",
+   "name": "Morningstar",
+   "category": "weapon",
+   "cost_cp": 1500,
+   "damage_expr": "1d8",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": []
+  },
+  "pike": {
+   "id": "pike",
+   "name": "Pike",
+   "category": "weapon",
+   "cost_cp": 500,
+   "damage_expr": "1d10",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "heavy",
+    "reach",
+    "two-handed"
+   ]
+  },
+  "rapier": {
+   "id": "rapier",
+   "name": "Rapier",
+   "category": "weapon",
+   "cost_cp": 2500,
+   "damage_expr": "1d8",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "finesse"
+   ]
+  },
+  "scimitar": {
+   "id": "scimitar",
+   "name": "Scimitar",
+   "category": "weapon",
+   "cost_cp": 2500,
+   "damage_expr": "1d6",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "finesse",
+    "light"
+   ]
+  },
+  "shortsword": {
+   "id": "shortsword",
+   "name": "Shortsword",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "finesse",
+    "light"
+   ]
+  },
+  "trident": {
+   "id": "trident",
+   "name": "Trident",
+   "category": "weapon",
+   "cost_cp": 500,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "thrown",
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d8"
+  },
+  "war-pick": {
+   "id": "war-pick",
+   "name": "War Pick",
+   "category": "weapon",
+   "cost_cp": 500,
+   "damage_expr": "1d8",
+   "damage_type": "piercing",
+   "weapon_class": "martial-melee",
+   "properties": []
+  },
+  "warhammer": {
+   "id": "warhammer",
+   "name": "Warhammer",
+   "category": "weapon",
+   "cost_cp": 1500,
+   "damage_expr": "1d8",
+   "damage_type": "bludgeoning",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "versatile"
+   ],
+   "versatile_damage_expr": "1d10"
+  },
+  "whip": {
+   "id": "whip",
+   "name": "Whip",
+   "category": "weapon",
+   "cost_cp": 200,
+   "damage_expr": "1d4",
+   "damage_type": "slashing",
+   "weapon_class": "martial-melee",
+   "properties": [
+    "finesse",
+    "reach"
+   ]
+  },
+  "blowgun": {
+   "id": "blowgun",
+   "name": "Blowgun",
+   "category": "weapon",
+   "cost_cp": 1000,
+   "damage_expr": "1",
+   "damage_type": "piercing",
+   "weapon_class": "martial-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "loading"
+   ]
+  },
+  "hand-crossbow": {
+   "id": "hand-crossbow",
+   "name": "Hand Crossbow",
+   "category": "weapon",
+   "cost_cp": 7500,
+   "damage_expr": "1d6",
+   "damage_type": "piercing",
+   "weapon_class": "martial-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "light",
+    "loading"
+   ]
+  },
+  "heavy-crossbow": {
+   "id": "heavy-crossbow",
+   "name": "Heavy Crossbow",
+   "category": "weapon",
+   "cost_cp": 5000,
+   "damage_expr": "1d10",
+   "damage_type": "piercing",
+   "weapon_class": "martial-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "heavy",
+    "loading",
+    "two-handed"
+   ]
+  },
+  "longbow": {
+   "id": "longbow",
+   "name": "Longbow",
+   "category": "weapon",
+   "cost_cp": 5000,
+   "damage_expr": "1d8",
+   "damage_type": "piercing",
+   "weapon_class": "martial-ranged",
+   "properties": [
+    "ranged",
+    "ammunition",
+    "heavy",
+    "two-handed"
+   ]
+  },
+  "net": {
+   "id": "net",
+   "name": "Net",
+   "category": "weapon",
+   "cost_cp": 100,
+   "damage_expr": "0",
+   "damage_type": null,
+   "weapon_class": "martial-ranged",
+   "properties": [
+    "ranged",
+    "special",
+    "thrown"
+   ]
+  },
+  "padded-armor": {
+   "id": "padded-armor",
+   "name": "Padded Armor",
+   "category": "armor",
+   "cost_cp": 500,
+   "armor_type": "light",
+   "armor_class_base": 11,
+   "dex_bonus_max": null,
+   "stealth_disadvantage": true,
+   "strength_required": null
+  },
+  "leather-armor": {
+   "id": "leather-armor",
+   "name": "Leather Armor",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "light",
+   "armor_class_base": 11,
+   "dex_bonus_max": null,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "studded-leather-armor": {
+   "id": "studded-leather-armor",
+   "name": "Studded Leather Armor",
+   "category": "armor",
+   "cost_cp": 4500,
+   "armor_type": "light",
+   "armor_class_base": 12,
+   "dex_bonus_max": null,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "hide-armor": {
+   "id": "hide-armor",
+   "name": "Hide Armor",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "medium",
+   "armor_class_base": 12,
+   "dex_bonus_max": 2,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "chain-shirt": {
+   "id": "chain-shirt",
+   "name": "Chain Shirt",
+   "category": "armor",
+   "cost_cp": 5000,
+   "armor_type": "medium",
+   "armor_class_base": 13,
+   "dex_bonus_max": 2,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "scale-mail": {
+   "id": "scale-mail",
+   "name": "Scale Mail",
+   "category": "armor",
+   "cost_cp": 5000,
+   "armor_type": "medium",
+   "armor_class_base": 14,
+   "dex_bonus_max": 2,
+   "stealth_disadvantage": true,
+   "strength_required": null
+  },
+  "breastplate": {
+   "id": "breastplate",
+   "name": "Breastplate",
+   "category": "armor",
+   "cost_cp": 40000,
+   "armor_type": "medium",
+   "armor_class_base": 14,
+   "dex_bonus_max": 2,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "half-plate": {
+   "id": "half-plate",
+   "name": "Half Plate",
+   "category": "armor",
+   "cost_cp": 75000,
+   "armor_type": "medium",
+   "armor_class_base": 15,
+   "dex_bonus_max": 2,
+   "stealth_disadvantage": true,
+   "strength_required": null
+  },
+  "ring-mail": {
+   "id": "ring-mail",
+   "name": "Ring Mail",
+   "category": "armor",
+   "cost_cp": 3000,
+   "armor_type": "heavy",
+   "armor_class_base": 14,
+   "dex_bonus_max": 0,
+   "stealth_disadvantage": true,
+   "strength_required": null
+  },
+  "chain-mail": {
+   "id": "chain-mail",
+   "name": "Chain Mail",
+   "category": "armor",
+   "cost_cp": 7500,
+   "armor_type": "heavy",
+   "armor_class_base": 16,
+   "dex_bonus_max": 0,
+   "stealth_disadvantage": true,
+   "strength_required": 13
+  },
+  "splint-armor": {
+   "id": "splint-armor",
+   "name": "Splint Armor",
+   "category": "armor",
+   "cost_cp": 20000,
+   "armor_type": "heavy",
+   "armor_class_base": 17,
+   "dex_bonus_max": 0,
+   "stealth_disadvantage": true,
+   "strength_required": 15
+  },
+  "plate-armor": {
+   "id": "plate-armor",
+   "name": "Plate Armor",
+   "category": "armor",
+   "cost_cp": 150000,
+   "armor_type": "heavy",
+   "armor_class_base": 18,
+   "dex_bonus_max": 0,
+   "stealth_disadvantage": true,
+   "strength_required": 15
+  },
+  "shield": {
+   "id": "shield",
+   "name": "Shield",
+   "category": "armor",
+   "cost_cp": 1000,
+   "armor_type": "shield",
+   "ac_bonus": 2,
+   "stealth_disadvantage": false,
+   "strength_required": null
+  },
+  "torch": {
+   "id": "torch",
+   "name": "Torch",
+   "category": "gear",
+   "cost_cp": 1
+  },
+  "rope-hempen": {
+   "id": "rope-hempen",
+   "name": "Hempen Rope (50 feet)",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "rations": {
+   "id": "rations",
+   "name": "Rations (1 day)",
+   "category": "gear",
+   "cost_cp": 50
+  },
+  "waterskin": {
+   "id": "waterskin",
+   "name": "Waterskin",
+   "category": "gear",
+   "cost_cp": 20
+  },
+  "bedroll": {
+   "id": "bedroll",
+   "name": "Bedroll",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "backpack": {
+   "id": "backpack",
+   "name": "Backpack",
+   "category": "gear",
+   "cost_cp": 200
+  },
+  "tinderbox": {
+   "id": "tinderbox",
+   "name": "Tinderbox",
+   "category": "gear",
+   "cost_cp": 50
+  },
+  "thieves-tools": {
+   "id": "thieves-tools",
+   "name": "Thieves' Tools",
+   "category": "gear",
+   "cost_cp": 2500
+  },
+  "healers-kit": {
+   "id": "healers-kit",
+   "name": "Healer's Kit",
+   "category": "gear",
+   "cost_cp": 500
+  },
+  "holy-symbol": {
+   "id": "holy-symbol",
+   "name": "Holy Symbol",
+   "category": "gear",
+   "cost_cp": 500
+  },
+  "spellbook": {
+   "id": "spellbook",
+   "name": "Spellbook",
+   "category": "gear",
+   "cost_cp": 5000
+  },
+  "component-pouch": {
+   "id": "component-pouch",
+   "name": "Component Pouch",
+   "category": "gear",
+   "cost_cp": 2500
+  },
+  "arcane-focus": {
+   "id": "arcane-focus",
+   "name": "Arcane Focus (Crystal)",
+   "category": "gear",
+   "cost_cp": 1000
+  },
+  "potion-of-healing": {
+   "id": "potion-of-healing",
+   "name": "Potion of Healing",
+   "category": "gear",
+   "cost_cp": 5000,
+   "effect": "heals 2d4+2"
+  },
+  "crowbar": {
+   "id": "crowbar",
+   "name": "Crowbar",
+   "category": "gear",
+   "cost_cp": 200
+  },
+  "lantern-hooded": {
+   "id": "lantern-hooded",
+   "name": "Hooded Lantern",
+   "category": "gear",
+   "cost_cp": 500
+  },
+  "oil-flask": {
+   "id": "oil-flask",
+   "name": "Oil (flask)",
+   "category": "gear",
+   "cost_cp": 10
+  },
+  "caltrops": {
+   "id": "caltrops",
+   "name": "Caltrops (bag of 20)",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "grappling-hook": {
+   "id": "grappling-hook",
+   "name": "Grappling Hook",
+   "category": "gear",
+   "cost_cp": 200
+  },
+  "crossbow-bolts-20": {
+   "id": "crossbow-bolts-20",
+   "name": "Crossbow Bolts (20)",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "arrows-20": {
+   "id": "arrows-20",
+   "name": "Arrows (20)",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "sling-bullets-20": {
+   "id": "sling-bullets-20",
+   "name": "Sling Bullets (20)",
+   "category": "gear",
+   "cost_cp": 4
+  },
+  "blowgun-needles-50": {
+   "id": "blowgun-needles-50",
+   "name": "Blowgun Needles (50)",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "mess-kit": {
+   "id": "mess-kit",
+   "name": "Mess Kit",
+   "category": "gear",
+   "cost_cp": 20
+  },
+  "chalk": {
+   "id": "chalk",
+   "name": "Chalk (1 piece)",
+   "category": "gear",
+   "cost_cp": 1
+  },
+  "ink-and-pen": {
+   "id": "ink-and-pen",
+   "name": "Ink (1 ounce bottle) and Ink Pen",
+   "category": "gear",
+   "cost_cp": 1002
+  },
+  "lock": {
+   "id": "lock",
+   "name": "Lock",
+   "category": "gear",
+   "cost_cp": 1000
+  },
+  "quiver": {
+   "id": "quiver",
+   "name": "Quiver",
+   "category": "gear",
+   "cost_cp": 100
+  },
+  "holy-water": {
+   "id": "holy-water",
+   "name": "Holy Water (flask)",
+   "category": "gear",
+   "cost_cp": 2500
+  }
+ }
+}

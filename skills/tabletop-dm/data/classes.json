@@ -1,0 +1,797 @@
+{
+ "format": "tabletop-dm/classes",
+ "format_version": 1,
+ "classes": {
+  "fighter": {
+   "id": "fighter",
+   "name": "Fighter",
+   "hit_die": "d10",
+   "primary_ability": "str",
+   "saving_throw_proficiencies": [
+    "str",
+    "con"
+   ],
+   "skill_choices": {
+    "count": 2,
+    "options": [
+     "acrobatics",
+     "animal-handling",
+     "athletics",
+     "history",
+     "insight",
+     "intimidation",
+     "perception",
+     "survival"
+    ]
+   },
+   "default_skills": [
+    "athletics",
+    "perception"
+   ],
+   "default_background_skills": [
+    "intimidation",
+    "survival"
+   ],
+   "armor_proficiencies": [
+    "light",
+    "medium",
+    "heavy",
+    "shield"
+   ],
+   "weapon_proficiencies": [
+    "simple",
+    "martial"
+   ],
+   "fighting_styles": [
+    "archery",
+    "defense",
+    "dueling",
+    "great-weapon-fighting"
+   ],
+   "default_fighting_style": "defense",
+   "starting_equipment": [
+    {
+     "item": "chain-mail",
+     "quantity": 1
+    },
+    {
+     "item": "shield",
+     "quantity": 1
+    },
+    {
+     "item": "longsword",
+     "quantity": 1
+    },
+    {
+     "item": "light-crossbow",
+     "quantity": 1
+    },
+    {
+     "item": "crossbow-bolts-20",
+     "quantity": 1
+    },
+    {
+     "item": "backpack",
+     "quantity": 1
+    },
+    {
+     "item": "crowbar",
+     "quantity": 1
+    },
+    {
+     "item": "tinderbox",
+     "quantity": 1
+    },
+    {
+     "item": "torch",
+     "quantity": 10
+    },
+    {
+     "item": "rations",
+     "quantity": 10
+    },
+    {
+     "item": "waterskin",
+     "quantity": 1
+    },
+    {
+     "item": "rope-hempen",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": "chain-mail",
+    "shield": "shield",
+    "weapons": [
+     "longsword",
+     "light-crossbow"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 15,
+    "dex": 13,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 10
+   },
+   "spellcasting": null,
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "fighting-style",
+       "name": "Fighting Style",
+       "rule": "Choose one: Archery +2 to ranged weapon attack rolls; Defense +1 AC while wearing armor; Dueling +2 damage with a melee weapon in one hand and no other weapon; Great Weapon Fighting reroll 1s and 2s on damage dice of a two-handed or versatile melee weapon held in two hands, keeping the new roll."
+      },
+      {
+       "id": "second-wind",
+       "name": "Second Wind",
+       "rule": "Bonus action: regain 1d10 + fighter level hit points. One use per short or long rest."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "action-surge",
+       "name": "Action Surge",
+       "rule": "On your turn, take one additional action. One use per short or long rest."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "improved-critical",
+       "name": "Improved Critical (Champion)",
+       "rule": "Your weapon attacks score a critical hit on a roll of 19-20."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability score by 2, or two ability scores by 1 each. No score can go above 20."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [
+      {
+       "id": "extra-attack",
+       "name": "Extra Attack",
+       "rule": "When you take the Attack action on your turn, you attack twice instead of once."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    }
+   }
+  },
+  "rogue": {
+   "id": "rogue",
+   "name": "Rogue",
+   "hit_die": "d8",
+   "primary_ability": "dex",
+   "saving_throw_proficiencies": [
+    "dex",
+    "int"
+   ],
+   "skill_choices": {
+    "count": 4,
+    "options": [
+     "acrobatics",
+     "athletics",
+     "deception",
+     "insight",
+     "intimidation",
+     "investigation",
+     "perception",
+     "performance",
+     "persuasion",
+     "sleight-of-hand",
+     "stealth"
+    ]
+   },
+   "default_skills": [
+    "stealth",
+    "perception",
+    "sleight-of-hand",
+    "acrobatics"
+   ],
+   "default_background_skills": [
+    "deception",
+    "insight"
+   ],
+   "expertise": {
+    "level": 1,
+    "count": 2,
+    "default": [
+     "stealth",
+     "perception"
+    ]
+   },
+   "armor_proficiencies": [
+    "light"
+   ],
+   "weapon_proficiencies": [
+    "simple",
+    "hand-crossbow",
+    "longsword",
+    "rapier",
+    "shortsword"
+   ],
+   "starting_equipment": [
+    {
+     "item": "leather-armor",
+     "quantity": 1
+    },
+    {
+     "item": "rapier",
+     "quantity": 1
+    },
+    {
+     "item": "shortbow",
+     "quantity": 1
+    },
+    {
+     "item": "arrows-20",
+     "quantity": 1
+    },
+    {
+     "item": "quiver",
+     "quantity": 1
+    },
+    {
+     "item": "dagger",
+     "quantity": 2
+    },
+    {
+     "item": "thieves-tools",
+     "quantity": 1
+    },
+    {
+     "item": "backpack",
+     "quantity": 1
+    },
+    {
+     "item": "crowbar",
+     "quantity": 1
+    },
+    {
+     "item": "lantern-hooded",
+     "quantity": 1
+    },
+    {
+     "item": "oil-flask",
+     "quantity": 2
+    },
+    {
+     "item": "tinderbox",
+     "quantity": 1
+    },
+    {
+     "item": "rations",
+     "quantity": 5
+    },
+    {
+     "item": "waterskin",
+     "quantity": 1
+    },
+    {
+     "item": "rope-hempen",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": "leather-armor",
+    "shield": null,
+    "weapons": [
+     "rapier",
+     "shortbow",
+     "dagger"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 8,
+    "dex": 15,
+    "con": 14,
+    "int": 13,
+    "wis": 12,
+    "cha": 10
+   },
+   "spellcasting": null,
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "expertise",
+       "name": "Expertise",
+       "rule": "Choose 2 of your skill proficiencies (thieves' tools may be one choice). Your proficiency bonus is doubled for checks with them."
+      },
+      {
+       "id": "sneak-attack",
+       "name": "Sneak Attack",
+       "rule": "Once per turn, add extra damage to one finesse or ranged weapon hit if you have advantage, or if an enemy of the target is within 5 feet of it and you lack disadvantage. Extra damage is 1d6 at levels 1-2, 2d6 at levels 3-4, 3d6 at level 5."
+      },
+      {
+       "id": "thieves-cant",
+       "name": "Thieves' Cant",
+       "rule": "You know a secret mix of jargon and signs; hidden messages take four times as long to convey as plain speech."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "cunning-action",
+       "name": "Cunning Action",
+       "rule": "Bonus action on each of your turns: Dash, Disengage, or Hide."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "fast-hands",
+       "name": "Fast Hands (Thief)",
+       "rule": "Your Cunning Action bonus action can also make a Sleight of Hand check, use thieves' tools to disarm a trap or open a lock, or take the Use an Object action."
+      },
+      {
+       "id": "second-story-work",
+       "name": "Second-Story Work (Thief)",
+       "rule": "Climbing costs no extra movement. Your running jump distance increases by a number of feet equal to your Dexterity modifier."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability score by 2, or two ability scores by 1 each. No score can go above 20."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [
+      {
+       "id": "uncanny-dodge",
+       "name": "Uncanny Dodge",
+       "rule": "Reaction when an attacker you can see hits you with an attack: halve that attack's damage against you."
+      }
+     ],
+     "slots": null,
+     "cantrips_known": 0
+    }
+   }
+  },
+  "wizard": {
+   "id": "wizard",
+   "name": "Wizard",
+   "hit_die": "d6",
+   "primary_ability": "int",
+   "saving_throw_proficiencies": [
+    "int",
+    "wis"
+   ],
+   "skill_choices": {
+    "count": 2,
+    "options": [
+     "arcana",
+     "history",
+     "insight",
+     "investigation",
+     "medicine",
+     "religion"
+    ]
+   },
+   "default_skills": [
+    "arcana",
+    "investigation"
+   ],
+   "default_background_skills": [
+    "history",
+    "insight"
+   ],
+   "armor_proficiencies": [],
+   "weapon_proficiencies": [
+    "dagger",
+    "dart",
+    "sling",
+    "quarterstaff",
+    "light-crossbow"
+   ],
+   "starting_equipment": [
+    {
+     "item": "quarterstaff",
+     "quantity": 1
+    },
+    {
+     "item": "dagger",
+     "quantity": 1
+    },
+    {
+     "item": "spellbook",
+     "quantity": 1
+    },
+    {
+     "item": "component-pouch",
+     "quantity": 1
+    },
+    {
+     "item": "backpack",
+     "quantity": 1
+    },
+    {
+     "item": "ink-and-pen",
+     "quantity": 1
+    },
+    {
+     "item": "tinderbox",
+     "quantity": 1
+    },
+    {
+     "item": "torch",
+     "quantity": 5
+    },
+    {
+     "item": "rations",
+     "quantity": 5
+    },
+    {
+     "item": "waterskin",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": null,
+    "shield": null,
+    "weapons": [
+     "quarterstaff",
+     "dagger"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 8,
+    "dex": 14,
+    "con": 13,
+    "int": 15,
+    "wis": 12,
+    "cha": 10
+   },
+   "spellcasting": {
+    "ability": "int",
+    "spellbook": true,
+    "spellbook_start": 6,
+    "spellbook_per_level": 2,
+    "default_cantrips": [
+     "fire-bolt",
+     "light",
+     "mage-hand"
+    ],
+    "default_spells": [
+     "magic-missile",
+     "shield",
+     "mage-armor",
+     "sleep",
+     "burning-hands",
+     "detect-magic"
+    ]
+   },
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "spellcasting",
+       "name": "Spellcasting",
+       "rule": "Intelligence is your spellcasting ability: spell save DC 8 + proficiency bonus + Int modifier, spell attack proficiency bonus + Int modifier. Prepare Int modifier + wizard level spells (minimum 1) from your spellbook after a long rest; ritual spells in the book can be cast as rituals unprepared."
+      },
+      {
+       "id": "arcane-recovery",
+       "name": "Arcane Recovery",
+       "rule": "Once per day after a short rest, recover spell slots with a combined level up to half your wizard level rounded up. No recovered slot can be 6th level or higher."
+      }
+     ],
+     "slots": {
+      "1": 2
+     },
+     "cantrips_known": 3
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "evocation-savant",
+       "name": "Evocation Savant (School of Evocation)",
+       "rule": "The gold and time you spend to copy an evocation spell into your spellbook are halved."
+      },
+      {
+       "id": "sculpt-spells",
+       "name": "Sculpt Spells (School of Evocation)",
+       "rule": "When you cast an evocation spell that affects other creatures you can see, choose up to 1 + the spell's level of them. They automatically succeed on the save and take no damage if they would take half."
+      }
+     ],
+     "slots": {
+      "1": 3
+     },
+     "cantrips_known": 3
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": {
+      "1": 4,
+      "2": 2
+     },
+     "cantrips_known": 3
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability score by 2, or two ability scores by 1 each. No score can go above 20."
+      }
+     ],
+     "slots": {
+      "1": 4,
+      "2": 3
+     },
+     "cantrips_known": 4
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [],
+     "slots": {
+      "1": 4,
+      "2": 3,
+      "3": 2
+     },
+     "cantrips_known": 4
+    }
+   }
+  },
+  "cleric": {
+   "id": "cleric",
+   "name": "Cleric",
+   "hit_die": "d8",
+   "primary_ability": "wis",
+   "saving_throw_proficiencies": [
+    "wis",
+    "cha"
+   ],
+   "skill_choices": {
+    "count": 2,
+    "options": [
+     "history",
+     "insight",
+     "medicine",
+     "persuasion",
+     "religion"
+    ]
+   },
+   "default_skills": [
+    "religion",
+    "medicine"
+   ],
+   "default_background_skills": [
+    "insight",
+    "persuasion"
+   ],
+   "armor_proficiencies": [
+    "light",
+    "medium",
+    "heavy",
+    "shield"
+   ],
+   "weapon_proficiencies": [
+    "simple"
+   ],
+   "starting_equipment": [
+    {
+     "item": "chain-mail",
+     "quantity": 1
+    },
+    {
+     "item": "shield",
+     "quantity": 1
+    },
+    {
+     "item": "mace",
+     "quantity": 1
+    },
+    {
+     "item": "holy-symbol",
+     "quantity": 1
+    },
+    {
+     "item": "backpack",
+     "quantity": 1
+    },
+    {
+     "item": "bedroll",
+     "quantity": 1
+    },
+    {
+     "item": "tinderbox",
+     "quantity": 1
+    },
+    {
+     "item": "torch",
+     "quantity": 5
+    },
+    {
+     "item": "rations",
+     "quantity": 2
+    },
+    {
+     "item": "waterskin",
+     "quantity": 1
+    }
+   ],
+   "starting_equipped": {
+    "armor": "chain-mail",
+    "shield": "shield",
+    "weapons": [
+     "mace"
+    ]
+   },
+   "starting_gold_cp": 1000,
+   "quick_scores": {
+    "str": 14,
+    "dex": 12,
+    "con": 13,
+    "int": 8,
+    "wis": 15,
+    "cha": 10
+   },
+   "spellcasting": {
+    "ability": "wis",
+    "spellbook": false,
+    "spellbook_start": 0,
+    "spellbook_per_level": 0,
+    "default_cantrips": [
+     "sacred-flame",
+     "guidance",
+     "spare-the-dying"
+    ],
+    "default_spells": [
+     "bless",
+     "cure-wounds",
+     "healing-word",
+     "guiding-bolt"
+    ]
+   },
+   "levels": {
+    "1": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "spellcasting",
+       "name": "Spellcasting",
+       "rule": "Wisdom is your spellcasting ability: spell save DC 8 + proficiency bonus + Wis modifier, spell attack proficiency bonus + Wis modifier. Prepare Wis modifier + cleric level spells (minimum 1) from the cleric list after a long rest; prepared ritual spells can be cast as rituals."
+      },
+      {
+       "id": "bonus-proficiency",
+       "name": "Bonus Proficiency (Life Domain)",
+       "rule": "You are proficient with heavy armor."
+      },
+      {
+       "id": "domain-spells",
+       "name": "Domain Spells (Life Domain)",
+       "rule": "Always prepared and not counted against your prepared total: bless and cure wounds at cleric level 1, lesser restoration and spiritual weapon at level 3, beacon of hope and revivify at level 5."
+      },
+      {
+       "id": "disciple-of-life",
+       "name": "Disciple of Life (Life Domain)",
+       "rule": "When you cast a spell of 1st level or higher that restores hit points, the creature regains additional hit points equal to 2 + the spell's level."
+      }
+     ],
+     "slots": {
+      "1": 2
+     },
+     "cantrips_known": 3
+    },
+    "2": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "channel-divinity",
+       "name": "Channel Divinity",
+       "rule": "One use per short or long rest at cleric levels 2-5. Spend a use for Turn Undead or Preserve Life; saves use your cleric spell save DC."
+      },
+      {
+       "id": "turn-undead",
+       "name": "Channel Divinity: Turn Undead",
+       "rule": "Action: each undead within 30 feet that can see or hear you makes a Wisdom save. On a failure it is turned for 1 minute or until it takes damage: it must move away from you, cannot take reactions, and can only Dash or escape."
+      },
+      {
+       "id": "preserve-life",
+       "name": "Channel Divinity: Preserve Life (Life Domain)",
+       "rule": "Action: restore a total of 5 x cleric level hit points, divided among creatures within 30 feet. Each creature can be healed to at most half its hit point maximum; no effect on undead or constructs."
+      }
+     ],
+     "slots": {
+      "1": 3
+     },
+     "cantrips_known": 3
+    },
+    "3": {
+     "proficiency_bonus": 2,
+     "features": [],
+     "slots": {
+      "1": 4,
+      "2": 2
+     },
+     "cantrips_known": 3
+    },
+    "4": {
+     "proficiency_bonus": 2,
+     "features": [
+      {
+       "id": "ability-score-improvement",
+       "name": "Ability Score Improvement",
+       "rule": "Increase one ability score by 2, or two ability scores by 1 each. No score can go above 20."
+      }
+     ],
+     "slots": {
+      "1": 4,
+      "2": 3
+     },
+     "cantrips_known": 4
+    },
+    "5": {
+     "proficiency_bonus": 3,
+     "features": [
+      {
+       "id": "destroy-undead",
+       "name": "Destroy Undead (CR 1/2)",
+       "rule": "An undead of challenge rating 1/2 or lower that fails its save against your Turn Undead is destroyed instead of turned."
+      }
+     ],
+     "slots": {
+      "1": 4,
+      "2": 3,
+      "3": 2
+     },
+     "cantrips_known": 4
+    }
+   }
+  }
+ }
+}

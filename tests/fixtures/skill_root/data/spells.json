@@ -12,7 +12,10 @@
    "attack_or_save": "spell_attack",
    "damage_expr": "1d10",
    "damage_type": "fire",
-   "description": "Placeholder cantrip."
+   "description": "Placeholder cantrip.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
   },
   "fixture-bolt": {
    "id": "fixture-bolt",
@@ -24,7 +27,10 @@
    "attack_or_save": null,
    "damage_expr": "3d4+3",
    "damage_type": "force",
-   "description": "Placeholder level 1 spell."
+   "description": "Placeholder level 1 spell.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
   },
   "fixture-ward": {
    "id": "fixture-ward",
@@ -36,7 +42,10 @@
    "attack_or_save": null,
    "damage_expr": null,
    "damage_type": null,
-   "description": "Placeholder level 1 spell."
+   "description": "Placeholder level 1 spell.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
   },
   "fixture-beam": {
    "id": "fixture-beam",
@@ -48,7 +57,10 @@
    "attack_or_save": "spell_attack",
    "damage_expr": "4d6",
    "damage_type": "radiant",
-   "description": "Placeholder level 2 spell."
+   "description": "Placeholder level 2 spell.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
   },
   "fixture-mend": {
    "id": "fixture-mend",
@@ -60,7 +72,55 @@
    "attack_or_save": null,
    "damage_expr": null,
    "damage_type": null,
-   "description": "Placeholder spell no fixture class can take."
+   "description": "Placeholder spell no fixture class can take.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "fixture-glow": {
+   "id": "fixture-glow",
+   "name": "Fixture Glow",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Placeholder second cantrip.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "fixture-burst": {
+   "id": "fixture-burst",
+   "name": "Fixture Burst",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "8d6",
+   "damage_type": "fire",
+   "description": "Placeholder level 3 spell.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d6 per slot level above 3rd"
+  },
+  "fixture-haze": {
+   "id": "fixture-haze",
+   "name": "Fixture Haze",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Placeholder fourth level 1 spell.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
   }
  }
 }

@@ -8,7 +8,7 @@ class TestVersionCommand(DmTestCase):
         code, out = self.run_cli(["--version"])
         self.assertEqual(code, 0, out)
         self.assertEqual(out["command"], "version")
-        self.assertEqual(out["data"], {"classes": 2, "spells": 5, "monsters": 3, "equipment": 8})
+        self.assertEqual(out["data"], {"classes": 3, "spells": 8, "monsters": 3, "equipment": 8})
         self.assertEqual(out["seeds"], 2)
         self.assertIn("python_version", out)
 

@@ -1,0 +1,655 @@
+{
+ "format": "tabletop-dm/spells",
+ "format_version": 1,
+ "spells": {
+  "fire-bolt": {
+   "id": "fire-bolt",
+   "name": "Fire Bolt",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "1d10",
+   "damage_type": "fire",
+   "description": "Ranged spell attack, 120 feet, that burns one target and ignites loose flammable objects.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "2d10 at character level 5, 3d10 at 11, 4d10 at 17"
+  },
+  "ray-of-frost": {
+   "id": "ray-of-frost",
+   "name": "Ray of Frost",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "1d8",
+   "damage_type": "cold",
+   "description": "Ranged spell attack, 60 feet; a hit also cuts the target's speed by 10 feet until your next turn starts.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "2d8 at character level 5, 3d8 at 11, 4d8 at 17"
+  },
+  "shocking-grasp": {
+   "id": "shocking-grasp",
+   "name": "Shocking Grasp",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "1d8",
+   "damage_type": "lightning",
+   "description": "Melee spell attack with advantage against metal armor; a hit stops the target's reactions until its next turn.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "2d8 at character level 5, 3d8 at 11, 4d8 at 17"
+  },
+  "acid-splash": {
+   "id": "acid-splash",
+   "name": "Acid Splash",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "1d6",
+   "damage_type": "acid",
+   "description": "One creature, or two within 5 feet of each other, within 60 feet must save or take the damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "2d6 at character level 5, 3d6 at 11, 4d6 at 17"
+  },
+  "light": {
+   "id": "light",
+   "name": "Light",
+   "level": 0,
+   "classes": [
+    "wizard",
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched object sheds bright light for 20 feet and dim light for 20 more, for 1 hour.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "mage-hand": {
+   "id": "mage-hand",
+   "name": "Mage Hand",
+   "level": 0,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A spectral hand within 30 feet handles objects up to 10 pounds for 1 minute; it cannot attack.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "sacred-flame": {
+   "id": "sacred-flame",
+   "name": "Sacred Flame",
+   "level": 0,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "1d8",
+   "damage_type": "radiant",
+   "description": "One creature within 60 feet saves or takes the damage, with no benefit from cover.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "2d8 at character level 5, 3d8 at 11, 4d8 at 17"
+  },
+  "guidance": {
+   "id": "guidance",
+   "name": "Guidance",
+   "level": 0,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched willing creature adds 1d4 to one ability check of its choice within 1 minute.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "spare-the-dying": {
+   "id": "spare-the-dying",
+   "name": "Spare the Dying",
+   "level": 0,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched living creature at 0 hit points becomes stable.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "magic-missile": {
+   "id": "magic-missile",
+   "name": "Magic Missile",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "1d4+1",
+   "damage_type": "force",
+   "description": "Three darts each deal the listed damage and hit chosen targets within 120 feet automatically.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1 dart (1d4+1) per slot level above 1st"
+  },
+  "shield": {
+   "id": "shield",
+   "name": "Shield",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Reaction when hit: +5 AC until your next turn starts, including against that attack, and magic missile deals you no damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "mage-armor": {
+   "id": "mage-armor",
+   "name": "Mage Armor",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched willing creature wearing no armor has AC 13 + Dexterity modifier for 8 hours.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "sleep": {
+   "id": "sleep",
+   "name": "Sleep",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Roll 5d8; creatures within 20 feet of a point fall asleep, lowest current hit points first, until the total is spent.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+2d8 per slot level above 1st"
+  },
+  "burning-hands": {
+   "id": "burning-hands",
+   "name": "Burning Hands",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "3d6",
+   "damage_type": "fire",
+   "description": "Creatures in a 15-foot cone save for half damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d6 per slot level above 1st"
+  },
+  "thunderwave": {
+   "id": "thunderwave",
+   "name": "Thunderwave",
+   "level": 1,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:con",
+   "damage_expr": "2d8",
+   "damage_type": "thunder",
+   "description": "Creatures in a 15-foot cube from you take the damage and are pushed 10 feet, or half damage and no push on a save.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d8 per slot level above 1st"
+  },
+  "detect-magic": {
+   "id": "detect-magic",
+   "name": "Detect Magic",
+   "level": 1,
+   "classes": [
+    "wizard",
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "For up to 10 minutes you sense magic within 30 feet and can learn its school.",
+   "concentration": true,
+   "ritual": true,
+   "higher_levels": null
+  },
+  "cure-wounds": {
+   "id": "cure-wounds",
+   "name": "Cure Wounds",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "1d8",
+   "damage_type": "healing",
+   "description": "A touched creature regains the rolled hit points plus your spellcasting modifier; no effect on undead or constructs.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d8 per slot level above 1st"
+  },
+  "healing-word": {
+   "id": "healing-word",
+   "name": "Healing Word",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "1d4",
+   "damage_type": "healing",
+   "description": "Bonus action: a creature within 60 feet regains the rolled hit points plus your spellcasting modifier.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d4 per slot level above 1st"
+  },
+  "bless": {
+   "id": "bless",
+   "name": "Bless",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Up to three creatures within 30 feet add 1d4 to attack rolls and saving throws for up to 1 minute.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": "+1 target per slot level above 1st"
+  },
+  "guiding-bolt": {
+   "id": "guiding-bolt",
+   "name": "Guiding Bolt",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "4d6",
+   "damage_type": "radiant",
+   "description": "Ranged spell attack, 120 feet; the next attack roll against the target before your next turn ends has advantage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d6 per slot level above 1st"
+  },
+  "shield-of-faith": {
+   "id": "shield-of-faith",
+   "name": "Shield of Faith",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Bonus action: one creature within 60 feet gains +2 AC for up to 10 minutes.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "inflict-wounds": {
+   "id": "inflict-wounds",
+   "name": "Inflict Wounds",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "3d10",
+   "damage_type": "necrotic",
+   "description": "Melee spell attack against a creature you can reach.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d10 per slot level above 1st"
+  },
+  "command": {
+   "id": "command",
+   "name": "Command",
+   "level": 1,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "save:wis",
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "One creature within 60 feet that fails its save obeys a one-word order on its next turn.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1 target per slot level above 1st"
+  },
+  "misty-step": {
+   "id": "misty-step",
+   "name": "Misty Step",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Bonus action: teleport up to 30 feet to an unoccupied space you can see.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "scorching-ray": {
+   "id": "scorching-ray",
+   "name": "Scorching Ray",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "2d6",
+   "damage_type": "fire",
+   "description": "Make three separate ranged spell attacks within 120 feet; each ray that hits deals 2d6 fire.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1 ray per slot level above 2nd"
+  },
+  "hold-person": {
+   "id": "hold-person",
+   "name": "Hold Person",
+   "level": 2,
+   "classes": [
+    "wizard",
+    "cleric"
+   ],
+   "attack_or_save": "save:wis",
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "One humanoid within 60 feet is paralyzed for up to 1 minute, repeating the save at the end of each of its turns.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": "+1 target per slot level above 2nd"
+  },
+  "invisibility": {
+   "id": "invisibility",
+   "name": "Invisibility",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched creature is invisible for up to 1 hour, ending early if it attacks or casts a spell.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": "+1 target per slot level above 2nd"
+  },
+  "web": {
+   "id": "web",
+   "name": "Web",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A 20-foot cube of webbing restrains creatures that fail the save; escaping takes a Strength check against your spell DC.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "shatter": {
+   "id": "shatter",
+   "name": "Shatter",
+   "level": 2,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:con",
+   "damage_expr": "3d8",
+   "damage_type": "thunder",
+   "description": "Creatures in a 10-foot-radius sphere within 60 feet save for half damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d8 per slot level above 2nd"
+  },
+  "spiritual-weapon": {
+   "id": "spiritual-weapon",
+   "name": "Spiritual Weapon",
+   "level": 2,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "spell_attack",
+   "damage_expr": "1d8",
+   "damage_type": "force",
+   "description": "Bonus action: a floating weapon lasts 1 minute, makes a melee spell attack, and can move 20 feet and attack again each turn.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d8 per two slot levels above 2nd"
+  },
+  "lesser-restoration": {
+   "id": "lesser-restoration",
+   "name": "Lesser Restoration",
+   "level": 2,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Touch ends one disease or one condition: blinded, deafened, paralyzed, or poisoned.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "prayer-of-healing": {
+   "id": "prayer-of-healing",
+   "name": "Prayer of Healing",
+   "level": 2,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "2d8",
+   "damage_type": "healing",
+   "description": "Ten-minute casting: up to six creatures within 30 feet each regain the rolled hit points plus your spellcasting modifier.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d8 per slot level above 2nd"
+  },
+  "aid": {
+   "id": "aid",
+   "name": "Aid",
+   "level": 2,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Up to three creatures within 30 feet gain 5 to current and maximum hit points for 8 hours.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+5 hit points per slot level above 2nd"
+  },
+  "fireball": {
+   "id": "fireball",
+   "name": "Fireball",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "8d6",
+   "damage_type": "fire",
+   "description": "Creatures in a 20-foot-radius sphere within 150 feet save for half damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d6 per slot level above 3rd"
+  },
+  "lightning-bolt": {
+   "id": "lightning-bolt",
+   "name": "Lightning Bolt",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": "save:dex",
+   "damage_expr": "8d6",
+   "damage_type": "lightning",
+   "description": "Creatures in a line 100 feet long and 5 feet wide save for half damage.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d6 per slot level above 3rd"
+  },
+  "counterspell": {
+   "id": "counterspell",
+   "name": "Counterspell",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "Reaction within 60 feet: stop a spell of 3rd level or lower; higher needs an ability check, DC 10 + spell level.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "Automatic against spells of the slot's level or lower"
+  },
+  "dispel-magic": {
+   "id": "dispel-magic",
+   "name": "Dispel Magic",
+   "level": 3,
+   "classes": [
+    "wizard",
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "End spells of 3rd level or lower on one target within 120 feet; higher needs an ability check, DC 10 + spell level.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "Automatic against spells of the slot's level or lower"
+  },
+  "fly": {
+   "id": "fly",
+   "name": "Fly",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched willing creature gains a flying speed of 60 feet for up to 10 minutes.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": "+1 target per slot level above 3rd"
+  },
+  "haste": {
+   "id": "haste",
+   "name": "Haste",
+   "level": 3,
+   "classes": [
+    "wizard"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "One willing creature gets doubled speed, +2 AC, advantage on Dexterity saves, and one extra limited action for up to 1 minute.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "revivify": {
+   "id": "revivify",
+   "name": "Revivify",
+   "level": 3,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "A touched creature dead for no more than 1 minute returns with 1 hit point; uses up 300 gp of diamonds.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": null
+  },
+  "spirit-guardians": {
+   "id": "spirit-guardians",
+   "name": "Spirit Guardians",
+   "level": 3,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": "save:wis",
+   "damage_expr": "3d8",
+   "damage_type": "radiant",
+   "description": "For up to 10 minutes, enemies within 15 feet of you have halved speed and save for half damage each turn.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": "+1d8 per slot level above 3rd"
+  },
+  "mass-healing-word": {
+   "id": "mass-healing-word",
+   "name": "Mass Healing Word",
+   "level": 3,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": "1d4",
+   "damage_type": "healing",
+   "description": "Bonus action: up to six creatures within 60 feet each regain the rolled hit points plus your spellcasting modifier.",
+   "concentration": false,
+   "ritual": false,
+   "higher_levels": "+1d4 per slot level above 3rd"
+  },
+  "beacon-of-hope": {
+   "id": "beacon-of-hope",
+   "name": "Beacon of Hope",
+   "level": 3,
+   "classes": [
+    "cleric"
+   ],
+   "attack_or_save": null,
+   "damage_expr": null,
+   "damage_type": null,
+   "description": "For up to 1 minute, chosen creatures within 30 feet have advantage on Wisdom and death saves and regain maximum hit points from healing.",
+   "concentration": true,
+   "ritual": false,
+   "higher_levels": null
+  }
+ }
+}

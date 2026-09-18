@@ -43,6 +43,17 @@ The dice are always open, and the DM never changes a roll. `log.jsonl` is the pr
 
 Scope of this version: levels 1 to 5. Fighter, Rogue, Wizard, Cleric. About 40 spells and 40 monsters from SRD 5.1.
 
+## If something goes wrong
+
+| What you see | What to do |
+|---|---|
+| The session stops with a message that the model's safeguards flagged the conversation | This can happen in a normal game, more often in dark or horror play. Open a new chat in the same folder and say **continue**. Every number was saved the moment it changed, and the story is saved at every scene change, so you lose one scene at most |
+| The chat gets very long and the DM starts to forget things | Say "let's stop here", then open a new chat and say **continue**. The DM reloads everything from the save files |
+| `campaign_file_damaged` | A save file was edited by hand or broken by a sync tool. The message names the exact field. Fix that field, or restore the file from a backup. `log.jsonl` holds every change ever made, including each full character sheet at creation |
+| `write_guard_failed` | The folder is not empty. Make a new empty folder, open it, and start again |
+| `campaign_busy` | Two commands ran at once. It clears on its own. Say "try that again" |
+| The DM says the save holds text that looks like an instruction | Someone put it there. The DM ignores it and removes it. If you got the folder from another person, that is worth knowing |
+
 ## Develop
 
 ```

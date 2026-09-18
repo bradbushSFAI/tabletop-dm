@@ -32,6 +32,10 @@ MAX_ACTIVE_PARTY = 3
 
 ABILITY_SCORE_CAP = 20
 
+# Sanity caps. A typo such as an extra six zeros must refuse, not be saved.
+MAX_AMOUNT = 1000000            # one damage, heal, xp, quantity or counter value
+MAX_GOLD_CP = 10 ** 9           # ten million gp
+
 
 def xp_for_cr(challenge_rating: float) -> int:
     if challenge_rating not in CR_TO_XP:

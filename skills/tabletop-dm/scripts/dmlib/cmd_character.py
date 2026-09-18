@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from . import data, derive, dice, io_campaign, party_ops
 from .errors import DmError
-from .rules_tables import (ABILITIES, ABILITY_SCORE_CAP, MAX_ACTIVE_PARTY, MAX_LEVEL, SKILLS,
+from .rules_tables import (ABILITIES, ABILITY_SCORE_CAP, MAX_ACTIVE_PARTY, MAX_AMOUNT, MAX_LEVEL, SKILLS,
                            STANDARD_ARRAY, XP_THRESHOLDS)
 
 ASI_FEATURE = "ability-score-improvement"
@@ -188,8 +188,10 @@ def create(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
     became_hero = party["hero_id"] is None
     if became_hero:
         party["hero_id"] = cid
+    # The full sheet goes in the log, so a damaged party.json can be rebuilt from log.jsonl.
     entries = [io_campaign.change_entry("character_create", cid, "characters." + cid, None,
-                                        {"class": class_id, "level": level, "hero": became_hero})]
+                                        {"class": class_id, "level": level, "hero": became_hero},
+                                        {"sheet": copy.deepcopy(character)})]
     party_ops.commit(campaign_dir, party, entries)
     return {"character": character, "is_hero": became_hero}
 
@@ -260,7 +262,9 @@ def asi(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
     # A higher Constitution modifier raises hit points for every level already gained (5e).
     delta = (derive.ability_modifier(character["abilities"]["con"]) - old_con) * character["level"]
     character["hp"]["max"] += delta
-    character["hp"]["current"] += delta
+    # Current HP moves only through the life-state machine. A character at 0 HP stays at 0.
+    if character["life_state"] == "alive":
+        character["hp"]["current"] += delta
     character["pending_asi"] -= 1
     derive.recompute_all(character, records["classes"], records["equipment"])
     entries = [io_campaign.change_entry("character_asi", character["id"], "abilities", before, dict(character["abilities"]))]
@@ -438,6 +442,8 @@ def spells_learn(args: argparse.Namespace, skill_root: Path, rng: random.Random)
 def award_xp(character: Dict[str, Any], amount: int, records: Dict[str, Any], rng: random.Random,
              command: str) -> Tuple[Optional[Dict[str, Any]], List[Dict[str, Any]]]:
     """Add XP and apply every level-up it earns. Returns (level_up summary or None, log entries)."""
+    if not 0 <= amount <= MAX_AMOUNT:
+        raise DmError("illegal_value", "an XP award must be 0 to %d." % MAX_AMOUNT)
     class_data = records["classes"][character["class"]]
     entries = []  # type: List[Dict[str, Any]]
     xp_before, level_before = character["xp"], character["level"]
@@ -454,7 +460,9 @@ def award_xp(character: Dict[str, Any], amount: int, records: Dict[str, Any], rn
                                                         "expr": "1" + class_data["hit_die"], "rolls": [rolled],
                                                         "total": gain, "level": character["level"]}))
         character["hp"]["max"] += gain
-        character["hp"]["current"] += gain
+        # A level gained at 0 HP raises the maximum only. Waking up is the life-state machine's job.
+        if character["life_state"] == "alive":
+            character["hp"]["current"] += gain
         character["hit_dice"]["remaining"] += 1
         for feature in row["features"]:
             if feature["id"] == ASI_FEATURE:
@@ -487,8 +495,8 @@ def xp(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[s
     records = data.load_all(skill_root)
     character = party_ops.require_character(party, args.who)
     party_ops.require_active(character)
-    if args.amount < 1:
-        raise DmError("illegal_value", "--amount must be 1 or more.")
+    if not 1 <= args.amount <= MAX_AMOUNT:
+        raise DmError("illegal_value", "--amount must be 1 to %d." % MAX_AMOUNT)
     if character["level"] >= MAX_LEVEL:
         raise DmError("level_cap_reached", "%s is already level %d. This build supports no higher level."
                       % (character["id"], MAX_LEVEL))

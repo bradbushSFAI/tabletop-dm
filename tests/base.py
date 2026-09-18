@@ -25,6 +25,10 @@ class ScriptedRng(random.Random):
     the exact dice it wants. Running out of values is a test bug.
     """
 
+    def __new__(cls, values: List[int]) -> "ScriptedRng":
+        # Python 3.9 seeds random.Random from the constructor argument in __new__, and a list cannot be a seed.
+        return super().__new__(cls)
+
     def __init__(self, values: List[int]) -> None:
         super().__init__(0)
         self._values = list(values)

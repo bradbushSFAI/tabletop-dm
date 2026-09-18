@@ -107,8 +107,9 @@ def summarize(character: Dict[str, Any], is_hero: bool = False) -> Dict[str, Any
 def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[str, Any]:
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
-    repairs = io_campaign.ensure_markdown_templates(campaign_dir)
+    # Read everything that can refuse BEFORE the repair, so a refusal changes nothing on disk.
     encounter = io_campaign.load_encounter(campaign_dir)
+    repairs = io_campaign.ensure_markdown_templates(campaign_dir)
     out = {
         "hero_id": party["hero_id"],
         "characters": {cid: summarize(ch, cid == party["hero_id"]) for cid, ch in party["characters"].items()},

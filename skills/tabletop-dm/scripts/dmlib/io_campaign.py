@@ -1,9 +1,12 @@
 """Every read and write of the campaign folder. Nothing here writes anywhere else."""
+import contextlib
 import json
 import os
+import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, Iterator, List, Optional
 
 from . import CURRENT_FORMAT_VERSION
 from .errors import DmError
@@ -14,6 +17,13 @@ ENCOUNTER_FORMAT = "tabletop-dm/encounter"
 PARTY_FILE = "party.json"
 ENCOUNTER_FILE = "encounter.json"
 LOG_FILE = "log.jsonl"
+LOCK_FILE = ".dm.lock"
+
+# A command takes well under a second. A lock older than this belongs to a process that died.
+STALE_LOCK_SECONDS = 30
+# A model can send tool calls in parallel. A waiting command gives up after this long.
+LOCK_WAIT_SECONDS = 10
+LOCK_POLL_SECONDS = 0.05
 
 MARKDOWN_TEMPLATES = {
     "journal.md": "# Journal\n",
@@ -64,11 +74,72 @@ def is_owned_campaign_dir(campaign_dir: Path) -> bool:
     return True
 
 
+def campaign_files() -> List[str]:
+    return [PARTY_FILE, ENCOUNTER_FILE, LOG_FILE] + sorted(MARKDOWN_TEMPLATES)
+
+
+def refuse_symlinks(campaign_dir: Path) -> None:
+    """A save file that is a symlink would make a write land outside the campaign folder."""
+    for name in campaign_files():
+        if (campaign_dir / name).is_symlink():
+            raise DmError("campaign_file_is_symlink",
+                          "%s is a symbolic link. dm.py writes only real files inside the campaign folder. "
+                          "Replace the link with the real file." % name)
+
+
+@contextlib.contextmanager
+def campaign_lock(campaign_dir: Path, wait_seconds: float = LOCK_WAIT_SECONDS) -> Iterator[None]:
+    """One command at a time per campaign: read, change and write happen under the lock."""
+    if not campaign_dir.is_dir():
+        yield
+        return
+    lock = campaign_dir / LOCK_FILE
+    deadline = time.monotonic() + wait_seconds
+    while True:
+        try:
+            handle = os.open(str(lock), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.close(handle)
+            break
+        except FileExistsError:
+            try:
+                if time.time() - lock.stat().st_mtime > STALE_LOCK_SECONDS:
+                    lock.unlink()
+                    continue
+            except OSError:
+                continue  # the holder released it between our two calls
+            if time.monotonic() >= deadline:
+                raise DmError("campaign_busy", "another dm.py command is still running on this campaign. "
+                                               "Run commands one at a time, then try again.")
+            time.sleep(LOCK_POLL_SECONDS)
+    try:
+        yield
+    finally:
+        try:
+            lock.unlink()
+        except OSError:
+            pass
+
+
 def atomic_write_json(path: Path, data: Dict[str, Any]) -> None:
-    """Write through a hidden temp file in the same folder, then swap it in."""
-    tmp = path.with_name("." + path.name + ".tmp")
-    tmp.write_text(json.dumps(data, indent=1, sort_keys=False) + "\n")
-    os.replace(str(tmp), str(path))
+    """Write a new, uniquely named temp file in the same folder, flush it to disk, then swap it in.
+
+    mkstemp creates the file exclusively, so a planted temp name or symlink is never opened.
+    """
+    if path.is_symlink():
+        raise DmError("campaign_file_is_symlink", "%s is a symbolic link. dm.py will not write through it." % path.name)
+    handle, tmp_name = tempfile.mkstemp(dir=str(path.parent), prefix="." + path.name + ".", suffix=".tmp")
+    try:
+        with os.fdopen(handle, "w") as stream:
+            stream.write(json.dumps(data, indent=1, sort_keys=False) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(tmp_name, str(path))
+    except BaseException:
+        try:
+            os.unlink(tmp_name)
+        except OSError:
+            pass
+        raise
 
 
 def _read_json(path: Path) -> Dict[str, Any]:

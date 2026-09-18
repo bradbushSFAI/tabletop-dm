@@ -2,14 +2,23 @@
 import argparse
 import json
 import random
+import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 from . import cmd_character, data, derive, dice, io_campaign, party_ops
 from .errors import DmError
-from .rules_tables import ABILITIES, xp_for_cr
+from .rules_tables import ABILITIES, MAX_AMOUNT, xp_for_cr
 
 MAX_MONSTERS_PER_ENTRY = 20
+MAX_CUSTOM_AC = 40
+MAX_CUSTOM_HP = 10000
+MAX_ABILITY = 30
+
+
+def _whole(value: Any, low: int, high: int) -> bool:
+    """A real whole number in range. bool is an int in Python, and True is not a hit point total."""
+    return isinstance(value, int) and not isinstance(value, bool) and low <= value <= high
 # A dying character keeps its turn, because the death save happens on it (5e).
 SKIP_STATES = ("stable", "dead", "departed")
 
@@ -31,18 +40,30 @@ def _parse_custom(text: str) -> Dict[str, Any]:
         raise DmError("illegal_custom_monster", "--custom must be a JSON object.")
     if not isinstance(spec.get("name"), str) or not party_ops.slugify(spec.get("name", "")):
         problems.append("name (text)")
-    for key in ("ac", "hp"):
-        if not isinstance(spec.get(key), int) or spec[key] < 1:
-            problems.append("%s (whole number, 1 or more)" % key)
-    if "challenge_rating" not in spec and not isinstance(spec.get("xp_value"), int):
+    if not _whole(spec.get("ac"), 1, MAX_CUSTOM_AC):
+        problems.append("ac (whole number, 1 to %d)" % MAX_CUSTOM_AC)
+    if not _whole(spec.get("hp"), 1, MAX_CUSTOM_HP):
+        problems.append("hp (whole number, 1 to %d)" % MAX_CUSTOM_HP)
+    if "xp_value" in spec:
+        if not _whole(spec["xp_value"], 0, MAX_AMOUNT):
+            problems.append("xp_value (whole number, 0 to %d)" % MAX_AMOUNT)
+    elif "challenge_rating" not in spec:
         problems.append("challenge_rating or xp_value")
+    if not _whole(spec.get("count", 1), 1, MAX_MONSTERS_PER_ENTRY):
+        problems.append("count (whole number, 1 to %d)" % MAX_MONSTERS_PER_ENTRY)
+    abilities = spec.get("abilities") or {}
+    if not isinstance(abilities, dict) or not all(_whole(v, 1, MAX_ABILITY) for v in abilities.values()):
+        problems.append("abilities (whole numbers, 1 to %d)" % MAX_ABILITY)
     if problems:
         raise DmError("illegal_custom_monster", "--custom is missing or has a bad: %s." % ", ".join(problems))
-    abilities = spec.get("abilities") or {}
-    spec["abilities"] = {a: int(abilities.get(a, 10)) for a in ABILITIES}
-    if not isinstance(spec.get("xp_value"), int):
-        spec["xp_value"] = xp_for_cr(spec["challenge_rating"])
-    spec["count"] = int(spec.get("count", 1))
+    spec["abilities"] = {a: abilities.get(a, 10) for a in ABILITIES}
+    if "xp_value" not in spec:
+        try:
+            spec["xp_value"] = xp_for_cr(spec["challenge_rating"])
+        except (DmError, TypeError):
+            raise DmError("illegal_custom_monster", "challenge_rating %r has no XP value. Use 0, 0.125, 0.25, 0.5, "
+                                                    "1 to 10, or give xp_value." % (spec["challenge_rating"],))
+    spec["count"] = spec.get("count", 1)
     return spec
 
 
@@ -122,7 +143,8 @@ def start(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
     fighters = party_ops.active_characters(party)
     if not fighters:
         raise DmError("no_party", "create a character first.")
-    encounter = {"format": io_campaign.ENCOUNTER_FORMAT, "format_version": 1, "round": 1, "turn_index": 0,
+    encounter = {"format": io_campaign.ENCOUNTER_FORMAT, "format_version": 1, "id": uuid.uuid4().hex,
+                 "round": 1, "turn_index": 0,
                  "initiative_order": [], "monsters": {}}  # type: Dict[str, Any]
     entries = []
     for character in fighters:
@@ -228,11 +250,14 @@ def end(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
         if character["life_state"] == "fallen":
             raise DmError("hero_not_resolved", "%s is fallen. Run grit before the fight ends." % character["id"])
     records = data.load_all(skill_root)
+    # The party write below pays the XP and records this fight's id in ONE atomic write. If a crash
+    # stops the delete that follows, a retry sees the id and pays nothing a second time.
+    already_paid = bool(encounter.get("id")) and party.get("last_encounter_paid") == encounter.get("id")
     members = party_ops.active_characters(party)
     # A party with nobody left standing lost the fight. A lost fight pays nothing.
     party_defeated = not any(c["life_state"] == "alive" for c in members)
     earned = sum(m["xp_value"] for m in encounter["monsters"].values() if m["defeated"])
-    total = 0 if (args.no_xp or party_defeated) else earned
+    total = 0 if (args.no_xp or party_defeated or already_paid) else earned
     share = total // len(members) if members and total else 0
     entries, level_ups = [], {}
     if share:
@@ -242,8 +267,11 @@ def end(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict[
             if summary:
                 level_ups[character["id"]] = summary
     entries.append(io_campaign.change_entry("encounter_end", None, "encounter", sorted(encounter["monsters"]), None,
-                                            {"xp_awarded": total, "rounds": encounter["round"]}))
+                                            {"xp_awarded": total, "rounds": encounter["round"],
+                                             "already_paid": already_paid}))
+    party["last_encounter_paid"] = encounter.get("id")
     party_ops.commit(campaign_dir, party, entries)
     io_campaign.delete_encounter(campaign_dir)
     return {"xp_awarded": total, "xp_per_member": share, "members": [c["id"] for c in members],
-            "level_ups": level_ups, "rounds": encounter["round"], "party_defeated": party_defeated}
+            "level_ups": level_ups, "rounds": encounter["round"], "party_defeated": party_defeated,
+            "already_paid": already_paid}

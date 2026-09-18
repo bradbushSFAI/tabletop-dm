@@ -5,7 +5,7 @@ import random
 from pathlib import Path
 from typing import Any, Callable, Dict, List
 
-from . import cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup
+from . import cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup, io_campaign
 from .errors import DmError, error_envelope, success_envelope
 
 Handler = Callable[[argparse.Namespace, Path, random.Random], Dict[str, Any]]
@@ -248,7 +248,12 @@ def dispatch(argv: List[str], skill_root: Path, rng: random.Random) -> Dict[str,
         return success_envelope("version", **HANDLERS["version"](argparse.Namespace(), skill_root, rng))
     args = build_parser().parse_args(argv)
     key = args.handler_key
-    return success_envelope(key.replace(" ", "_"), **HANDLERS[key](args, skill_root, rng))
+    campaign = getattr(args, "campaign", None)
+    if campaign is None:
+        return success_envelope(key.replace(" ", "_"), **HANDLERS[key](args, skill_root, rng))
+    with io_campaign.campaign_lock(Path(campaign)):
+        io_campaign.refuse_symlinks(Path(campaign))
+        return success_envelope(key.replace(" ", "_"), **HANDLERS[key](args, skill_root, rng))
 
 
 def _command_name(argv: List[str]) -> str:

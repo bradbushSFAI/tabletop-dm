@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from . import data, derive, dice, io_campaign, life_states, party_ops
 from .cmd_setup import gp
 from .errors import DmError
-from .rules_tables import LEGAL_CONDITIONS
+from .rules_tables import LEGAL_CONDITIONS, MAX_AMOUNT, MAX_GOLD_CP
 
 MAX_GRIT_DC = 30
 _GP = re.compile(r"^\d+(\.\d{1,2})?$")
@@ -20,8 +20,8 @@ def _hp_text(hp: Dict[str, int]) -> str:
 
 
 def _positive(amount: int, what: str) -> None:
-    if amount < 1:
-        raise DmError("illegal_value", "%s must be 1 or more." % what)
+    if not 1 <= amount <= MAX_AMOUNT:
+        raise DmError("illegal_value", "%s must be 1 to %d." % (what, MAX_AMOUNT))
 
 
 def _find_target(party: Dict[str, Any], encounter: Optional[Dict[str, Any]], who: str) -> Tuple[str, Dict[str, Any]]:
@@ -181,6 +181,9 @@ def rest_short(args: argparse.Namespace, skill_root: Path, rng: random.Random) -
     party = io_campaign.load_party(campaign_dir)
     _require_restable(party, campaign_dir)
     plan = []  # type: List[Tuple[Dict[str, Any], int]]
+    named = [part.partition(":")[0] for part in party_ops.split_list(args.dice)]
+    if len(set(party_ops.slugify(n) for n in named)) != len(named):
+        raise DmError("bad_arguments", "--dice names a character twice. Give each character once, with one count.")
     for part in party_ops.split_list(args.dice):
         who, sep, count = part.partition(":")
         if not sep or not count.isdigit():
@@ -320,9 +323,11 @@ def _to_cp(text: str) -> int:
     if not _GP.match(text):
         raise DmError("illegal_value", "a gold amount is a positive number of gp with at most 2 decimals, for example 12.5.")
     whole, _, frac = text.partition(".")
+    if len(whole) > len(str(MAX_GOLD_CP)):
+        raise DmError("illegal_value", "no purse holds that much. The cap is %d gp." % (MAX_GOLD_CP // 100))
     cp = int(whole) * 100 + int((frac + "00")[:2])
-    if cp < 1:
-        raise DmError("illegal_value", "the amount must be more than 0.")
+    if not 1 <= cp <= MAX_GOLD_CP:
+        raise DmError("illegal_value", "a gold amount must be more than 0 and at most %d gp." % (MAX_GOLD_CP // 100))
     return cp
 
 
@@ -337,7 +342,10 @@ def gold(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
     before = character["gold_cp"]
     entries = []
     if args.add:
-        character["gold_cp"] += _to_cp(args.add)
+        gain = _to_cp(args.add)
+        if before + gain > MAX_GOLD_CP:
+            raise DmError("illegal_value", "%s cannot hold more than %d gp." % (character["id"], MAX_GOLD_CP // 100))
+        character["gold_cp"] += gain
     else:
         cost = _to_cp(args.spend)
         if cost > before:
@@ -346,6 +354,8 @@ def gold(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dict
         if args.give_to:
             receiver = party_ops.require_character(party, args.give_to)
             party_ops.require_active(receiver)
+            if receiver["gold_cp"] + cost > MAX_GOLD_CP:
+                raise DmError("illegal_value", "%s cannot hold more than %d gp." % (receiver["id"], MAX_GOLD_CP // 100))
             entries.append(io_campaign.change_entry("gold", receiver["id"], "gold_cp", receiver["gold_cp"],
                                                     receiver["gold_cp"] + cost, {"from": character["id"]}))
             receiver["gold_cp"] += cost
@@ -374,6 +384,8 @@ def track(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
         after = None
     else:
         after = args.set if args.set is not None else (before or 0) + args.add
+        if after > MAX_AMOUNT:
+            raise DmError("illegal_value", "a counter holds at most %d." % MAX_AMOUNT)
         if after < 0:
             raise DmError("tracker_empty", "%s is at %d. It cannot go to %d: nothing is left to spend."
                           % (name, before or 0, after))

@@ -31,6 +31,7 @@ Brad plays this game. He must not be spoiled.
 ## Verification
 
 - Whole suite, from the repo root: `python3 -B -m unittest discover -s tests -p "test_*.py" -t .` (exit 0 is green). Join it to a commit with `&&`.
+- Before a release, run the same suite on the oldest supported Python: `/usr/bin/python3` on this Mac is 3.9.6. The syntax test alone does not catch runtime differences (it missed one in the test helper).
 - Build the release zips: `python3 build.py` (writes `dist/`).
 - There is no dev server, no port, and no browser surface. No browser tools are needed or authorized here.
 - DM behaviour is checked by a playtest: a DM sub-agent follows only a copy of the skill folder and keeps a transcript, and an auditor sub-agent checks the transcript and `log.jsonl` against the firm rules. See `PRD.md` section 16.

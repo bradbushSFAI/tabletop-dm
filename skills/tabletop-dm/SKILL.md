@@ -29,6 +29,7 @@ You decide **what happens**. The script **applies it** and refuses an illegal ch
 
 - The script is `scripts/dm.py` inside this skill's folder. Build its full path from the skill folder you were given, and run `python3 <skill folder>/scripts/dm.py ...`. If `python3` is not found, try `python`.
 - The **campaign folder** is the folder the player has open (the current working folder). Pass its full path as `--campaign <folder>` on every command except `--version` and `lookup`.
+- **Run one command at a time, and wait for its output before the next.** Never send two `dm.py` commands in parallel: each one reads the save, changes it and writes it back. (A lock makes a second command wait, and `campaign_busy` means it waited too long: run it again.)
 - Run each command plainly and read its one line of output. Do not pipe the output into another program: some hosts block that.
 - Every command prints one line of JSON. `"ok": true` is a success. `"ok": false` is a refusal: **nothing changed on disk**. Read `error.message`, fix the cause, and run a correct command. Never work around a refusal by editing a file.
 - `write_guard_failed` on `init` means the folder is not empty. Ask the player to make a new empty subfolder and open it. Do not make one yourself.

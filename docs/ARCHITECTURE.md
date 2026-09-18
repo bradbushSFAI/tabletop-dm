@@ -27,7 +27,8 @@ The blueprint below is the design as planned. The code is the truth where they d
 6. **Dice:** an expression may end in `*N` (for example `5d4*10`). A lone `1d20` roll reports `natural` and honours advantage. Against an AC, a natural 20 is `critical_hit` and a natural 1 is `miss`.
 7. **Life states:** `apply_death_save` and `apply_grit` return `(character, result)`. `apply_rest_hp_change` is named `apply_hp_gain_from_rest`. Temporary hit points absorb damage first.
 8. **Tests use `ScriptedRng`**, a `random.Random` whose `randint` returns a fixed queue of dice, so a test states the exact dice it wants. Every dice call in `dmlib` goes through `rng.randint`.
-9. **Mutation checks must run Python with `-B`** and clear `__pycache__`: a file restored within the same second and at the same size reuses the mutated bytecode.
+9. **Hardening after the Codex adversarial review:** every campaign command runs under a lock file (`.dm.lock`, stale after 30 s, `campaign_busy` after a 10 s wait). JSON is written through `tempfile.mkstemp` in the campaign folder, flushed with `fsync`, then swapped in, so a planted temp name or symlink is never opened. A save file that is a symlink is refused. `encounter.json` carries a unique `id`, and `encounter end` records it in `party.json` in the same atomic write that pays the XP, so a retry after a crash pays nothing twice. Numbers are capped (`MAX_AMOUNT`, `MAX_GOLD_CP`). A level-up or a Constitution increase at 0 HP raises the maximum only. Known and accepted: a crash between the state write and the log append leaves one state change with no log line. The log is an audit trail, and `party.json` is the truth.
+10. **Mutation checks must run Python with `-B`** and clear `__pycache__`: a file restored within the same second and at the same size reuses the mutated bytecode.
 
 ## PART 1 — Structure Decision
 

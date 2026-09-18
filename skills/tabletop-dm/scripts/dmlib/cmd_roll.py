@@ -29,7 +29,7 @@ def resolve(total: int, natural: Optional[int], dc: Optional[int], ac: Optional[
 def roll_with_d20_rules(expr: str, rng: random.Random, adv: bool, disadv: bool) -> Dict[str, Any]:
     """Roll an expression. A lone d20 also reports its natural value and honours advantage."""
     text = expr.replace(" ", "").lower()
-    match = _SINGLE_D20.match(text)
+    match = _SINGLE_D20.match(text) if len(expr) <= dice.MAX_EXPRESSION_LENGTH else None
     if not match:
         if adv or disadv:
             raise DmError(
@@ -122,8 +122,9 @@ def finish(campaign_dir: Path, out: Dict[str, Any], args: argparse.Namespace,
     result = resolve(out["total"], out.get("natural"), args.dc, args.ac)
     if result is not None:
         out["result"] = result
-    if args.reason:
-        out["reason"] = args.reason
+    reason = party_ops.clean_text(args.reason, "--reason", party_ops.MAX_REASON)
+    if reason:
+        out["reason"] = reason
     payload = dict(out)
     payload["who"] = who
     payload["kind"] = kind

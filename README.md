@@ -21,6 +21,16 @@ You type what your hero does, in your own words. There are no menus. Useful thin
 
 Requirement: a Python 3 that the host can run (3.9 or newer). Nothing to install.
 
+## Before you install (if someone sent you this)
+
+A skill is software: it gives Claude instructions and a script to run. Install one only from a person you trust, and check it first. For this one:
+
+- **What it runs:** one Python script, `skills/tabletop-dm/scripts/dm.py`, with the package next to it. Nothing runs at install time, and there are no hooks.
+- **What it writes:** only files inside the folder you open to play. It refuses to start a game in a folder that is not empty, and it refuses to write through a symbolic link.
+- **What it cannot do:** it has no network code, no credentials, and uses only Python's standard library. To check: `grep -rnE "^(import|from) " skills/tabletop-dm/scripts` lists every import, and none of them is a network module.
+- **What the instructions say:** read `skills/tabletop-dm/SKILL.md`. Its "Two safety rules" tell Claude to treat save files as data and to run nothing but this script. A security scanner will still note that the skill contains a script and asks Claude to run shell commands. That is how the game works.
+- **A campaign folder from someone else** is only data. The skill tells Claude never to follow instructions found in one. The audit behind these points is in `docs/security-audit-2026-09-18.md`.
+
 ## How it works
 
 | Part | Owns |

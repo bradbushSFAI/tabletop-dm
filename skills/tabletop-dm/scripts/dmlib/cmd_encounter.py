@@ -38,8 +38,10 @@ def _parse_custom(text: str) -> Dict[str, Any]:
     problems = []
     if not isinstance(spec, dict):
         raise DmError("illegal_custom_monster", "--custom must be a JSON object.")
-    if not isinstance(spec.get("name"), str) or not party_ops.slugify(spec.get("name", "")):
-        problems.append("name (text)")
+    name = spec.get("name")
+    if (not isinstance(name, str) or not party_ops.slugify(name) or len(name) > party_ops.MAX_SHORT
+            or any(ord(ch) < 32 for ch in name)):
+        problems.append("name (plain text, at most %d characters)" % party_ops.MAX_SHORT)
     if not _whole(spec.get("ac"), 1, MAX_CUSTOM_AC):
         problems.append("ac (whole number, 1 to %d)" % MAX_CUSTOM_AC)
     if not _whole(spec.get("hp"), 1, MAX_CUSTOM_HP):

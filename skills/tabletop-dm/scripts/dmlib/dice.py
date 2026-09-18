@@ -7,6 +7,8 @@ from .errors import DmError
 
 # Limits keep a typo such as "1000000d6" from hanging the session.
 MAX_DICE_PER_TERM = 100
+MAX_EXPRESSION_LENGTH = 100
+MAX_TERMS = 10
 MIN_SIDES = 2
 MAX_SIDES = 1000
 
@@ -19,6 +21,9 @@ def _bad(expr: str, why: str) -> DmError:
 
 def roll_expression(expr: str, rng: random.Random) -> Dict[str, Any]:
     """Roll an expression such as 1d20+5, 2d6+3, 4d6kh3, 1d8+1d6-1, 5d4*10."""
+    if len(expr) > MAX_EXPRESSION_LENGTH:
+        raise DmError("bad_expression", "a dice expression is at most %d characters. This one has %d."
+                      % (MAX_EXPRESSION_LENGTH, len(expr)))
     text = expr.replace(" ", "").lower()
     if not text:
         raise _bad(expr, "it is empty")
@@ -33,6 +38,8 @@ def roll_expression(expr: str, rng: random.Random) -> Dict[str, Any]:
     terms = [(sign or "+", body) for sign, body in pieces if sign or body]
     if not terms:
         raise _bad(expr, "it has no terms")
+    if len(terms) > MAX_TERMS:
+        raise _bad(expr, "at most %d terms" % MAX_TERMS)
     dice_out = []  # type: List[Dict[str, Any]]
     modifier = 0
     total = 0

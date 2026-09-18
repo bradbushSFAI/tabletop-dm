@@ -14,6 +14,26 @@ def slugify(text: str) -> str:
     return _SLUG.sub("-", text.strip().lower()).strip("-")
 
 
+# Caps on free text. A save file is read back into the model's context on every status and sheet.
+MAX_NAME = 80
+MAX_HOOK = 300
+MAX_NOTE = 300
+MAX_REASON = 200
+MAX_SHORT = 60
+
+
+def clean_text(value: Optional[str], what: str, max_len: int) -> Optional[str]:
+    """Refuse text that is too long or holds control characters (newlines, escapes, NUL)."""
+    if value is None:
+        return None
+    if len(value) > max_len:
+        raise DmError("illegal_text", "%s is %d characters. The limit is %d." % (what, len(value), max_len))
+    if any(ord(ch) < 32 or ord(ch) == 127 for ch in value):
+        raise DmError("illegal_text", "%s holds a control character (a line break, a tab or an escape). "
+                                      "Use plain text on one line." % what)
+    return value.strip()
+
+
 def split_list(text: Optional[str]) -> List[str]:
     """'a, b,c' -> ['a', 'b', 'c']."""
     if not text:

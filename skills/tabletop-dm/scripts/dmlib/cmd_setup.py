@@ -58,7 +58,8 @@ def settings_set(args: argparse.Namespace, skill_root: Path, rng: random.Random)
         key, sep, value = pair.partition("=")
         if not sep or not key.strip() or not value.strip():
             raise DmError("illegal_value", "--tone takes key=value, for example --tone genre=horror. Got '%s'." % pair)
-        tones[key.strip()] = value.strip()
+        tones[party_ops.slugify(party_ops.clean_text(key, "a --tone key", party_ops.MAX_SHORT))] = \
+            party_ops.clean_text(value, "a --tone value", party_ops.MAX_SHORT)
     for field, value in (("difficulty", args.difficulty), ("content_level", args.content_level)):
         if value is not None and settings.get(field) != value:
             entries.append(io_campaign.change_entry("settings_set", None, "settings." + field, settings.get(field), value))

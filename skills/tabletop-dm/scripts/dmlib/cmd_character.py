@@ -129,7 +129,10 @@ def create(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
     if class_id not in records["classes"]:
         raise DmError("unknown_class", "no class '%s'. Legal: %s." % (args.char_class, ", ".join(sorted(records["classes"]))))
     class_data = records["classes"][class_id]
-    cid = party_ops.slugify(args.id or args.name)
+    args.name = party_ops.clean_text(args.name, "--name", party_ops.MAX_NAME)
+    for hook in ("background", "bond", "flaw"):
+        setattr(args, hook, party_ops.clean_text(getattr(args, hook), "--" + hook, party_ops.MAX_HOOK))
+    cid = party_ops.slugify(args.id or args.name)[:party_ops.MAX_SHORT]
     if not cid:
         raise DmError("illegal_value", "the name must contain a letter or a number.")
     if cid in party["characters"]:
@@ -222,7 +225,10 @@ def set_hooks(args: argparse.Namespace, skill_root: Path, rng: random.Random) ->
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
     character = party_ops.require_character(party, args.who)
-    fields = {k: getattr(args, k) for k in ("background", "bond", "flaw", "name") if getattr(args, k) is not None}
+    limits = {"background": party_ops.MAX_HOOK, "bond": party_ops.MAX_HOOK, "flaw": party_ops.MAX_HOOK,
+              "name": party_ops.MAX_NAME}
+    fields = {k: party_ops.clean_text(getattr(args, k), "--" + k, limit)
+              for k, limit in limits.items() if getattr(args, k) is not None}
     if not fields:
         raise DmError("nothing_to_set", "give at least one of --background, --bond, --flaw, --name.")
     entries = []

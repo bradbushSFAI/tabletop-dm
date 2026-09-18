@@ -5,7 +5,8 @@ import random
 from pathlib import Path
 from typing import Any, Callable, Dict, List
 
-from . import cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup, io_campaign
+from . import (cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup, data,
+               io_campaign)
 from .errors import DmError, error_envelope, success_envelope
 
 Handler = Callable[[argparse.Namespace, Path, random.Random], Dict[str, Any]]
@@ -253,6 +254,10 @@ def dispatch(argv: List[str], skill_root: Path, rng: random.Random) -> Dict[str,
         return success_envelope(key.replace(" ", "_"), **HANDLERS[key](args, skill_root, rng))
     with io_campaign.campaign_lock(Path(campaign)):
         io_campaign.refuse_symlinks(Path(campaign))
+        if key != "init" and (Path(campaign) / io_campaign.PARTY_FILE).is_file():
+            # Check the whole save once, up front, so a damaged file is diagnosed and never half-used.
+            data.check_party_refs(io_campaign.load_party(Path(campaign)), data.load_all(skill_root))
+            io_campaign.load_encounter(Path(campaign))
         return success_envelope(key.replace(" ", "_"), **HANDLERS[key](args, skill_root, rng))
 
 

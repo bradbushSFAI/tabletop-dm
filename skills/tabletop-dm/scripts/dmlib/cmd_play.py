@@ -268,8 +268,10 @@ def item_add(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> 
             raise DmError("unknown_name", err.message + " For an item that is not in the data, use --name \"...\".")
         line = {"item": record["id"], "quantity": args.qty}
     else:
-        line = {"item": party_ops.slugify(args.name), "quantity": args.qty, "custom": True, "name": args.name,
-                "note": args.note or ""}
+        name = party_ops.clean_text(args.name, "--name", party_ops.MAX_NAME)
+        note = party_ops.clean_text(args.note, "--note", party_ops.MAX_NOTE)
+        line = {"item": party_ops.slugify(name), "quantity": args.qty, "custom": True, "name": name,
+                "note": note or ""}
         if not line["item"]:
             raise DmError("illegal_value", "--name must contain a letter or a number.")
     _add_line(character, line)
@@ -372,7 +374,7 @@ def track(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Dic
     campaign_dir = Path(args.campaign)
     party = io_campaign.load_party(campaign_dir)
     trackers = party.setdefault("trackers", {})
-    name = party_ops.slugify(args.name)
+    name = party_ops.slugify(party_ops.clean_text(args.name, "--name", party_ops.MAX_SHORT))
     if not name:
         raise DmError("illegal_value", "--name must contain a letter or a number.")
     chosen = [flag for flag in ("set", "add") if getattr(args, flag) is not None] + (["clear"] if args.clear else [])

@@ -1,6 +1,6 @@
 {
   "name": "tabletop-dm",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A text-only tabletop role-playing game, compatible with fifth edition. The assistant is the Dungeon Master, and a bundled script keeps the dice and the numbers honest.",
   "author": {
     "name": "Brad Bush"

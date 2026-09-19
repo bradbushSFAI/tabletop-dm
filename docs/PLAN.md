@@ -7,7 +7,7 @@ M0 (before any code) is Brad's 2-minute Cowork check, PRD section 18.
 
 | Milestone | State | Evidence |
 |---|---|---|
-| M0 Cowork check (python3, and a file that survives a new session, in local and cloud mode) | **Open. Only Brad can run it** | Reported as unverified |
+| M0 Cowork check (python3, and a file that survives a new session) | **Verified by Brad, 2026-09-18 and 09-19**, in the Cowork mode he uses, with the skill added as a bare skill. The skill loaded, Python ran, `init` worked, he played a full session, and after `/new` in the same thread "continue" resumed the saved campaign. The other Cowork mode (local versus cloud) is still untested | His screenshot and his session recap |
 | M1 Script core | Done | `2307372` |
 | M2 Data and characters | Done | `ce829da` |
 | M3 Play state | Done | `ce829da` |
@@ -20,7 +20,9 @@ M0 (before any code) is Brad's 2-minute Cowork check, PRD section 18.
 
 The suite runs on Python 3.9.6 and 3.14. Commands added beyond the blueprint are listed in `PRD.md` section 9, and the places where the code differs from the blueprint are in `docs/ARCHITECTURE.md` under "Build amendments".
 
-Still unverified, and only a person can verify it: that the skill loads and saves in Claude Cowork, and that the game is fun.
+Verified by the first real player: the skill loads and saves in Claude Cowork, and the game is fun ("Game is going well", "It worked great"). Still untested: the second Cowork mode.
+
+Observed in that session, and held for a later pass: the start is slow (the DM reads the skill, four reference files, the bible, the metaplot and a seed before the first scene), one DM turn ended with no action for the player, and after `/new` the player had to start the skill by hand before "continue" worked.
 
 ## PART 5 — Task List Per Milestone
 

@@ -343,7 +343,7 @@ M5 does not depend on M1 to M4 and can run in parallel.
 
 | # | Item | Plan |
 |---|---|---|
-| 1 | Python or file persistence could fail in a Cowork mode. The documentation does not settle it. Cowork local mode on a machine with no Python 3 is the likely failure | M0 checks it before any code, and the M7 boot test checks it with the real skill. Fallback: port the script to Node |
+| 1 | Python or file persistence could fail in a Cowork mode | **Closed for the mode Brad uses** (2026-09-19): the skill loaded, Python ran, a full session was played, and "continue" resumed the save after `/new`. The second Cowork mode is untested. The Node port fallback was not needed |
 | 2 | The model drifts from the firm rules in a long session (does arithmetic itself, skips journal lines) | The M6 playtest audits exactly this. `status` output is compact so that re-grounding is cheap |
 | 3 | The model is too kind and softens the stakes | Firm rule 3, the Grit save as a real mechanic, and the auditor check |
 | 4 | Grit save numbers are a first draft | Tune in playtest |

@@ -5,7 +5,7 @@ import random
 from pathlib import Path
 from typing import Any, Callable, Dict, List
 
-from . import (cmd_character, cmd_encounter, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup, data,
+from . import (cmd_character, cmd_encounter, cmd_log, cmd_lookup, cmd_play, cmd_roll, cmd_seed, cmd_setup, data,
                io_campaign)
 from .errors import DmError, error_envelope, success_envelope
 
@@ -48,6 +48,8 @@ HANDLERS = {
     "encounter flee": cmd_encounter.flee,
     "character set": cmd_character.set_hooks,
     "track": cmd_play.track,
+    "beat": cmd_log.beat,
+    "recent": cmd_log.recent,
     "seed list": cmd_seed.seed_list,
     "seed choose": cmd_seed.seed_choose,
     "seed pick": cmd_seed.seed_pick,
@@ -238,6 +240,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--set", type=int)
     p.add_argument("--add", type=int)
     p.add_argument("--clear", action="store_true")
+
+    p = _leaf(sub, "beat", "beat")
+    p.add_argument("--text", required=True)
+    p = _leaf(sub, "recent", "recent")
+    p.add_argument("--n", type=int, default=cmd_log.DEFAULT_RECENT)
 
     seed = _group(sub, "seed")
     _leaf(seed, "list", "seed list")

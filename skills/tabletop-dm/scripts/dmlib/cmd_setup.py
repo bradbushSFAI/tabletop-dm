@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from . import CURRENT_FORMAT_VERSION, __version__, data, io_campaign, party_ops
+from .cmd_log import unjournaled_count
 from .errors import DmError
 
 DIFFICULTIES = ("story", "standard", "iron")
@@ -118,6 +119,8 @@ def status(args: argparse.Namespace, skill_root: Path, rng: random.Random) -> Di
         "encounter_active": encounter is not None,
         "trackers": party.get("trackers", {}),
         "secret_counters": len(party.get("secret_trackers", {})),
+        # Rolls and beats newer than journal.md. Above 0 means the story file is behind the dice: run recent.
+        "unjournaled": unjournaled_count(campaign_dir),
         "journal_bytes": (campaign_dir / "journal.md").stat().st_size,
         "repairs": repairs,
     }  # type: Dict[str, Any]

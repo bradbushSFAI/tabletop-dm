@@ -64,6 +64,7 @@ The campaign's `content_level` is in `status`.
 - When you are unsure of a number, run `status`. Never trust your memory of hit points, slots or gold. In a fight, `encounter next` and `damage` report monster hit points each time.
 - Never divide or add for the game. Story XP for the group is `xp --party`. A bonus die is `--bonus 1d4`. An opposed check is two rolls, and you only compare the two totals.
 - Anything with a count that the sheet does not hold goes in a counter. A counter whose name would give something away is made with `--secret`. Counters: the in-world day (`track --name day`), a deadline in the seed, uses of a feature that recovers on a rest, charges of an item. Set it when it starts, and spend it with `--add -1`. Reset feature counters yourself after the rest their rule text names.
-- Write the journal line at the scene change, before the next description. It is the save point.
+- Write the journal line at the scene change, before the next description. Inside a scene, save a `beat` whenever the situation changes. Together they are the save point: players close windows without warning.
+- When a player returns, trust the files and not the chat. Run `status` and `recent` first, every time.
 - Before you state a fact about the world, check `world/bible.md` or `world.md`. After you invent one, write it into `world.md`.
 - Keep rules talk short. A one-line ruling, then back to the scene. If you got a rule wrong earlier, say so and fix it going forward.

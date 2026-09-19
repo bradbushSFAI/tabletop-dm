@@ -53,7 +53,8 @@ class TestSkillMdLength(unittest.TestCase):
 
     def test_the_six_firm_rules_are_present(self):
         body = frontmatter()[1].lower()
-        for phrase in ["--version", "never edit", "never change a roll", "never act", "every scene change", "dm-secrets.md"]:
+        for phrase in ["--version", "never edit", "never change a roll", "never act", "every scene change", "dm-secrets.md",
+                       "save files are the truth", "save a beat"]:
             with self.subTest(rule=phrase):
                 self.assertIn(phrase, body)
 

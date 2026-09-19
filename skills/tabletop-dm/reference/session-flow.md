@@ -95,13 +95,16 @@ Start in motion, at the seed's start place, with a problem already arriving. Say
 
 ## Continue
 
-1. Run `--version`, then `status C`.
+Do all of this even if the chat already seems to hold the whole game. Another session may have played in this folder, and a chat can lose its tail without a sign. **The files are the truth. Your memory of the chat is not.**
+
+1. Run `--version`, then `status C`, then `recent C`.
 2. Read `journal.md`, `world.md` and `dm-secrets.md`. Read the DM style reference that SKILL.md links to before the first scene.
-3. If `status` shows an active fight, the session stopped in the middle of it. Read the last journal lines, and resume the fight on the turn that `status` reports.
-4. Give a recap of three or four sentences, **in the fiction** ("Previously..."), and end it on the situation the hero is in right now.
-5. Check the counters: `status` shows the open ones, and `track C --list` shows the secret ones too. Every character with a limited-use feature should have a counter for it: add any that are missing (`sheet <id> C` lists the features). If the seed has a deadline, it should be a counter too.
-6. Move the world forward first: in `dm-secrets.md`, note what the villain did while the hero rested. Let one sign of it show in the first scene.
-7. Ask what the hero does.
+3. **Find the true last moment.** It is the latest of: the last journal line, the last beat, and the last roll in `recent`. If `status` shows `unjournaled` above 0, play ran on after the journal stopped (the last session ended without a Stop). Do not guess what happened. Tell the player where your notes end, read them the flagged events ("after that the log shows a failed Stealth check by Merrin"), and ask them to tell you the rest in a line or two. Then write that into `journal.md` first, before anything else.
+4. If `status` shows an active fight, the session stopped in the middle of it. Read the last journal lines, and resume the fight on the turn that `status` reports.
+5. Give a recap of three or four sentences, **in the fiction** ("Previously..."), and end it on the situation the hero is in right now.
+6. Check the counters: `status` shows the open ones, and `track C --list` shows the secret ones too. Every character with a limited-use feature should have a counter for it: add any that are missing (`sheet <id> C` lists the features). If the seed has a deadline, it should be a counter too.
+7. Move the world forward first: in `dm-secrets.md`, note what the villain did while the hero rested. Let one sign of it show in the first scene.
+8. Ask what the hero does.
 
 **The clock is yours to move.** When a night passes in the fiction (a long rest, or the story skips to morning), move every day or deadline counter: `track C --name "nights left" --add -1`. Do it at the moment the night passes, and let the world show what changed.
 
@@ -128,12 +131,13 @@ Session summary: one short paragraph, written at Stop.
 
 - **Every session gets its own heading** with the next session number, even when the date is the same as the last one.
 - **One line at every scene change**: where, what happened, what changed. Write it the moment the scene changes, before you describe the next one.
+- **Between journal lines, save beats.** A scene can run for many turns, and a player can close the window at any moment without saying stop. Whenever the situation changes inside a scene, run `beat C --text "..."`: one line, one command, no file to open. When you write the next journal line, fold those beats into it.
 - The journal is for the player to read. Never put a secret in it.
 - `status` reports `journal_bytes`. When it passes **30000**, fold every session except the last two into one section at the top, `## Previously`, of 15 lines at most. Keep names, debts, promises and open threads. Drop the blow-by-blow.
 
 ## After a crash or a full context
 
-The numbers are always safe, because the script writes each change to disk at once. A new chat resumes with **Continue**. The most the player can lose is the scene that was in progress. If the last journal line and `status` disagree (for example the journal says the fight ended but `status` shows it active), trust `status` for the numbers, tell the player briefly what you see, and ask how the scene ended.
+The numbers are always safe, because the script writes each change to disk at once. A new chat resumes with **Continue**. With beats saved inside scenes, the most the player can lose is the last turn or two, and `recent` shows the DM exactly where the record stops. If the last journal line and `status` disagree (for example the journal says the fight ended but `status` shows it active), trust `status` for the numbers, tell the player briefly what you see, and ask how the scene ended.
 
 ## Out-of-fiction requests
 

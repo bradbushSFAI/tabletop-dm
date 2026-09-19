@@ -22,6 +22,8 @@ The suite runs on Python 3.9.6 and 3.14. Commands added beyond the blueprint are
 
 Verified by the first real player: the skill loads and saves in Claude Cowork, and the game is fun ("Game is going well", "It worked great"). Still untested: the second Cowork mode.
 
+**The lost scene (2026-09-19), fixed in v0.2.0.** On his second return the DM resumed from its own stale chat memory and not from the files, and a scene was lost. The save files showed why: the session had ended without a Stop, the last journal line was written at 06:43, and `log.jsonl` held a roll at 06:47 that no journal line covered. The numbers were intact. Two fixes: firm rule 7 (the save files are the truth, so run `status` and `recent` on every return before narrating) and firm rule 8 with the `beat` command (a one-line save inside a scene). `recent` flags every roll and beat that is newer than the journal, and `status` reports the count as `unjournaled`. Run against his real save, `recent` flagged exactly that 06:47 roll.
+
 Observed in that session, and held for a later pass: the start is slow (the DM reads the skill, four reference files, the bible, the metaplot and a seed before the first scene), one DM turn ended with no action for the player, and after `/new` the player had to start the skill by hand before "continue" worked.
 
 ## PART 5 — Task List Per Milestone

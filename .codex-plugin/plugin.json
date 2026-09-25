@@ -1,0 +1,17 @@
+{
+  "name": "tabletop-dm",
+  "version": "0.2.2",
+  "description": "A text-only tabletop role-playing game, compatible with fifth edition. The assistant is the Dungeon Master, and a bundled script keeps the dice and the numbers honest.",
+  "author": { "name": "Brad Bush" },
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Tabletop DM",
+    "shortDescription": "A text tabletop RPG with an AI Dungeon Master",
+    "longDescription": "A text-only tabletop role-playing game, compatible with fifth edition. The AI is the Dungeon Master. A bundled Python script rolls every die and keeps hit points, spell slots, gold and inventory honest. Open an empty folder and say: let's play D&D.",
+    "developerName": "Brad Bush",
+    "category": "Games",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": ["Let's play D&D", "Continue my campaign"]
+  }
+}

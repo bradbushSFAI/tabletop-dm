@@ -79,6 +79,25 @@ class TestBuild(unittest.TestCase):
 
     def test_the_plugin_zip_is_a_plugin_not_a_marketplace(self):
         self.assertNotIn(".claude-plugin/marketplace.json", self.names("plugin"))
+        self.assertFalse([n for n in self.names("plugin") if n.startswith((".agents/", ".codex-plugin/"))])
+
+    def test_the_repo_is_an_openai_plugin_marketplace_too(self):
+        claude = json.loads((REPO_ROOT / ".claude-plugin" / "plugin.json").read_text())
+        openai = json.loads((REPO_ROOT / ".codex-plugin" / "plugin.json").read_text())
+        self.assertEqual(openai["name"], claude["name"])
+        self.assertEqual(openai["version"], claude["version"])
+        self.assertEqual(openai["skills"], "./skills/")
+        for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
+            self.assertTrue(openai["interface"][field], field)
+        self.assertTrue(openai["interface"]["capabilities"])
+        self.assertTrue(openai["interface"]["defaultPrompt"])
+        market = json.loads((REPO_ROOT / ".agents" / "plugins" / "marketplace.json").read_text())
+        self.assertEqual(market["name"], "tabletop-dm")
+        [entry] = market["plugins"]
+        self.assertEqual(entry["name"], claude["name"])
+        self.assertEqual(entry["source"], {"source": "local", "path": "./"})
+        self.assertEqual(entry["policy"], {"installation": "AVAILABLE", "authentication": "ON_INSTALL"})
+        self.assertTrue(entry["category"])
 
     def test_the_zipped_script_runs_after_unpacking(self):
         import subprocess

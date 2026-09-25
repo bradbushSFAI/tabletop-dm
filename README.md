@@ -2,7 +2,7 @@
 
 A text-only tabletop role-playing game, compatible with fifth edition. The AI is your Dungeon Master. A small Python script keeps every number honest: true dice, hit points, spell slots, gold and inventory.
 
-It runs as a skill in Claude (the desktop app and Claude Code) and in OpenAI Codex. It uses the plan you already have. There is no API key and no server.
+It runs in Claude (the desktop app and Claude Code), in the ChatGPT desktop app, and in OpenAI Codex. It uses the plan you already have. There is no API key and no server.
 
 What you get: levels 1 to 5, four classes (Fighter, Rogue, Wizard, Cleric), 43 spells and 44 monsters from SRD 5.1, and five starting adventures in one shared world. Every number is saved the moment it changes, and the story at every scene, so you can stop and pick the game up days later.
 
@@ -14,8 +14,10 @@ What you get: levels 1 to 5, four classes (Fighter, Rogue, Wizard, Cleric), 43 s
 |---|---|
 | Claude desktop app (Cowork) | Yes |
 | Claude Code | Yes |
-| OpenAI Codex: the CLI, the IDE extension, and Codex in the ChatGPT desktop app | Yes |
-| claude.ai chat, ChatGPT chat | **No.** A plain chat has no folder, so the game has nowhere to keep its save files |
+| ChatGPT desktop app, in a project with a folder | Yes |
+| OpenAI Codex: the CLI and the IDE extension | Yes |
+| claude.ai chat | **No.** A plain chat has no folder, so the game has nowhere to keep its save files |
+| ChatGPT in a web browser | Not tested. The game needs a folder that keeps its save files between chats |
 
 The game also needs Python 3.9 or newer wherever the app runs its commands. The DM tests for it at the start of every session. If it says Python is missing, install it from [python.org](https://www.python.org/downloads/). Nothing else to install.
 
@@ -40,9 +42,18 @@ Inside Claude Code:
 
 Then run `/reload-plugins`, or start a new session. From a terminal, the same two steps are `claude plugin marketplace add bradbushSFAI/tabletop-dm` and `claude plugin install tabletop-dm@tabletop-dm`.
 
-### OpenAI Codex
+### ChatGPT desktop app and OpenAI Codex
 
-Inside Codex, type:
+Install it as a plugin, from a terminal:
+
+```
+codex plugin marketplace add bradbushSFAI/tabletop-dm
+codex plugin add tabletop-dm@tabletop-dm
+```
+
+Then start a new thread. To update later, run `codex plugin marketplace upgrade`, then the second line again.
+
+Or install it as a skill. Inside Codex, type:
 
 ```
 $skill-installer install https://github.com/bradbushSFAI/tabletop-dm/tree/main/skills/tabletop-dm
@@ -52,16 +63,16 @@ Approve the download when Codex asks, then restart Codex. To update later, delet
 
 To install by hand instead, copy the `skills/tabletop-dm` folder from this repo into `~/.agents/skills/`.
 
-**Codex needs permission to save.** Codex may open a folder that is not a git repository read-only, and then the DM cannot save. So make your game folder a git repository before you start (the game ignores the hidden `.git` folder), or run `/permissions` inside Codex and allow edits.
+**The game needs permission to save.** In the ChatGPT desktop app, select your game folder for the project and trust it. The Codex CLI may open a folder that is not a git repository read-only, and then the DM cannot save. So make your game folder a git repository before you start (the game ignores the hidden `.git` folder), or run `/permissions` inside Codex and allow edits.
 
 ## Play
 
 1. Make a **new empty folder**. That folder becomes your save game.
-2. Open it. In the Claude desktop app, start a Cowork task in that folder. In Claude Code or the Codex CLI, `cd` into it and start the app there.
+2. Open it. In the Claude desktop app, start a Cowork task in that folder. In the ChatGPT desktop app, use a project with that folder selected. In Claude Code or the Codex CLI, `cd` into it and start the app there.
 3. Say: **let's play D&D**.
 4. To come back later, open the same folder and say: **continue**.
 
-In Codex, the first steps look like this:
+In the Codex CLI, the first steps look like this:
 
 ```
 mkdir my-campaign && cd my-campaign && git init && codex

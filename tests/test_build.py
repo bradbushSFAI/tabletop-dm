@@ -60,6 +60,26 @@ class TestBuild(unittest.TestCase):
         init = (REPO_ROOT / "skills" / "tabletop-dm" / "scripts" / "dmlib" / "__init__.py").read_text()
         self.assertEqual(manifest["version"], re.search(r'__version__ = "([^"]+)"', init).group(1))
 
+    def test_both_zips_carry_the_mit_licence(self):
+        self.assertIn("skills/tabletop-dm/LICENSE.txt", self.names("plugin"))
+        self.assertIn("tabletop-dm/LICENSE.txt", self.names("skill"))
+        root = (REPO_ROOT / "LICENSE").read_text()
+        self.assertTrue(root.startswith("MIT License"))
+        self.assertEqual((REPO_ROOT / "skills" / "tabletop-dm" / "LICENSE.txt").read_text(), root)
+        manifest = json.loads((REPO_ROOT / ".claude-plugin" / "plugin.json").read_text())
+        self.assertEqual(manifest["license"], "MIT")
+
+    def test_the_repo_is_a_marketplace_that_lists_this_plugin(self):
+        market = json.loads((REPO_ROOT / ".claude-plugin" / "marketplace.json").read_text())
+        manifest = json.loads((REPO_ROOT / ".claude-plugin" / "plugin.json").read_text())
+        self.assertEqual(market["name"], "tabletop-dm")
+        self.assertIn("name", market["owner"])
+        self.assertEqual([p["name"] for p in market["plugins"]], [manifest["name"]])
+        self.assertEqual(market["plugins"][0]["source"], "./")
+
+    def test_the_plugin_zip_is_a_plugin_not_a_marketplace(self):
+        self.assertNotIn(".claude-plugin/marketplace.json", self.names("plugin"))
+
     def test_the_zipped_script_runs_after_unpacking(self):
         import subprocess
 

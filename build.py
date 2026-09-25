@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the two release files into dist/.
 
-  tabletop-dm-plugin.zip   .claude-plugin/ + skills/    install in Cowork or Claude Code
+  tabletop-dm-plugin.zip   plugin.json + skills/        install in Cowork or Claude Code
   tabletop-dm-skill.zip    tabletop-dm/                 add as a bare skill in Cowork
 
 Neither file holds tests, docs, playtests, or caches. Standard library only.
@@ -40,8 +40,9 @@ def build(out_dir: Path) -> Dict[str, Path]:
     skill_zip = out_dir / (SKILL_NAME + "-skill.zip")
 
     def plugin_entries() -> Iterator[Tuple[Path, str]]:
-        for path in _files(REPO_ROOT / ".claude-plugin"):
-            yield path, path.relative_to(REPO_ROOT).as_posix()
+        # marketplace.json makes the GitHub repo installable. An uploaded plugin must not carry it.
+        manifest = REPO_ROOT / ".claude-plugin" / "plugin.json"
+        yield manifest, manifest.relative_to(REPO_ROOT).as_posix()
         for path in _files(REPO_ROOT / "skills"):
             yield path, path.relative_to(REPO_ROOT).as_posix()
 

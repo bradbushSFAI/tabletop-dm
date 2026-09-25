@@ -1,0 +1,14 @@
+{
+  "name": "tabletop-dm",
+  "description": "A text-only tabletop role-playing game. The assistant is the Dungeon Master, and a bundled script keeps the dice honest.",
+  "owner": {
+    "name": "Brad Bush"
+  },
+  "plugins": [
+    {
+      "name": "tabletop-dm",
+      "source": "./",
+      "description": "A text-only tabletop role-playing game, compatible with fifth edition. The assistant is the Dungeon Master, and a bundled script keeps the dice and the numbers honest."
+    }
+  ]
+}

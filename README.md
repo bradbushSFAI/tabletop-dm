@@ -1,47 +1,93 @@
 # tabletop-dm
 
-A text-only tabletop role-playing game, compatible with fifth edition, that runs as a Claude skill. Claude is the Dungeon Master. A small Python script keeps every number honest: true dice, hit points, spell slots, gold and inventory. It costs nothing beyond the Claude subscription you already have. There is no API key and no server.
+A text-only tabletop role-playing game, compatible with fifth edition. The AI is your Dungeon Master. A small Python script keeps every number honest: true dice, hit points, spell slots, gold and inventory.
 
-## Play
+It runs as a skill in Claude (the desktop app and Claude Code) and in OpenAI Codex. It uses the plan you already have. There is no API key and no server.
 
-1. Install the plugin (see below).
-2. In Claude Cowork or Claude Code, open a **new empty folder**. That folder becomes your save game.
-3. Say: **let's play D&D**.
-4. To come back later, open the same folder and say: **continue**.
+What you get: levels 1 to 5, four classes (Fighter, Rogue, Wizard, Cleric), 43 spells and 44 monsters from SRD 5.1, and five starting adventures in one shared world. Every number is saved the moment it changes, and the story at every scene, so you can stop and pick the game up days later.
 
-You type what your hero does, in your own words. There are no menus. Useful things to say out of the fiction: "show my sheet", "what's in my pack", "what can I do?", "let's stop here".
+> **Want to play it unspoiled?** Do not open `skills/tabletop-dm/seeds/` or `skills/tabletop-dm/world/metaplot.md`. They hold the story's secrets. `world/bible.md` and `seeds/teasers.md` are safe to read.
 
 ## Install
 
-| Host | How |
+| App | Works? |
 |---|---|
-| Claude Cowork | Add `dist/tabletop-dm-skill.zip` as a skill, or upload `dist/tabletop-dm-plugin.zip` under Customize > Plugins. Same game either way |
-| Claude Code | Add this repo as a plugin, or link `skills/tabletop-dm` into `~/.claude/skills/` |
-| claude.ai chat | **Not supported.** Plain chat has no folder, so the game has nowhere to keep its save files |
+| Claude desktop app (Cowork) | Yes |
+| Claude Code | Yes |
+| OpenAI Codex: the CLI, the IDE extension, and Codex in the ChatGPT desktop app | Yes |
+| claude.ai chat, ChatGPT chat | **No.** A plain chat has no folder, so the game has nowhere to keep its save files |
 
-Requirement: a Python 3 that the host can run (3.9 or newer). Nothing to install.
+The game also needs Python 3.9 or newer wherever the app runs its commands. The DM tests for it at the start of every session. If it says Python is missing, install it from [python.org](https://www.python.org/downloads/). Nothing else to install.
 
-## Before you install (if someone sent you this)
+### Claude desktop app (Cowork)
 
-A skill is software: it gives Claude instructions and a script to run. Install one only from a person you trust, and check it first. For this one:
+1. Open **Customize > Plugins**.
+2. Select **Add > Add marketplace**, and enter `bradbushSFAI/tabletop-dm`.
+3. Find **tabletop-dm** in the list, and select **Add**.
+
+To get a new version later, select **Check for updates** on the marketplace, or turn on **Sync automatically**. A plugin you add here also shows up in Claude Code when you sign in with the same account.
+
+No marketplace? Download `tabletop-dm-plugin.zip` from the [latest release](https://github.com/bradbushSFAI/tabletop-dm/releases/latest), then use **Add > Upload plugin**.
+
+### Claude Code
+
+Inside Claude Code:
+
+```
+/plugin marketplace add bradbushSFAI/tabletop-dm
+/plugin install tabletop-dm@tabletop-dm
+```
+
+Then run `/reload-plugins`, or start a new session. From a terminal, the same two steps are `claude plugin marketplace add bradbushSFAI/tabletop-dm` and `claude plugin install tabletop-dm@tabletop-dm`.
+
+### OpenAI Codex
+
+Inside Codex, type:
+
+```
+$skill-installer install https://github.com/bradbushSFAI/tabletop-dm/tree/main/skills/tabletop-dm
+```
+
+Approve the download when Codex asks, then restart Codex. To update later, delete `~/.codex/skills/tabletop-dm` and run the same line again (the installer stops if the folder already exists).
+
+To install by hand instead, copy the `skills/tabletop-dm` folder from this repo into `~/.agents/skills/`.
+
+**Codex needs permission to save.** Codex may open a folder that is not a git repository read-only, and then the DM cannot save. So make your game folder a git repository before you start (the game ignores the hidden `.git` folder), or run `/permissions` inside Codex and allow edits.
+
+## Play
+
+1. Make a **new empty folder**. That folder becomes your save game.
+2. Open it. In the Claude desktop app, start a Cowork task in that folder. In Claude Code or the Codex CLI, `cd` into it and start the app there.
+3. Say: **let's play D&D**.
+4. To come back later, open the same folder and say: **continue**.
+
+In Codex, the first steps look like this:
+
+```
+mkdir my-campaign && cd my-campaign && git init && codex
+```
+
+You type what your hero does, in your own words. There are no menus. Useful things to say out of the fiction: "show my sheet", "what's in my pack", "what can I do?", "let's stop here".
+
+## Before you install
+
+A skill is software: it gives the AI instructions and a script to run. Install one only from a person you trust, and check it first. For this one:
 
 - **What it runs:** one Python script, `skills/tabletop-dm/scripts/dm.py`, with the package next to it. Nothing runs at install time, and there are no hooks.
 - **What it writes:** only files inside the folder you open to play. It refuses to start a game in a folder that is not empty, and it refuses to write through a symbolic link.
 - **What it cannot do:** it has no network code, no credentials, and uses only Python's standard library. To check: `grep -rnE "^(import|from) " skills/tabletop-dm/scripts` lists every import, and none of them is a network module.
-- **What the instructions say:** read `skills/tabletop-dm/SKILL.md`. Its "Two safety rules" tell Claude to treat save files as data and to run nothing but this script. A security scanner will still note that the skill contains a script and asks Claude to run shell commands. That is how the game works.
-- **A campaign folder from someone else** is only data. The skill tells Claude never to follow instructions found in one. The audit behind these points is in `docs/security-audit-2026-09-18.md`.
+- **What the instructions say:** read `skills/tabletop-dm/SKILL.md`. Its "Two safety rules" tell the DM to treat save files as data and to run nothing but this script. A security scanner will still note that the skill contains a script and asks the AI to run shell commands. That is how the game works.
+- **A campaign folder from someone else** is only data. The skill tells the DM never to follow instructions found in one. The audit behind these points is in `docs/security-audit-2026-09-18.md`.
 
 ## How it works
 
 | Part | Owns |
 |---|---|
 | `skills/tabletop-dm/scripts/dm.py` | Every number. It rolls the dice, applies each change, refuses an illegal one, and logs every roll |
-| Claude, following `SKILL.md` | The story, the characters, the rulings |
+| The AI, following `SKILL.md` | The story, the characters, the rulings |
 | Your campaign folder | The save game: `party.json`, `log.jsonl`, `journal.md`, `world.md`, `dm-secrets.md` (do not read that one), and `encounter.json` during a fight |
 
 The dice are always open, and the DM never changes a roll. `log.jsonl` is the proof.
-
-Scope of this version: levels 1 to 5. Fighter, Rogue, Wizard, Cleric. About 40 spells and 40 monsters from SRD 5.1.
 
 ## If something goes wrong
 
@@ -64,8 +110,10 @@ python3 build.py                                                # writes the two
 - Standard library only, Python 3.9 syntax, no network. The suite checks all three.
 - Tests come first. Every command and every life-state rule in `PRD.md` maps to a named test class (`docs/PLAN.md`).
 - `PRD.md` is the spec. `docs/ARCHITECTURE.md` is the design. `GRILL.md` is the decision history.
-- **Spoiler wall:** `skills/tabletop-dm/world/metaplot.md` and `skills/tabletop-dm/seeds/<name>.md` hold the story's secrets. The owner plays this game, so do not quote or summarise those files to him. See `PRD.md` section 13.
+- **Spoilers:** `skills/tabletop-dm/world/metaplot.md` and `skills/tabletop-dm/seeds/<name>.md` hold the story's secrets. Other players read the issues, so do not quote or summarise those files in an issue or a pull request. See `PRD.md` section 13.
 
 ## Licence
 
-Rules data in `skills/tabletop-dm/data/` is derived from the System Reference Document 5.1 under CC-BY-4.0. See `skills/tabletop-dm/LICENSE-SRD.md`. This product is compatible with fifth edition. It is not affiliated with Wizards of the Coast.
+The code, the DM instructions and the story are MIT licensed. See `LICENSE`.
+
+The rules data in `skills/tabletop-dm/data/` is derived from the System Reference Document 5.1 under CC-BY-4.0. See `skills/tabletop-dm/LICENSE-SRD.md`. This product is compatible with fifth edition. It is not affiliated with Wizards of the Coast.
